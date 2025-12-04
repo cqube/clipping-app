@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipping de Prensa - Pesca</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="header_pesca.png" alt="Header Pesca" class="header-image">
+            <h1>Clipping de Prensa: Pesca en Chile</h1>
+            <div class="controls">
+                <button id="scrapeBtn">Forzar Actualización</button>
+                <span id="status"></span>
+            </div>
+        </header>
+
+        <div id="loading" class="loading">Cargando noticias...</div>
+        <div id="dashboard"></div>
+    </div>
+
+    <script>
+        const dashboardDiv = document.getElementById('dashboard');
+        const scrapeBtn = document.getElementById('scrapeBtn');
+        const statusSpan = document.getElementById('status');
+        const loadingDiv = document.getElementById('loading');
+
+        const ORDERED_CATEGORIES = [
+            'Pesca Artesanal',
+            'Cultivos y Áreas de Manejo',
+            'Ley de Pesca',
+            'Sector Pesquero',
+            'Pais y Sector Empresarial',
+            'Pesca Industrial',
+            'Salmoneras',
+            'Innovación Acuícola',
+            'Otros'
+        ];
+
+        async function loadArticles() {
+            loadingDiv.style.display = 'block';
+            dashboardDiv.innerHTML = '';
+            try {
+                const res = await fetch('/api/articles');
+                const articles = await res.json();
+
+                if (articles.length === 0) {
+                    dashboardDiv.innerHTML = '<p class="no-news">No hay noticias aún. Intenta "Forzar Actualización".</p>';
+                    return;
+                }
+
+                // Group by category
+                const grouped = {};
+                articles.forEach(art => {
+                    const cat = art.category || 'Otros';
+                    if (!grouped[cat]) grouped[cat] = [];
+                    grouped[cat].push(art);
+                });
+
+                // Render in order
+                ORDERED_CATEGORIES.forEach(cat => {
+                    const catArticles = grouped[cat];
+                    // Show category even if empty? Reference site shows "No se registran noticias"
+                    // But for now let's only show if there are articles or maybe just skip empty ones to keep it clean.
+                    // The reference site shows empty categories. Let's try to mimic that if we want, 
+                    // but for a cleaner look let's stick to showing only populated ones for now, 
+                    // or maybe show all if the user prefers. The prompt said "organization more similar", 
+                    // usually implies showing the structure.
+                    // Let's show populated ones for now to avoid clutter.
+
+                    if (catArticles && catArticles.length > 0) {
+                        const section = document.createElement('div');
+                        section.className = 'category-section';
+                        section.innerHTML = `<h3>${cat}</h3>`;
+
+                        catArticles.forEach(art => {
+                            const artDiv = document.createElement('div');
+                            artDiv.className = 'article';
+
+                            // Format date
+                            const dateObj = new Date(art.date);
+                            const dateStr = dateObj.toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
+
+                            artDiv.innerHTML = `
+                                <h2><a href="${art.url}" target="_blank">${art.title}</a></h2>
+                                <div class="meta">
+                                    ${art.source} | ${dateStr}
+                                </div>
+                                <p>${art.summary || ''}</p>
+                            `;
+                            section.appendChild(artDiv);
+                        });
+
+                        dashboardDiv.appendChild(section);
+                    }
+                });
+
+            } catch (err) {
+                console.error(err);
+                dashboardDiv.innerHTML = '<p>Error cargando noticias.</p>';
+            } finally {
+                loadingDiv.style.display = 'none';
+            }
+        }
+
+        scrapeBtn.addEventListener('click', async () => {
+            statusSpan.textContent = ' Actualizando...';
+            scrapeBtn.disabled = true;
+            try {
+                const res = await fetch('/api/scrape', { method: 'POST' });
+                const data = await res.json();
+                statusSpan.textContent = ` Listo! ${data.newArticles} noticias nuevas.`;
+                loadArticles();
+            } catch (err) {
+                statusSpan.textContent = ' Error al actualizar.';
+            } finally {
+                scrapeBtn.disabled = false;
+            }
+        });
+
+        // Load on start
+        loadArticles();
+    </script>
+</body>
+
+</html>
