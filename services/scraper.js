@@ -40,8 +40,8 @@ const HEADERS = {
 
 const DEFAULT_IMAGE = '/placeholder-news.svg';
 
-// Fetch article image from the actual page
-const fetchArticleImage = async (url) => {
+// Fetch article metadata (image and date) from the actual page
+const fetchArticleMetadata = async (url) => {
     try {
         const { data } = await axios.get(url, {
             headers: HEADERS,
@@ -49,6 +49,7 @@ const fetchArticleImage = async (url) => {
         });
         const $ = cheerio.load(data);
 
+        // --- IMAGE EXTRACTION ---
         // Try to find og:image first (most reliable)
         let image = $('meta[property="og:image"]').attr('content');
 
@@ -73,10 +74,32 @@ const fetchArticleImage = async (url) => {
             }
         }
 
-        return image || null;
+        // --- DATE EXTRACTION ---
+        let date = null;
+
+        // Try standard meta tags
+        const dateMeta = $('meta[property="article:published_time"]').attr('content') ||
+            $('meta[name="date"]').attr('content') ||
+            $('meta[name="pubdate"]').attr('content') ||
+            $('meta[name="publish-date"]').attr('content') ||
+            $('time').attr('datetime');
+
+        if (dateMeta) {
+            date = new Date(dateMeta);
+        }
+
+        // If invalid date, reset to null
+        if (date && isNaN(date.getTime())) {
+            date = null;
+        }
+
+        return {
+            image: image || null,
+            date: date || null
+        };
     } catch (error) {
-        console.log(`  Could not fetch image from ${url}`);
-        return null;
+        console.log(`  Could not fetch metadata from ${url}`);
+        return { image: null, date: null };
     }
 };
 
@@ -382,12 +405,13 @@ const scrapeSite = async (site) => {
             });
         }
 
-        // Now fetch images for each candidate (with await)
+        // Now fetch metadata for each candidate (with await)
         for (const candidate of candidates) {
-            const image = await fetchArticleImage(candidate.url);
+            const metadata = await fetchArticleMetadata(candidate.url);
             articles.push({
                 ...candidate,
-                image: image || DEFAULT_IMAGE
+                image: metadata.image || DEFAULT_IMAGE,
+                date: metadata.date || candidate.date // Use extracted date or fallback to scrape date
             });
         }
 
@@ -484,13 +508,17 @@ const scrapeGoogleAlerts = async () => {
                     // Extract source from URL
                     const source = extractSourceFromUrl(url);
 
+                    // Fetch metadata (image + date)
+                    const metadata = await fetchArticleMetadata(url);
+
                     articles.push({
                         title,
                         url,
                         source,
                         summary: summary.substring(0, 300), // Limit summary length
-                        date,
-                        category: classifyArticle(title + ' ' + summary)
+                        date: metadata.date || date, // Use extracted date or RSS date
+                        category: classifyArticle(title + ' ' + summary),
+                        image: metadata.image || DEFAULT_IMAGE
                     });
                 }
             }
