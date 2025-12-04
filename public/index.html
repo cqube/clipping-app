@@ -75,7 +75,10 @@
                     if (catArticles && catArticles.length > 0) {
                         const section = document.createElement('div');
                         section.className = 'category-section';
-                        section.innerHTML = `<h3>${cat}</h3>`;
+                        section.innerHTML = `<h3>${cat} (${catArticles.length})</h3>`;
+
+                        const articlesContainer = document.createElement('div');
+                        articlesContainer.className = 'category-articles';
 
                         catArticles.forEach(art => {
                             const artDiv = document.createElement('div');
@@ -92,9 +95,10 @@
                                 </div>
                                 <p>${art.summary || ''}</p>
                             `;
-                            section.appendChild(artDiv);
+                            articlesContainer.appendChild(artDiv);
                         });
 
+                        section.appendChild(articlesContainer);
                         dashboardDiv.appendChild(section);
                     }
                 });
