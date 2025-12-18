@@ -254,6 +254,9 @@
                 ORDERED_CATEGORIES.forEach(cat => {
                     const catArticles = grouped[cat];
                     if (catArticles && catArticles.length > 0) {
+                        // 1. Sort by date desc (Newest first)
+                        catArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
                         const section = document.createElement('section');
                         section.className = 'category-section';
 
@@ -265,7 +268,12 @@
                         const articlesContainer = document.createElement('div');
                         articlesContainer.className = 'category-articles';
 
-                        catArticles.forEach(art => {
+                        // 2. Split into visible and hidden
+                        const visibleArticles = catArticles.slice(0, 6);
+                        const hiddenArticles = catArticles.slice(6);
+
+                        // Helper to Create Card
+                        const createCard = (art) => {
                             const artCard = document.createElement('article');
                             artCard.className = 'news-card';
 
@@ -273,7 +281,7 @@
                             const dateObj = new Date(art.date);
                             const dateStr = dateObj.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' });
 
-                            // Domain extraction for cleaner source
+                            // Domain extraction
                             let domain = art.source || 'Fuente desconocida';
                             try {
                                 if (art.url) {
@@ -293,10 +301,61 @@
                                     <a href="${art.url}" target="_blank" class="read-more">Leer nota <i class="fa-solid fa-arrow-right-long"></i></a>
                                 </div>
                             `;
-                            articlesContainer.appendChild(artCard);
+                            return artCard;
+                        };
+
+                        // Render Visible
+                        visibleArticles.forEach(art => {
+                            articlesContainer.appendChild(createCard(art));
                         });
 
-                        section.appendChild(articlesContainer);
+                        // Render Hidden (if any)
+                        if (hiddenArticles.length > 0) {
+                            const hiddenContainer = document.createElement('div');
+                            hiddenContainer.className = 'hidden-articles';
+                            hiddenContainer.style.display = 'none'; // Start hidden
+
+                            hiddenArticles.forEach(art => {
+                                hiddenContainer.appendChild(createCard(art));
+                            });
+                            articlesContainer.appendChild(hiddenContainer);
+
+                            // 3. Show More Button
+                            const btnContainer = document.createElement('div');
+                            btnContainer.className = 'show-more-container';
+                            btnContainer.style.textAlign = 'center';
+                            btnContainer.style.marginTop = '1rem';
+
+                            const showMoreBtn = document.createElement('button');
+                            showMoreBtn.className = 'btn btn-secondary btn-sm';
+                            showMoreBtn.innerHTML = `Leer más noticias <i class="fa-solid fa-chevron-down"></i>`;
+
+                            showMoreBtn.onclick = () => {
+                                const isHidden = hiddenContainer.style.display === 'none';
+                                if (isHidden) {
+                                    hiddenContainer.style.display = 'grid'; // Use grid to match parent layout if needed, or 'contents'/'block' depending on CSS. 
+                                    // Actually .category-articles usually has grid. 
+                                    // If we use 'contents', it flattens. If 'grid', it needs columns.
+                                    // Best to make hiddenContainer use grid-template-columns too or subgrid.
+                                    // Simpler: use 'contents' if supported or just append items to parent?
+                                    // Re-appending is cleaner.
+                                    // Let's just make the hiddenContainer display: contents to inherit grid.
+                                    hiddenContainer.style.display = 'contents';
+                                    showMoreBtn.innerHTML = `Mostrar menos <i class="fa-solid fa-chevron-up"></i>`;
+                                } else {
+                                    hiddenContainer.style.display = 'none';
+                                    showMoreBtn.innerHTML = `Leer más noticias <i class="fa-solid fa-chevron-down"></i>`;
+                                    // Scroll back to top of section? Optional.
+                                }
+                            };
+
+                            btnContainer.appendChild(showMoreBtn);
+                            section.appendChild(articlesContainer); // Append container first
+                            section.appendChild(btnContainer);      // Then button
+                        } else {
+                            section.appendChild(articlesContainer);
+                        }
+
                         dashboardDiv.appendChild(section);
                     }
                 });
@@ -327,7 +386,7 @@
                 if (res.status === 202) {
                     // Success (Async)
                     statusBar.innerHTML = `<div class="status-msg success"><i class="fa-solid fa-clock"></i> Actualización iniciada en segundo plano. Tomará unos minutos.</div>`;
-                    
+
                     // Keep message for longer since it's a long process
                     setTimeout(() => {
                         statusBar.innerHTML = '';
@@ -336,13 +395,13 @@
                 } else if (res.status === 409) {
                     // Already running
                     statusBar.innerHTML = `<div class="status-msg warning"><i class="fa-solid fa-triangle-exclamation"></i> Ya hay una actualización en curso.</div>`;
-                     setTimeout(() => statusBar.innerHTML = '', 5000);
+                    setTimeout(() => statusBar.innerHTML = '', 5000);
                 } else {
                     // Other success (sync) or error?
-                     const data = await res.json();
-                     statusBar.innerHTML = `<div class="status-msg success"><i class="fa-solid fa-check"></i> Listo. ${data.newArticles || 0} nuevas.</div>`;
-                     setTimeout(() => statusBar.innerHTML = '', 5000);
-                     loadArticles();
+                    const data = await res.json();
+                    statusBar.innerHTML = `<div class="status-msg success"><i class="fa-solid fa-check"></i> Listo. ${data.newArticles || 0} nuevas.</div>`;
+                    setTimeout(() => statusBar.innerHTML = '', 5000);
+                    loadArticles();
                 }
 
             } catch (err) {
