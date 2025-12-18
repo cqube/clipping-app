@@ -5,29 +5,210 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clipping de Prensa - Pesca</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="index.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <img src="header_pesca.png" alt="Header Pesca" class="header-image">
-            <h1>Clipping de Prensa: Pesca en Chile</h1>
-            <div class="controls">
-                <button id="scrapeBtn">Forzar Actualización</button>
-                <span id="status"></span>
+    <div class="app-container">
+        <!-- Navigation / Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="header_pesca.png" alt="Logo Pesca" class="header-logo">
+                    <div class="header-title">
+                        <h1>Clipping de Prensa</h1>
+                        <span class="subtitle">Monitor de noticias del sector pesquero en Chile</span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="manageEmailsBtn" class="btn btn-secondary">
+                        <i class="fa-solid fa-envelope"></i> Suscripciones
+                    </button>
+                    <button id="scrapeBtn" class="btn btn-primary">
+                        <i class="fa-solid fa-rotate"></i> <span class="btn-text">Actualizar</span>
+                    </button>
+                </div>
             </div>
+            <div id="status-bar" class="status-bar"></div>
         </header>
 
-        <div id="loading" class="loading">Cargando noticias...</div>
-        <div id="dashboard"></div>
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Slider Section -->
+            <div class="slider-container" id="slider-container">
+                <div class="slides-wrapper" id="slides-wrapper">
+                    <!-- Slides injected by JS -->
+                </div>
+                <button class="slider-btn prev-btn" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="slider-btn next-btn" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+                <div class="slider-dots" id="slider-dots"></div>
+            </div>
+
+            <h2 class="section-title">Últimas Noticias</h2>
+
+            <div id="loading" class="loading-state">
+                <div class="spinner"></div>
+                <p>Cargando lo último del sector...</p>
+            </div>
+
+            <div id="dashboard" class="news-grid">
+                <!-- Articles will be injected here -->
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2025 Clipping de Prensa - Pesca & Acuicultura</p>
+        </footer>
+    </div>
+
+    <!-- Email Management Modal -->
+    <div id="emailModal" class="modal-overlay">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h3>Gestionar Suscripciones</h3>
+                <button id="closeModalBtn" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
+            </header>
+            <div class="modal-body">
+                <p class="modal-description">Recibe el resumen diario de noticias en tu correo.</p>
+
+                <div class="input-group">
+                    <input type="email" id="emailInput" placeholder="nombre@correo.com" class="form-input">
+                    <button id="addEmailBtn" class="btn btn-primary">Suscribir</button>
+                </div>
+
+                <div class="subscribers-list-container">
+                    <h4>Suscriptores Activos</h4>
+                    <ul id="recipientList" class="recipient-list">
+                        <!-- List items injected here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         const dashboardDiv = document.getElementById('dashboard');
         const scrapeBtn = document.getElementById('scrapeBtn');
-        const statusSpan = document.getElementById('status');
+        const statusBar = document.getElementById('status-bar'); // Changed from statusSpan
         const loadingDiv = document.getElementById('loading');
+
+        // Email UI elements
+        const manageEmailsBtn = document.getElementById('manageEmailsBtn');
+        const emailModal = document.getElementById('emailModal');
+        const emailInput = document.getElementById('emailInput');
+        const addEmailBtn = document.getElementById('addEmailBtn');
+        const recipientList = document.getElementById('recipientList');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        // Toggle Modal
+        manageEmailsBtn.addEventListener('click', () => {
+            emailModal.classList.add('active'); // Use class for animation
+            loadRecipients();
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            emailModal.classList.remove('active');
+        });
+
+        // Close on click outside
+        emailModal.addEventListener('click', (e) => {
+            if (e.target === emailModal) {
+                emailModal.classList.remove('active');
+            }
+        });
+
+        // Load Recipients
+        async function loadRecipients() {
+            try {
+                recipientList.innerHTML = '<li class="loading-item">Cargando...</li>';
+                const res = await fetch('/api/recipients');
+                const recipients = await res.json();
+                renderRecipients(recipients);
+            } catch (err) {
+                console.error('Error loading recipients:', err);
+                recipientList.innerHTML = '<li class="error-item">Error al cargar suscriptores</li>';
+            }
+        }
+
+        // Render List
+        function renderRecipients(list) {
+            recipientList.innerHTML = '';
+            if (list.length === 0) {
+                recipientList.innerHTML = '<li class="empty-item">No hay suscriptores activos.</li>';
+                return;
+            }
+            list.forEach(email => {
+                const li = document.createElement('li');
+                li.className = 'recipient-item';
+                li.innerHTML = `
+                    <span class="recipient-email">${email}</span>
+                    <button onclick="removeRecipient('${email}')" class="btn-delete" title="Eliminar">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                `;
+                recipientList.appendChild(li);
+            });
+        }
+
+        // Add Recipient
+        addEmailBtn.addEventListener('click', async () => {
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            try {
+                addEmailBtn.disabled = true;
+                addEmailBtn.innerText = '...';
+
+                const res = await fetch('/api/recipients', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    emailInput.value = '';
+                    renderRecipients(data.recipients);
+                } else {
+                    alert(data.error);
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Error de conexión');
+            } finally {
+                addEmailBtn.disabled = false;
+                addEmailBtn.innerText = 'Suscribir';
+            }
+        });
+
+        // Remove Recipient (Global)
+        window.removeRecipient = async (email) => {
+            if (!confirm(`¿Eliminar a ${email}?`)) return;
+            try {
+                const res = await fetch('/api/recipients', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    renderRecipients(data.recipients);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
 
         const ORDERED_CATEGORIES = [
             'Pesca Artesanal',
@@ -42,14 +223,22 @@
         ];
 
         async function loadArticles() {
-            loadingDiv.style.display = 'block';
+            loadingDiv.style.display = 'flex'; // Flex for centering
             dashboardDiv.innerHTML = '';
+            statusBar.textContent = '';
+
             try {
                 const res = await fetch('/api/articles');
                 const articles = await res.json();
 
                 if (articles.length === 0) {
-                    dashboardDiv.innerHTML = '<p class="no-news">No hay noticias aún. Intenta "Forzar Actualización".</p>';
+                    dashboardDiv.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fa-regular fa-newspaper"></i>
+                            <p>No hay noticias almacenadas.</p>
+                            <button onclick="document.getElementById('scrapeBtn').click()" class="btn btn-link">Actualizar ahora</button>
+                        </div>
+                    `;
                     return;
                 }
 
@@ -64,38 +253,47 @@
                 // Render in order
                 ORDERED_CATEGORIES.forEach(cat => {
                     const catArticles = grouped[cat];
-                    // Show category even if empty? Reference site shows "No se registran noticias"
-                    // But for now let's only show if there are articles or maybe just skip empty ones to keep it clean.
-                    // The reference site shows empty categories. Let's try to mimic that if we want, 
-                    // but for a cleaner look let's stick to showing only populated ones for now, 
-                    // or maybe show all if the user prefers. The prompt said "organization more similar", 
-                    // usually implies showing the structure.
-                    // Let's show populated ones for now to avoid clutter.
-
                     if (catArticles && catArticles.length > 0) {
-                        const section = document.createElement('div');
+                        const section = document.createElement('section');
                         section.className = 'category-section';
-                        section.innerHTML = `<h3>${cat} (${catArticles.length})</h3>`;
+
+                        const header = document.createElement('div');
+                        header.className = 'category-header';
+                        header.innerHTML = `<h3>${cat}</h3><span class="badge">${catArticles.length}</span>`;
+                        section.appendChild(header);
 
                         const articlesContainer = document.createElement('div');
                         articlesContainer.className = 'category-articles';
 
                         catArticles.forEach(art => {
-                            const artDiv = document.createElement('div');
-                            artDiv.className = 'article';
+                            const artCard = document.createElement('article');
+                            artCard.className = 'news-card';
 
                             // Format date
                             const dateObj = new Date(art.date);
-                            const dateStr = dateObj.toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
+                            const dateStr = dateObj.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' });
 
-                            artDiv.innerHTML = `
-                                <h2><a href="${art.url}" target="_blank">${art.title}</a></h2>
-                                <div class="meta">
-                                    ${art.source} | ${dateStr}
+                            // Domain extraction for cleaner source
+                            let domain = art.source || 'Fuente desconocida';
+                            try {
+                                if (art.url) {
+                                    const urlObj = new URL(art.url);
+                                    domain = urlObj.hostname.replace('www.', '');
+                                }
+                            } catch (e) { }
+
+                            artCard.innerHTML = `
+                                <div class="card-meta">
+                                    <span class="card-source">${domain}</span>
+                                    <span class="card-date">${dateStr}</span>
                                 </div>
-                                <p>${art.summary || ''}</p>
+                                <h4 class="card-title"><a href="${art.url}" target="_blank">${art.title}</a></h4>
+                                <p class="card-summary">${art.summary || ''}</p>
+                                <div class="card-actions">
+                                    <a href="${art.url}" target="_blank" class="read-more">Leer nota <i class="fa-solid fa-arrow-right-long"></i></a>
+                                </div>
                             `;
-                            articlesContainer.appendChild(artDiv);
+                            articlesContainer.appendChild(artCard);
                         });
 
                         section.appendChild(articlesContainer);
@@ -105,29 +303,161 @@
 
             } catch (err) {
                 console.error(err);
-                dashboardDiv.innerHTML = '<p>Error cargando noticias.</p>';
+                dashboardDiv.innerHTML = '<div class="error-state">Error cargando noticias.</div>';
             } finally {
                 loadingDiv.style.display = 'none';
             }
         }
 
         scrapeBtn.addEventListener('click', async () => {
-            statusSpan.textContent = ' Actualizando...';
+            const btnText = scrapeBtn.querySelector('.btn-text');
+            const originalText = btnText.innerText;
+            const icon = scrapeBtn.querySelector('i');
+
+            btnText.innerText = 'Actualizando...';
+            icon.classList.add('fa-spin');
             scrapeBtn.disabled = true;
+            statusBar.innerHTML = '';
+
             try {
                 const res = await fetch('/api/scrape', { method: 'POST' });
                 const data = await res.json();
-                statusSpan.textContent = ` Listo! ${data.newArticles} noticias nuevas.`;
+
+                // Show success toast or status
+                statusBar.innerHTML = `<div class="status-msg success"><i class="fa-solid fa-check"></i> Listo. ${data.newArticles} noticias nuevas.</div>`;
+
+                setTimeout(() => {
+                    statusBar.innerHTML = '';
+                }, 5000);
+
                 loadArticles();
             } catch (err) {
-                statusSpan.textContent = ' Error al actualizar.';
+                statusBar.innerHTML = `<div class="status-msg error"><i class="fa-solid fa-triangle-exclamation"></i> Error al actualizar.</div>`;
             } finally {
                 scrapeBtn.disabled = false;
+                btnText.innerText = originalText;
+                icon.classList.remove('fa-spin');
             }
         });
 
         // Load on start
         loadArticles();
+
+        // --- SLIDER LOGIC ---
+        const sliderContainer = document.getElementById('slider-container');
+        const slidesWrapper = document.getElementById('slides-wrapper');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('slider-dots');
+
+        let slideIndex = 0;
+        let slideInterval;
+        let slidesData = [];
+
+        async function initSlider() {
+            try {
+                const res = await fetch('slider-config.json');
+                slidesData = await res.json();
+
+                if (slidesData.length === 0) {
+                    sliderContainer.style.display = 'none';
+                    return;
+                }
+
+                renderSlides();
+                startSlider();
+            } catch (err) {
+                console.error('Error loading slider config:', err);
+                sliderContainer.style.display = 'none';
+            }
+        }
+
+        function renderSlides() {
+            slidesWrapper.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            slidesData.forEach((slide, index) => {
+                // Create Slide
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'slide';
+
+                if (slide.linkUrl && slide.linkUrl !== '#') {
+                    slideDiv.onclick = () => window.open(slide.linkUrl, '_blank');
+                    slideDiv.style.cursor = 'pointer';
+                    slideDiv.title = `Ir a ${slide.linkUrl}`;
+                } else {
+                    slideDiv.style.cursor = 'default';
+                }
+
+                slideDiv.innerHTML = `
+                    <img src="${slide.imageUrl}" alt="${slide.altText || 'Slide image'}">
+                    <div class="slide-caption">${slide.altText || ''}</div>
+                `;
+                slidesWrapper.appendChild(slideDiv);
+
+                // Create Dot
+                const dot = document.createElement('div');
+                dot.className = index === 0 ? 'dot active' : 'dot';
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateSlider() {
+            slidesWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+
+            // Update dots
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, idx) => {
+                dot.className = idx === slideIndex ? 'dot active' : 'dot';
+            });
+        }
+
+        function nextSlide() {
+            slideIndex = (slideIndex + 1) % slidesData.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            slideIndex = (slideIndex - 1 + slidesData.length) % slidesData.length;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            slideIndex = index;
+            updateSlider();
+            resetTimer();
+        }
+
+        function startSlider() {
+            if (slidesData.length > 1) {
+                slideInterval = setInterval(nextSlide, 5000); // 5 seconds
+            } else {
+                // Hide nav if only 1 slide
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                dotsContainer.style.display = 'none';
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            startSlider();
+        }
+
+        // Event Listeners for Nav
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetTimer();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetTimer();
+        });
+
+        // Initialize Slider
+        initSlider();
     </script>
 </body>
 

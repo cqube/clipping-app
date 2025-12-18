@@ -503,13 +503,8 @@ const DEFAULT_IMAGE = '/placeholder-news.svg';
 // Fetch article metadata (image and date) from the actual page
 const fetchArticleMetadata = async (url) => {
     try {
-        const headers = { ...HEADERS };
-        if (EL_MERCURIO_TOKEN && (url.includes('elmercurio.com') || url.includes('lasegunda.com'))) {
-            headers['Cookie'] = `appToken=${EL_MERCURIO_TOKEN}`;
-        }
-
         const { data } = await axios.get(url, {
-            headers: headers,
+            headers: HEADERS,
             timeout: 5000
         });
         const $ = cheerio.load(data);
@@ -787,6 +782,73 @@ const scrapeSite = async (site) => {
                 }
             });
         } else {
+            // Logic for El Mercurio Beta (Authenticated)
+            let token = EL_MERCURIO_TOKEN;
+            if (!token) {
+                const loggedIn = await loginToElMercurio();
+                if (loggedIn) token = EL_MERCURIO_TOKEN;
+            }
+
+            if (token) {
+                // Scrape a specific section, e.g., Economía y Negocios
+                const sections = ['https://beta.elmercurio.com/economia']; // Add more if needed
+
+                for (const sectionUrl of sections) {
+                    try {
+                        const { data: sectionData } = await axios.get(sectionUrl, {
+                            headers: {
+                                ...HEADERS,
+                                'Cookie': `appToken=${token}`
+                            }
+                        });
+                        const $$ = cheerio.load(sectionData);
+                        console.log('HTML Length:', sectionData.length);
+
+                        $$('script').each((i, el) => {
+                            const content = $$(el).html();
+                            if (content && (content.includes('window.__') || content.includes('articles') || content.includes('noticias'))) {
+                                console.log(`Script ${i}:`, content.substring(0, 100) + '...');
+                            }
+                        });
+
+                        $$('div[class*="teaser"], div[class*="article"], .story').each((i, el) => {
+
+                            // This selector needs to be adjusted based on actual HTML of beta.elmercurio.com which I haven't fully seen yet, 
+                            // but I'll make a best guess based on the browser subagent view or standard patterns. 
+                            // Usually they have titles in h3 or h4 links.
+                            const titleEl = $$(el).find('h3 a, h4 a, .title a').first();
+                            const title = titleEl.text().trim();
+                            const link = titleEl.attr('href');
+                            const summary = $$(el).find('p, .bajadas').text().trim();
+
+                            if (title && link) {
+                                let fullUrl = link.startsWith('http') ? link : new URL(link, 'https://beta.elmercurio.com').toString();
+
+                                if (!seenUrls.has(fullUrl)) {
+                                    // Also check if accessible
+                                    if (containsKeyword(title) || containsKeyword(summary)) {
+                                        seenUrls.add(fullUrl);
+                                        candidates.push({
+                                            title,
+                                            url: fullUrl,
+                                            source: 'El Mercurio',
+                                            summary,
+                                            date: new Date(),
+                                            category: classifyArticle(title + ' ' + summary)
+                                        });
+                                    }
+                                }
+                            }
+                        });
+
+
+                    } catch (err) {
+                        console.error(`Error scraping El Mercurio section ${sectionUrl}:`, err.message);
+                    }
+                }
+            }
+
+        } else {
             // Generic logic for La Tercera and others
             $(site.selector).each((i, el) => {
                 const titleEl = $(el).find(site.titleSelector).first();
@@ -972,9 +1034,6 @@ const scrapeRssFeeds = async () => {
 const runScraper = async () => {
     console.log('Starting daily scrape...');
     let totalNew = 0;
-
-    // Trigger El Mercurio Login
-    await loginToElMercurio();
 
     // Scrape traditional news sites
     // NOTE: Keep only sites that definitely need direct scraping (BioBio, La Tercera)

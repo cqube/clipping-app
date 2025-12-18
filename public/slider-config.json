@@ -1,0 +1,17 @@
+[
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1534951009808-766178b4760b?q=80&w=1470&auto=format&fit=crop",
+        "linkUrl": "https://www.google.com/search?q=pesca+chile",
+        "altText": "Pesca Industrial en Alta Mar"
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1621451537084-482c73073a0f?q=80&w=1374&auto=format&fit=crop",
+        "linkUrl": "https://www.sernapesca.cl",
+        "altText": "Acuicultura Sustentable"
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1498623116890-37e912163d5d?q=80&w=1387&auto=format&fit=crop",
+        "linkUrl": "#",
+        "altText": "Barcos Pesqueros en el Puerto"
+    }
+]

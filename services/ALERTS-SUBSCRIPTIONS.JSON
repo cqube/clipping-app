@@ -1,0 +1,258 @@
+{
+  "subscriptions": [{
+    "query": "SONAPESCA",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }, {
+    "query": "Pescadores",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": true,
+    "quality": "HIGH",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }, {
+    "query": "CORPESCA",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }, {
+    "query": "Julio Salas",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "EMAIL",
+    "deliveryFrequency": "DAILY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 14,
+      "dayOfWeek": 0
+    },
+    "emailAddress": "cquevedo@factorestrategico.cl"
+  }, {
+    "query": "Nicolás Grau",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "EMAIL",
+    "deliveryFrequency": "DAILY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 14,
+      "dayOfWeek": 0
+    },
+    "emailAddress": "cquevedo@factorestrategico.cl"
+  }, {
+    "query": "Álvaro García",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": true,
+    "quality": "LOW",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }, {
+    "query": "Pescadores Industriales",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }, {
+    "query": "Alianza Nacional por las Defensa de la Pesca Artesanal",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": true,
+    "quality": "LOW",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }, {
+    "query": "Zoila Bustamante",
+    "language": "es",
+    "country": "US",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "EMAIL",
+    "deliveryFrequency": "DAILY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 14,
+      "dayOfWeek": 0
+    },
+    "emailAddress": "cquevedo@factorestrategico.cl"
+  }, {
+    "query": "Bacigalupo",
+    "language": "es",
+    "country": "US",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "EMAIL",
+    "deliveryFrequency": "DAILY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 17,
+      "dayOfWeek": 0
+    },
+    "emailAddress": "cquevedo@factorestrategico.cl"
+  }, {
+    "query": "marcelo trivelli",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "LOW",
+    "deliveryMethod": "EMAIL",
+    "deliveryFrequency": "DAILY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 13,
+      "dayOfWeek": 0
+    },
+    "emailAddress": "cquevedo@factorestrategico.cl"
+  }, {
+    "query": "matías nieto",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": true,
+    "quality": "LOW",
+    "deliveryMethod": "EMAIL",
+    "deliveryFrequency": "DAILY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 20,
+      "dayOfWeek": 0
+    },
+    "emailAddress": "cquevedo@factorestrategico.cl"
+  }, {
+    "query": "CONDEPP",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }, {
+    "query": "camanchaca",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }, {
+    "query": "ASIPES",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }, {
+    "query": "Macarena Cepeda",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }, {
+    "query": "CONAPACH",
+    "language": "es",
+    "country": "CL",
+    "applyLanguageRestrict": true,
+    "applyRegionRestrict": false,
+    "quality": "HIGH",
+    "deliveryMethod": "RSS",
+    "deliveryFrequency": "HOURLY",
+    "deliveryTime": {
+      "timezoneCode": "Etc/GMT",
+      "hourOfDay": 0,
+      "dayOfWeek": 0
+    },
+    "emailAddress": ""
+  }]
+}

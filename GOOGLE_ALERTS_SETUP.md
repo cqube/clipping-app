@@ -38,7 +38,19 @@ Para cada alerta:
 const GOOGLE_ALERTS_FEEDS = [
     'https://www.google.com/alerts/feeds/12345/67890',
     'https://www.google.com/alerts/feeds/12345/67891',
-    // Agrega más URLs aquí
+    'https://www.google.com/alerts/feeds/08397670603095634428/18119852156385057077',
+    'https://www.google.com/alerts/feeds/08397670603095634428/10693748374007497326',
+    'https://www.google.com/alerts/feeds/08397670603095634428/10693748374007497326',
+    'https://www.google.com/alerts/feeds/08397670603095634428/330466514247678387',
+    'https://www.google.com/alerts/feeds/08397670603095634428/16468006218765930623',
+    'https://www.google.com/alerts/feeds/08397670603095634428/2590044238413771770',
+    'https://www.google.com/alerts/feeds/08397670603095634428/18339820440676763392',
+    'https://www.google.com/alerts/feeds/08397670603095634428/10693748374007497711',
+    'https://www.google.com/alerts/feeds/08397670603095634428/16468006218765934227',
+    'https://www.google.com/alerts/feeds/08397670603095634428/10693748374007498663',
+    'https://www.google.com/alerts/feeds/08397670603095634428/10693748374007498275',
+
+   // Agrega más URLs aquí
 ];
 \`\`\`
 
