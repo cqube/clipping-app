@@ -314,26 +314,41 @@
             const originalText = btnText.innerText;
             const icon = scrapeBtn.querySelector('i');
 
-            btnText.innerText = 'Actualizando...';
+            // Set loading state
+            btnText.innerText = 'Iniciando...';
             icon.classList.add('fa-spin');
             scrapeBtn.disabled = true;
             statusBar.innerHTML = '';
 
             try {
+                // Background scrape returns 202 immediately
                 const res = await fetch('/api/scrape', { method: 'POST' });
-                const data = await res.json();
 
-                // Show success toast or status
-                statusBar.innerHTML = `<div class="status-msg success"><i class="fa-solid fa-check"></i> Listo. ${data.newArticles} noticias nuevas.</div>`;
+                if (res.status === 202) {
+                    // Success (Async)
+                    statusBar.innerHTML = `<div class="status-msg success"><i class="fa-solid fa-clock"></i> Actualización iniciada en segundo plano. Tomará unos minutos.</div>`;
+                    
+                    // Keep message for longer since it's a long process
+                    setTimeout(() => {
+                        statusBar.innerHTML = '';
+                    }, 10000);
 
-                setTimeout(() => {
-                    statusBar.innerHTML = '';
-                }, 5000);
+                } else if (res.status === 409) {
+                    // Already running
+                    statusBar.innerHTML = `<div class="status-msg warning"><i class="fa-solid fa-triangle-exclamation"></i> Ya hay una actualización en curso.</div>`;
+                     setTimeout(() => statusBar.innerHTML = '', 5000);
+                } else {
+                    // Other success (sync) or error?
+                     const data = await res.json();
+                     statusBar.innerHTML = `<div class="status-msg success"><i class="fa-solid fa-check"></i> Listo. ${data.newArticles || 0} nuevas.</div>`;
+                     setTimeout(() => statusBar.innerHTML = '', 5000);
+                     loadArticles();
+                }
 
-                loadArticles();
             } catch (err) {
-                statusBar.innerHTML = `<div class="status-msg error"><i class="fa-solid fa-triangle-exclamation"></i> Error al actualizar.</div>`;
+                statusBar.innerHTML = `<div class="status-msg error"><i class="fa-solid fa-triangle-exclamation"></i> Error al conectar.</div>`;
             } finally {
+                // Re-enable button immediately as the request finished fast
                 scrapeBtn.disabled = false;
                 btnText.innerText = originalText;
                 icon.classList.remove('fa-spin');

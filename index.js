@@ -12,6 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/clipping-prensa';
 const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
+let isScraping = false;
 
 // Middleware
 app.use(express.static('public'));
@@ -121,12 +122,28 @@ app.get('/api/articles', async (req, res) => {
 });
 
 app.post('/api/scrape', async (req, res) => {
-    try {
-        const count = await runScraper();
-        res.json({ message: 'Scrape finished', newArticles: count });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    if (isScraping) {
+        return res.status(409).json({ message: 'Scraping already in progress' });
     }
+
+    // Set lock
+    isScraping = true;
+    console.log('Update requested via API. Starting background scrape...');
+
+    // Launch background task
+    runScraper()
+        .then(count => {
+            console.log(`Background scrape finished. ${count} new articles.`);
+        })
+        .catch(err => {
+            console.error('Background scrape failed:', err);
+        })
+        .finally(() => {
+            isScraping = false;
+        });
+
+    // Return immediately
+    res.status(202).json({ message: 'Scraping started in background' });
 });
 
 // Start server directly without MongoDB
