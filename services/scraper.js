@@ -589,10 +589,10 @@ const SITES = [
     {
         name: 'ADN Radio',
         url: 'https://www.adnradio.cl/?s=pesca',
-        selector: 'article, .card, h2, h3',
-        titleSelector: 'a',
-        linkSelector: 'a',
-        summarySelector: 'p'
+        selector: 'article, .card',
+        titleSelector: 'h3 a',
+        linkSelector: 'h3 a',
+        summarySelector: 'p.ent, p'
     },
     {
         name: 'El Desconcierto',

@@ -2,13 +2,13 @@ const { CronJob } = require('cron');
 const { runScraper } = require('./scraper');
 const { sendDailyClipping } = require('./mailer');
 
-// Run every day at 8:30 AM Santiago time
+// Run every day at 7:00 AM Santiago time
 const initScheduler = () => {
     console.log('Initializing scheduler...');
 
-    // Cron pattern: 30 8 * * * (At 08:30)
+    // Cron pattern: 0 7 * * * (At 07:00)
     const scraperJob = new CronJob(
-        '30 8 * * *',
+        '0 7 * * *',
         async function () {
             console.log('Running scheduled scrape...');
             await runScraper();
@@ -18,9 +18,9 @@ const initScheduler = () => {
         'America/Santiago'
     );
 
-    // Cron pattern: 35 8 * * * (At 08:35) - Email
+    // Cron pattern: 5 7 * * * (At 07:05) - Email
     const emailJob = new CronJob(
-        '35 8 * * *',
+        '5 7 * * *',
         async function () {
             console.log('Running scheduled email job...');
             await sendDailyClipping();
