@@ -1,6 +1,14 @@
 const Article = require('../models/Article');
 
 const manualArticles = [
+    {
+        title: "Pescadores acuden a Contraloría por ley de fraccionamiento: acusan \"vicios\" en actuar de la Subsecretaría",
+        source: "Emol",
+        date: new Date("2025-12-22"),
+        category: "Ley de Pesca",
+        summary: "Gremios artesanales e industriales presentaron requerimientos ante el ente contralor cuestionando el proceso liderado por la Subsecretaría de Pesca.",
+        url: "https://www.emol.com/noticias/Economia/2025/12/22/1186540/pescadores-contraloria-subsecretaria.html"
+    },
     // Pesca Artesanal
     {
         title: "Histórico acuerdo de inversión para el desarrollo Costero del Maule: Gobierno Regional y MOP destinan $102 mil millones a infraestructura",
