@@ -2,6 +2,14 @@ const Article = require('../models/Article');
 
 const manualArticles = [
     {
+        title: "Resurge polémica por Ley de Fraccionamiento Pesquero: industriales y artesanales piden a Contraloría impugnar apertura de registro a nuevos actores",
+        source: "Diario Financiero",
+        date: new Date("2025-12-22"),
+        category: "Ley de Pesca",
+        summary: "Por su parte, el Comité Científico Técnico (CCT) de Pequeños Pelágicos que asesora a la Subsecretaria de Pesca y Acuicultura, se negó a validar las cuotas de captura para 2026.",
+        url: "https://www.df.cl/regiones/biobio/empresas/resurge-polemica-por-ley-de-fraccionamiento-pesquero-industriales-y"
+    },
+    {
         title: "Pescadores acuden a Contraloría por ley de fraccionamiento: acusan \"vicios\" en actuar de la Subsecretaría",
         source: "Emol",
         date: new Date("2025-12-22"),
@@ -136,14 +144,6 @@ const manualArticles = [
     },
     // Pais y Sector Empresarial
     {
-        title: "Rosanna Costa: “El dinamismo de inversión en minería y energía empieza a expandirse gradualmente a otros sectores”",
-        source: "El Mercurio de Santiago",
-        date: new Date("2025-12-21"),
-        category: "Pais y Sector Empresarial",
-        summary: "La presidenta del Banco Central asegura que se está cerrando un primer ciclo, y proyecta que la inflación volverá al 3% en el primer trimestre del 2026.",
-        url: "https://elmercurio.com/costa"
-    },
-    {
         title: "Las tendencias y proyecciones que se tomarán el mercado laboral en 2026",
         source: "Diario Financiero",
         date: new Date("2025-12-22"),
@@ -158,22 +158,6 @@ const manualArticles = [
         category: "Pais y Sector Empresarial",
         summary: "De acuerdo a una encuesta de Descifra, el trabajo independiente está muy enfocado en prestaciones de servicios profesionales, pues la mitad de estos empleos entrarían en esta categorización.",
         url: "https://pulso.cl/independientes"
-    },
-    {
-        title: "PIB de economía chilena podría aumentar en hasta US$ 67 mil millones con mayor aplicación de IA",
-        source: "El Mercurio de Santiago",
-        date: new Date("2025-12-22"),
-        category: "Pais y Sector Empresarial",
-        summary: "En Google condicionan el impacto más virtuoso a políticas públicas que fomenten su adopción.",
-        url: "https://elmercurio.com/ia"
-    },
-    {
-        title: "Chile y Los Lagos: crecer con estabilidad, inversión y futuro",
-        source: "El Llanquihue",
-        date: new Date("2025-12-22"),
-        category: "Pais y Sector Empresarial",
-        summary: "Opinión por Luis Cárdenas Mayorga, Seremi de Economía, Fomento y Turismo.",
-        url: "https://elllanquihue.cl"
     },
     {
         title: "Kast reforzará Aduanas y Tesorería para impulsar plan contra con el comercio informal y hacer cambios a contribuciones",
@@ -201,14 +185,7 @@ const manualArticles = [
         url: "https://df.cl/yadran"
     },
     // Salmoneras
-    {
-        title: "“Estos 4 años fueron de bastante frustración (...) El Presidente electo tiene claro el rol de la salmonicultura”",
-        source: "El Mercurio de Santiago",
-        date: new Date("2025-12-22"),
-        category: "Salmoneras",
-        summary: "Arturo Clément, presidente de SalmonChile, ve oportunidades de crecimiento para la industria bajo el nuevo gobierno.",
-        url: "https://elmercurio.com/salmonchile"
-    },
+
     {
         title: "Salmón cierra el año con alta rentabilidad y proyecta un mejor 2026",
         source: "El Pingüino",
@@ -272,14 +249,6 @@ const manualArticles = [
         category: "Salmoneras",
         summary: "En el seminario 'Desarrollando la Tercera Industria', se abordaron modelos productivos, demandas del sector salmonicultor y oportunidades para agricultores de la Región de Aysén.",
         url: "https://salmonexpert.cl/aysent"
-    },
-    {
-        title: "Seis años fortaleciendo la educación técnica: Más de 1.300 estudiantes capacitados de la mano de la salmonicultura",
-        source: "El Llanquihue",
-        date: new Date("2025-12-22"),
-        category: "Salmoneras",
-        summary: "EI Programa de Fortalecimiento de Competencias para Liceos Técnicos Profesionales, impulsado por SalmonChile junto a ONG Canales y OTEC Capital Humano, completó su sexta versión.",
-        url: "https://elllanquihue.cl/educacion"
     },
     {
         title: "Este proyecto duplicará la producción de jaulas cerradas flotantes para salmones",
