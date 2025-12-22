@@ -590,8 +590,8 @@ const SITES = [
         name: 'ADN Radio',
         url: 'https://www.adnradio.cl/?s=pesca',
         selector: 'article, .card',
-        titleSelector: 'h3 a',
-        linkSelector: 'h3 a',
+        titleSelector: 'h3 a, h2 a', // Expanded to be safer
+        linkSelector: 'h3 a, h2 a',
         summarySelector: 'p.ent, p'
     },
     {
@@ -790,7 +790,7 @@ const scrapeSite = async (site) => {
             // Generic logic for La Tercera and others
             $(site.selector).each((i, el) => {
                 const titleEl = $(el).find(site.titleSelector).first();
-                const title = titleEl.text().trim() || $(el).text().trim();
+                const title = titleEl.text().trim(); // Removed dangerous fallback to $(el).text()
                 const link = $(el).find(site.linkSelector).attr('href') || $(el).attr('href');
                 const summary = $(el).find(site.summarySelector).text().trim();
 
