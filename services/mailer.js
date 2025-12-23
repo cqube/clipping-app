@@ -125,23 +125,28 @@ const sendDailyClipping = async () => {
 
     try {
         const articles = await Article.find().sort({ date: -1 }).limit(100);
-        // Simple filter for now: recent articles. 
-        // Ideally strict 24h filter: .filter(a => new Date(a.date) > yesterday)
-        // But scraping might pick up older content if new feeds are added.
-        // Let's filter by date > yesterday 00:00 to cover "today's clipping"
 
+        // 3. Filter by date (unless forced)
+        // Default: Articles published in the last 24 hours
         const cutoff = new Date();
         cutoff.setHours(cutoff.getHours() - 24);
 
-        const recentArticles = articles.filter(a => new Date(a.date) > cutoff);
+        let articlesToSend = articles.filter(a => new Date(a.date) > cutoff);
 
-        if (recentArticles.length === 0) {
-            console.log('No recent articles to send.');
-            // Maybe send an email saying "No news"? Or just skip. Skip for now.
+        // CHECK: If provided implicit "force" or purely for testing, might want to send latest anyway if none found?
+        // For now, let's keep strict logic for production, but log clearly.
+
+        if (process.env.FORCE_SEND_EMAIL === 'true' && articlesToSend.length === 0) {
+            console.log('No recent articles found, but FORCE_SEND_EMAIL is true. Sending latest 5 articles.');
+            articlesToSend = articles.slice(0, 5);
+        }
+
+        if (articlesToSend.length === 0) {
+            console.log('No recent articles to send (last 24h).');
             return;
         }
 
-        const html = generateHtml(recentArticles);
+        const html = generateHtml(articlesToSend);
 
         const mailOptions = {
             from: process.env.SMTP_FROM || '"Clipping Pesca" <noreply@example.com>',

@@ -2,6 +2,14 @@ const Article = require('../models/Article');
 
 const manualArticles = [
     {
+        title: "\"Es antidemocrático\": pesca artesanal responde a la industria por intento de impugnar ley de fraccionamiento",
+        source: "El Desconcierto",
+        date: new Date("2025-12-22"),
+        category: "Pesca Artesanal",
+        summary: "La pesca artesanal rechazó la impugnación de la Ley de Fraccionamiento pesquero por parte de la industria.",
+        url: "https://eldesconcierto.cl/2025/12/22/es-antidemocratico-pesca-artesanal-responde-a-la-industria-por-intento-de-impugnar-ley-de-fraccionamiento"
+    },
+    {
         title: "Resurge polémica por Ley de Fraccionamiento Pesquero: industriales y artesanales piden a Contraloría impugnar apertura de registro a nuevos actores",
         source: "Diario Financiero",
         date: new Date("2025-12-22"),
@@ -115,7 +123,7 @@ const manualArticles = [
         date: new Date("2025-12-19"),
         category: "Ley de Pesca",
         summary: "Subpesca solicitó que un comité científico se pronunciara respecto a la captura biológicamente aceptable (CBA) del próximo año entre las regiones de Arica y Coquimbo.",
-        url: "https://latercera.com/fraccionamiento"
+        url: "https://www.latercera.com/pulso/noticia/acta-de-comite-cientifico-de-la-subsecretaria-de-pesca-objeta-ley-de-fraccionamiento-contraviene-principios-basicos-de-manejo-pesquero/"
     },
     // Sector Pesquero
     {
