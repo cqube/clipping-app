@@ -1,21 +1,68 @@
-const nodemailer = require('nodemailer');
+const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
 const Article = require('../models/Article');
 
-// Configure SMTP Transport (Env vars or defaults)
-// NOTE: User must provide these env vars for it to work.
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: process.env.SMTP_PORT || 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-        user: process.env.SMTP_USER || 'pescaboletin@gmail.com',
-        pass: process.env.SMTP_PASS || 'Pesca2025$$'
-    }
-});
-
 const RECIPIENTS_FILE = path.join(__dirname, '../data/recipients.json');
+
+// Gmail API Configuration
+const getGmailClient = () => {
+    const clientId = process.env.GMAIL_CLIENT_ID;
+    const clientSecret = process.env.GMAIL_CLIENT_SECRET;
+    const refreshToken = process.env.GMAIL_REFRESH_TOKEN;
+
+    if (!clientId || !clientSecret || !refreshToken) {
+        console.error('Missing Gmail API credentials in .env');
+        return null;
+    }
+
+    const oAuth2Client = new google.auth.OAuth2(clientId, clientSecret);
+    oAuth2Client.setCredentials({ refresh_token: refreshToken });
+    return oAuth2Client;
+};
+
+// Helper: Encode string to Base64URL
+const encodeBase64 = (str) => {
+    return Buffer.from(str).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+};
+
+// Helper: Create Raw Email String
+const createRawEmail = (to, subject, htmlBody) => {
+    const from = process.env.GMAIL_USER_EMAIL || 'pescaboletin@gmail.com';
+
+    // Construct MIME message
+    const messageParts = [
+        `From: ${from}`,
+        `To: ${to}`,
+        'Content-Type: text/html; charset=utf-8',
+        'MIME-Version: 1.0',
+        `Subject: =?utf-8?B?${Buffer.from(subject).toString('base64')}?=`,
+        '',
+        htmlBody
+    ];
+
+    return encodeBase64(messageParts.join('\n'));
+};
+
+const sendEmailViaGmail = async (to, subject, htmlBody) => {
+    const auth = getGmailClient();
+    if (!auth) return false;
+
+    const gmail = google.gmail({ version: 'v1', auth });
+
+    try {
+        const raw = createRawEmail(to, subject, htmlBody);
+        const res = await gmail.users.messages.send({
+            userId: 'me',
+            requestBody: { raw }
+        });
+        console.log(`Email sent to ${to}. ID: ${res.data.id}`);
+        return res.data;
+    } catch (error) {
+        console.error(`Failed to send email to ${to}:`, error.message);
+        throw error;
+    }
+};
 
 const getRecipients = () => {
     try {
@@ -99,7 +146,7 @@ const generateHtml = (articles) => {
 };
 
 const sendDailyClipping = async () => {
-    console.log('Preparing daily clipping email...');
+    console.log('Preparing daily clipping email (Gmail API)...');
 
     // 1. Get recipients
     const recipients = getRecipients();
@@ -109,32 +156,12 @@ const sendDailyClipping = async () => {
     }
 
     // 2. Get articles from the last 24 hours
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-
-    // We want the most recent ones found today or yesterday. 
-    // Actually, usually a daily clipping sends WHAT WAS FOUND TODAY.
-    // Let's assume the scraper ran at 8:30. We send at 8:35.
-    // So we should pick up articles created (found) today.
-    // But `date` field is publication date. We might want `_id` timestamp or checks creation time?
-    // Article.js uses `_id` as Date.now().
-
-    // Let's settle for: Articles published in the last 24 hours OR found in the last 24 hours.
-    // Since we don't have separate 'foundAt', we'll rely on 'date' (publication date).
-    // Most news found today were published today or yesterday.
+    const cutoff = new Date();
+    cutoff.setHours(cutoff.getHours() - 24);
 
     try {
         const articles = await Article.find().sort({ date: -1 }).limit(100);
-
-        // 3. Filter by date (unless forced)
-        // Default: Articles published in the last 24 hours
-        const cutoff = new Date();
-        cutoff.setHours(cutoff.getHours() - 24);
-
         let articlesToSend = articles.filter(a => new Date(a.date) > cutoff);
-
-        // CHECK: If provided implicit "force" or purely for testing, might want to send latest anyway if none found?
-        // For now, let's keep strict logic for production, but log clearly.
 
         if (process.env.FORCE_SEND_EMAIL === 'true' && articlesToSend.length === 0) {
             console.log('No recent articles found, but FORCE_SEND_EMAIL is true. Sending latest 5 articles.');
@@ -147,16 +174,53 @@ const sendDailyClipping = async () => {
         }
 
         const html = generateHtml(articlesToSend);
+        const subject = `Clipping Pesca - ${new Date().toLocaleDateString('es-CL')}`;
 
-        const mailOptions = {
-            from: process.env.SMTP_FROM || '"Clipping Pesca" <noreply@example.com>',
-            bcc: recipients.join(', '), // BCC to hide recipient list
-            subject: `Clipping Pesca - ${new Date().toLocaleDateString('es-CL')}`,
-            html: html
-        };
+        // Send to each recipient (BCC implementation via loop or single BCC header? Gmail API limits 'to' field visible)
+        // Better to send purely via BCC to avoid exposing list, or loop.
+        // For simplicity and hiding, we can send to SELF and put real recipients in BCC header.
+        // OR better yet, iterate if list is small.
+        // Let's us BCC header approach in `createRawEmail`. 
+        // NOTE: My `createRawEmail` helper above only takes `to`. I should handle BCC.
 
-        const info = await transporter.sendMail(mailOptions);
-        console.log('Email sent: %s', info.messageId);
+        // Revised Strategy: Send to GMAIL_USER_EMAIL, put recipients in Bcc header.
+        const sender = process.env.GMAIL_USER_EMAIL || 'pescaboletin@gmail.com';
+
+        // Re-construct raw email with BCC logic if needed, but simplest for "clipping" is often individual or BCC.
+        // Let's modify the helper logic inline here or assume 1 generic send.
+
+        // Actually, let's just loop for now to be safe and personal, or use BCC header which is standard.
+        // If I update `createRawEmail` to accept bcc...
+
+        // For now, I'll update the sendEmailViaGmail call to handle the BCC aggregation.
+        // But headers must clearly state separate TO and BCC.
+
+        // Let's use the 'To' field as the Sender (self) and 'Bcc' as recipient list.
+        const bccList = recipients.join(', ');
+
+        // Manually constructing message with Bcc
+        const messageParts = [
+            `From: ${sender}`,
+            `To: ${sender}`,
+            `Bcc: ${bccList}`,
+            'Content-Type: text/html; charset=utf-8',
+            'MIME-Version: 1.0',
+            `Subject: =?utf-8?B?${Buffer.from(subject).toString('base64')}?=`,
+            '',
+            html
+        ];
+
+        const raw = encodeBase64(messageParts.join('\n'));
+        const auth = getGmailClient();
+
+        if (auth) {
+            const gmail = google.gmail({ version: 'v1', auth });
+            await gmail.users.messages.send({
+                userId: 'me',
+                requestBody: { raw }
+            });
+            console.log(`Clipping Sent to ${recipients.length} recipients via BCC.`);
+        }
 
     } catch (error) {
         console.error('Error sending email:', error);
@@ -190,16 +254,8 @@ const sendConfirmationEmail = async (email) => {
     </html>
     `;
 
-    const mailOptions = {
-        from: process.env.SMTP_FROM || '"Clipping Pesca" <noreply@example.com>',
-        to: email, // Direct to the user
-        subject: 'Confirmación de suscripción - Clipping Pesca',
-        html: html
-    };
-
     try {
-        const info = await transporter.sendMail(mailOptions);
-        console.log('Confirmation email sent: %s', info.messageId);
+        await sendEmailViaGmail(email, 'Confirmación de suscripción - Clipping Pesca', html);
         return true;
     } catch (error) {
         console.error('Error sending confirmation email:', error);
