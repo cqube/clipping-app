@@ -150,6 +150,73 @@ const RSS_FEEDS = [
         "url": "https://news.google.com/rss/search?q=site:curicoalbirrojo.com+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
         "sourceName": "Curicó Albirrojo"
     },
+    // Migrated from direct scraping due to broken links/search
+    {
+        "url": "https://news.google.com/rss/search?q=site:biobiochile.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "BioBioChile"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:cooperativa.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "Cooperativa"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:adnradio.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "ADN Radio"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:df.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "Diario Financiero"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:hoyxhoy.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "Hoy x Hoy"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:mercuriovalpo.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "El Mercurio Valparaíso"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:diariolaregion.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "La Región"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:elmauleinforma.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "El Maule Informa"
+    },
+    // Second batch of migrations (timeouts/errors)
+    {
+        "url": "https://news.google.com/rss/search?q=site:laserenaonline.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "La Serena Online"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:elllanquihue.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "El Llanquihue"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:laprensaaustral.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "La Prensa Austral"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:estrellachiloe.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "Estrella Chiloé"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:aqua.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "Aqua"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:pescahoy.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "PescaHoy"
+    },
+    // Migrating problematic redirects
+    {
+        "url": "https://news.google.com/rss/search?q=site:pulso.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "Pulso"
+    },
+    {
+        "url": "https://news.google.com/rss/search?q=site:estrellaarica.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
+        "sourceName": "Estrella Arica"
+    },
     {
         "url": "https://news.google.com/rss/search?q=site:diarioatacama.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
         "sourceName": "Diario Atacama"
@@ -483,10 +550,6 @@ const RSS_FEEDS = [
         sourceName: "El Mercurio Inversiones"
     },
     {
-        url: "https://news.google.com/rss/search?q=site:latercera.com/canal/pulso/+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
-        sourceName: "Pulso"
-    },
-    {
         url: "https://news.google.com/rss/search?q=site:soychile.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
         sourceName: "SoyChile"
     }
@@ -569,15 +632,7 @@ const fetchArticleMetadata = async (url) => {
 };
 
 const SITES = [
-    {
-        name: 'BioBioChile',
-        url: 'https://www.biobiochile.cl/buscador.shtml?s=pesca',
-        selector: 'body',
-        titleSelector: 'a',
-        linkSelector: 'a',
-        summarySelector: 'p',
-        isSearch: true
-    },
+    // BioBioChile, Cooperativa, ADN Radio moved to RSS
     {
         name: 'La Tercera',
         url: 'https://www.latercera.com/search/?q=pesca',
@@ -585,14 +640,6 @@ const SITES = [
         titleSelector: 'a',
         linkSelector: 'a',
         summarySelector: '.deck, p'
-    },
-    {
-        name: 'ADN Radio',
-        url: 'https://www.adnradio.cl/?s=pesca',
-        selector: 'article, .card',
-        titleSelector: 'h3 a, h2 a', // Expanded to be safer
-        linkSelector: 'h3 a, h2 a',
-        summarySelector: 'p.ent, p'
     },
     {
         name: 'El Desconcierto',
@@ -627,14 +674,8 @@ const SITES = [
         linkSelector: 'a',
         summarySelector: 'p'
     },
-    {
-        name: 'El Maule Informa',
-        url: 'https://www.elmauleinforma.cl/?s=pesca',
-        selector: 'article, .post, h2, h3',
-        titleSelector: 'a',
-        linkSelector: 'a',
-        summarySelector: 'p'
-    },
+    // El Maule Informa, Hora 12 moved to RSS (Hora 12 failed too, migrating for safety)
+    // Actually Hora 12 was OK [200], keeping it.
     {
         name: 'Hora 12',
         url: 'https://www.hora12.cl/?s=pesca',
@@ -643,14 +684,7 @@ const SITES = [
         linkSelector: 'a',
         summarySelector: 'p'
     },
-    {
-        name: 'La Serena Online',
-        url: 'https://www.laserenaonline.cl/?s=pesca',
-        selector: 'article, .post, h2, h3',
-        titleSelector: 'a',
-        linkSelector: 'a',
-        summarySelector: 'p'
-    },
+    // La Serena Online moved
     {
         name: 'Diario Talca',
         url: 'https://www.diariotalca.cl/?s=pesca',
@@ -659,14 +693,7 @@ const SITES = [
         linkSelector: 'a',
         summarySelector: 'p'
     },
-    {
-        name: 'Estrella Arica',
-        url: 'https://www.estrellaarica.cl/?s=pesca',
-        selector: 'article, .post, h2, h3',
-        titleSelector: 'a',
-        linkSelector: 'a',
-        summarySelector: 'p'
-    },
+    // Estrella Arica moved to RSS
     {
         name: 'Diario Antofagasta',
         url: 'https://www.diarioantofagasta.cl/?s=pesca',
@@ -675,39 +702,9 @@ const SITES = [
         linkSelector: 'a',
         summarySelector: 'p'
     },
-    {
-        name: 'El Llanquihue',
-        url: 'https://www.elllanquihue.cl/?s=pesca',
-        selector: 'article, .post, h2, h3',
-        titleSelector: 'a',
-        linkSelector: 'a',
-        summarySelector: 'p'
-    },
-    {
-        name: 'La Prensa Austral',
-        url: 'https://www.laprensaaustral.cl/?s=pesca',
-        selector: 'article, .post, h2, h3',
-        titleSelector: 'a',
-        linkSelector: 'a',
-        summarySelector: 'p'
-    },
-    {
-        name: 'Estrella Chiloé',
-        url: 'https://www.estrellachiloe.cl/?s=pesca',
-        selector: 'article, .post, h2, h3',
-        titleSelector: 'a',
-        linkSelector: 'a',
-        summarySelector: 'p'
-    },
+    // El Llanquihue, La Prensa Austral, Estrella Chiloé moved
     // Especializados en Pesca y Acuicultura
-    {
-        name: 'Aqua',
-        url: 'https://www.aqua.cl/',
-        selector: 'article, .post, .type-post, h2, h3',
-        titleSelector: 'a',
-        linkSelector: 'a',
-        summarySelector: 'p, .excerpt'
-    },
+    // Aqua moved
     {
         name: 'Mundo Acuícola',
         url: 'https://www.mundoacuicola.cl/new/',
@@ -716,14 +713,7 @@ const SITES = [
         linkSelector: 'a',
         summarySelector: 'p'
     },
-    {
-        name: 'PescaHoy',
-        url: 'https://www.pescahoy.cl/',
-        selector: 'article, .post, h2, h3',
-        titleSelector: 'a',
-        linkSelector: 'a',
-        summarySelector: 'p'
-    },
+    // PescaHoy moved
     {
         name: 'El Mercurio Beta',
         url: 'https://beta.elmercurio.com', // Base URL, will be handled specifically

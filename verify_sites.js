@@ -1,27 +1,12 @@
 const axios = require('axios');
 
 const SITES = [
-    {
-        name: 'BioBioChile',
-        url: 'https://www.biobiochile.cl/buscador?q=pesca',
-    },
+    // Sites handled via RSS or Direct
     {
         name: 'La Tercera',
         url: 'https://www.latercera.com/search/?q=pesca',
     },
-    // Medios Nacionales
-    {
-        name: 'El Mercurio',
-        url: 'https://www.elmercurio.com/inversiones/noticias/busqueda.aspx?q=pesca',
-    },
-    {
-        name: 'Cooperativa',
-        url: 'https://www.cooperativa.cl/noticias/site/tax/port/all/taxport_10___1.html',
-    },
-    {
-        name: 'ADN Radio',
-        url: 'https://www.adnradio.cl/search/pesca/',
-    },
+
     {
         name: 'El Desconcierto',
         url: 'https://www.eldesconcierto.cl/?s=pesca',
@@ -30,88 +15,54 @@ const SITES = [
         name: 'Interferencia',
         url: 'https://www.interferencia.cl/?s=pesca',
     },
-    {
-        name: 'Pulso',
-        url: 'https://www.pulso.cl/buscador/?query=pesca',
-    },
-    {
-        name: 'Diario Financiero',
-        url: 'https://www.df.cl/buscar?q=pesca',
-    },
-    {
-        name: 'Hoy x Hoy',
-        url: 'https://www.hoyxhoy.cl/search/pesca/',
-    },
+    // Pulso moved to RSS
+    // Diario Financiero, Hoy x Hoy, SoyChile moved/checked
     {
         name: 'SoyChile',
         url: 'https://www.soychile.cl/buscador?q=pesca',
     },
     // Medios Regionales
-    {
-        name: 'El Mercurio Valparaíso',
-        url: 'https://www.mercuriovalpo.cl/search/?query=pesca',
-    },
+    // El Mercurio Valparaíso moved
     {
         name: 'El Observador',
         url: 'https://www.observador.cl/?s=pesca',
     },
-    {
-        name: 'La Región',
-        url: 'https://www.laregion.cl/?s=pesca',
-    },
+    // La Región moved
     {
         name: 'Pura Noticia',
         url: 'https://www.puranoticia.cl/?s=pesca',
     },
-    {
-        name: 'El Maule Informa',
-        url: 'https://www.elmauleinforma.cl/?s=pesca',
-    },
-    {
-        name: 'Hora 12',
-        url: 'https://www.hora12.cl/?s=pesca',
-    },
-    {
-        name: 'La Serena Online',
-        url: 'https://www.laserenaonline.cl/?s=pesca',
-    },
+    // El Maule Informa moved
+    // La Serena Online moved
     {
         name: 'Diario Talca',
         url: 'https://www.diariotalca.cl/?s=pesca',
+        selector: 'article, .post, h2, h3',
+        titleSelector: 'a',
+        linkSelector: 'a',
+        summarySelector: 'p'
     },
-    {
-        name: 'Estrella Arica',
-        url: 'https://www.estrellaarica.cl/?s=pesca',
-    },
+    // Estrella Arica moved to RSS
     {
         name: 'Diario Antofagasta',
         url: 'https://www.diarioantofagasta.cl/?s=pesca',
+        selector: 'article, .post, h2, h3',
+        titleSelector: 'a',
+        linkSelector: 'a',
+        summarySelector: 'p'
     },
-    {
-        name: 'El Llanquihue',
-        url: 'https://www.elllanquihue.cl/?s=pesca',
-    },
-    {
-        name: 'La Prensa Austral',
-        url: 'https://www.laprensaaustral.cl/?s=pesca',
-    },
-    {
-        name: 'Estrella Chiloé',
-        url: 'https://www.estrellachiloe.cl/?s=pesca',
-    },
+    // El Llanquihue, La Prensa Austral, Estrella Chiloé moved
     // Especializados en Pesca y Acuicultura
-    {
-        name: 'Aqua',
-        url: 'https://www.aqua.cl/',
-    },
+    // Aqua moved
     {
         name: 'Mundo Acuícola',
         url: 'https://www.mundoacuicola.cl/new/',
+        selector: '.read-title, h4',
+        titleSelector: 'a',
+        linkSelector: 'a',
+        summarySelector: 'p'
     },
-    {
-        name: 'PescaHoy',
-        url: 'https://www.pescahoy.cl/',
-    }
+    // PescaHoy moved
 ];
 
 const HEADERS = {
