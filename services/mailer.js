@@ -88,11 +88,11 @@ const generateHtml = (articles) => {
     // Priority order (same as frontend)
     const ORDERED_CATEGORIES = [
         'Pesca Artesanal',
-        'Cultivos y Áreas de Manejo',
+        'Pesca Industrial',
         'Ley de Pesca',
         'Sector Pesquero',
+        'Cultivos y Áreas de Manejo',
         'Pais y Sector Empresarial',
-        'Pesca Industrial',
         'Salmoneras',
         'Innovación Acuícola',
         'Otros'
