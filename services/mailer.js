@@ -155,17 +155,17 @@ const sendDailyClipping = async () => {
         return;
     }
 
-    // 2. Get articles from the last 24 hours
+    // 2. Get articles from the last 4 days
     const cutoff = new Date();
-    cutoff.setHours(cutoff.getHours() - 24);
+    cutoff.setDate(cutoff.getDate() - 4);
 
     try {
-        const articles = await Article.find().sort({ date: -1 }).limit(100);
+        const articles = await Article.find().sort({ date: -1 }).limit(300);
         let articlesToSend = articles.filter(a => new Date(a.date) > cutoff);
 
         if (process.env.FORCE_SEND_EMAIL === 'true' && articlesToSend.length === 0) {
-            console.log('No recent articles found, but FORCE_SEND_EMAIL is true. Sending latest 5 articles.');
-            articlesToSend = articles.slice(0, 5);
+            console.log('No recent articles found, but FORCE_SEND_EMAIL is true. Sending latest 20 articles.');
+            articlesToSend = articles.slice(0, 20);
         }
 
         if (articlesToSend.length === 0) {
