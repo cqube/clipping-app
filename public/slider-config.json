@@ -1,5 +1,15 @@
 [
     {
+        "imageUrl": "https://trade-news.cl/wp-content/uploads/2024/12/ferepa-biobio.jpg",
+        "linkUrl": "https://trade-news.cl/ferepa-apoya-apertura-del-registro-pesquero-artesanal-bajo-ciertos-criterios/",
+        "altText": "Ferepa apoya apertura del Registro Pesquero Artesanal bajo ciertos criterios"
+    },
+    {
+        "imageUrl": "https://www.elciudadano.com/wp-content/uploads/2024/12/pescadores-artesanales.jpg",
+        "linkUrl": "https://www.elciudadano.com/politica/pescadores-artesanales-le-ponen-la-cruz-a-kast-no-queremos-un-empleado-de-la-industria-en-la-subpesca/12/24/",
+        "altText": "Pescadores artesanales le ponen la cruz a Kast: \"No queremos un empleado de la industria\" en la Subpesca"
+    },
+    {
         "imageUrl": "sector-pesquero-contraloria.jpg",
         "linkUrl": "sector-pesquero-contraloria.jpg",
         "altText": "Sector pesquero pide a Contraloría revisar acceso al registro artesanal"
