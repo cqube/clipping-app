@@ -160,7 +160,7 @@ const sendDailyClipping = async () => {
     cutoff.setDate(cutoff.getDate() - 4);
 
     try {
-        const articles = await Article.find().sort({ date: -1 }).limit(300);
+        const articles = await Article.find().sort({ date: -1 }).limit(60);
         let articlesToSend = articles.filter(a => new Date(a.date) > cutoff);
 
         if (process.env.FORCE_SEND_EMAIL === 'true' && articlesToSend.length === 0) {
