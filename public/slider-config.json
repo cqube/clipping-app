@@ -1,5 +1,10 @@
 [
     {
+        "imageUrl": "merluza-pacificblu.jpg",
+        "linkUrl": "https://www.latercera.com/pulso/noticia/gobierno-define-cuota-de-merluza-para-2026-y-pacificblu-arremete-decision-confirma-el-fracaso-total-de-la-gestion/",
+        "altText": "Gobierno define cuota de merluza para 2026 y PacificBlu arremete contra decisión"
+    },
+    {
         "imageUrl": "https://trade-news.cl/wp-content/uploads/2024/12/ferepa-biobio.jpg",
         "linkUrl": "https://trade-news.cl/ferepa-apoya-apertura-del-registro-pesquero-artesanal-bajo-ciertos-criterios/",
         "altText": "Ferepa apoya apertura del Registro Pesquero Artesanal bajo ciertos criterios"

@@ -98,6 +98,13 @@ const generateHtml = (articles) => {
         'Otros'
     ];
 
+    const imagePath = path.join(__dirname, '../public/img/email-header.png');
+    let imageHtml = '';
+    if (fs.existsSync(imagePath)) {
+        const imageBase64 = fs.readFileSync(imagePath).toString('base64');
+        imageHtml = `<img src="data:image/png;base64,${imageBase64}" alt="Noticias Pesca" style="width: 100%; max-width: 800px; height: auto; margin-bottom: 20px; display: block;" />`;
+    }
+
     let html = `
     <html>
     <head>
@@ -114,6 +121,7 @@ const generateHtml = (articles) => {
         </style>
     </head>
     <body>
+        ${imageHtml}
         <h1>Clipping de Prensa: Pesca en Chile</h1>
         <p>Resumen diario de noticias - ${new Date().toLocaleDateString('es-CL')}</p>
     `;

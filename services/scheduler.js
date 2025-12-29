@@ -7,22 +7,19 @@ const initScheduler = () => {
     console.log('Initializing scheduler...');
 
     // Cron pattern: 30 7 * * 1-5 (At 07:30, Monday through Friday)
+    // Cron pattern: 30 7 * * 1-5 (At 07:30, Monday through Friday)
     const scraperJob = new CronJob(
         '30 7 * * 1-5',
         async function () {
             console.log('Running scheduled scrape...');
-            await runScraper();
-        },
-        null,
-        true,
-        'America/Santiago'
-    );
+            try {
+                await runScraper();
+                console.log('Scrape finished successfully.');
+            } catch (error) {
+                console.error('Error during scheduled scrape:', error);
+            }
 
-    // Cron pattern: 35 7 * * 1-5 (At 07:35, Monday through Friday) - Email
-    const emailJob = new CronJob(
-        '35 7 * * 1-5',
-        async function () {
-            console.log('Running scheduled email job...');
+            console.log('Proceeding to send daily clipping email...');
             await sendDailyClipping();
         },
         null,
@@ -30,8 +27,7 @@ const initScheduler = () => {
         'America/Santiago'
     );
 
-    console.log('Scheduler started. Scrape next:', scraperJob.nextDate().toString());
-    console.log('Scheduler started. Email next:', emailJob.nextDate().toString());
+    console.log('Scheduler started. Scrape/Email job next:', scraperJob.nextDate().toString());
 };
 
 module.exports = { initScheduler };
