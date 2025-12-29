@@ -2,12 +2,12 @@ const Article = require('../models/Article');
 
 const manualArticles = [
     {
-        title: "Gobierno define cuota de merluza para 2026 y PacificBlu arremete: \"Decisión confirma el fracaso total de la gestión\"",
-        source: "Pulso",
-        date: new Date(),
+        title: "Tras nueva rebaja en cuota de merluza común, gerente de PacificBlu pone en duda continuidad operativa",
+        source: "Diario Financiero",
+        date: new Date("2025-12-26"),
         category: "Pesca Industrial",
-        summary: "La empresa pesquera criticó duramente la definición de la cuota de merluza común para el próximo año, acusando una mala gestión por parte del gobierno.",
-        url: "https://www.latercera.com/pulso/noticia/gobierno-define-cuota-de-merluza-para-2026-y-pacificblu-arremete-decision-confirma-el-fracaso-total-de-la-gestion/"
+        summary: "Marcel Moenne argumentó que la baja sostenida hace inviable la operación de plantas procesadoras, escenario que podría traer como consecuencia un aumento del desempleo.",
+        url: "https://www.df.cl/regiones/biobio/empresas/tras-nueva-reduccion-en-cuota-de-merluza-comun-gerente-de-pacificblu-pone"
     }
 ];
 
