@@ -1,5 +1,10 @@
 [
     {
+        "imageUrl": "https://www.latercera.com/resizer/v2/BPGI3H3UZRGKDHP2ZJKPPA4ZHE.jpg?auth=0d70ac75e4f73078b59bf3a65931db0696ff67290bbd46b4a17b0b79221245c4&height=630&width=1200&smart=true",
+        "linkUrl": "https://www.latercera.com/nacional/noticia/caso-bruma-ratifican-sanciones-gravisimas-y-cancelan-licencia-del-capitan-de-el-cobra/",
+        "altText": "Caso Bruma: Ratifican sanciones gravísimas y cancelan licencia del capitán de El Cobra"
+    },
+    {
         "imageUrl": "merluza-pacificblu.jpg",
         "linkUrl": "https://www.df.cl/regiones/biobio/empresas/tras-nueva-reduccion-en-cuota-de-merluza-comun-gerente-de-pacificblu-pone",
         "altText": "Tras nueva rebaja en cuota de merluza común, gerente de PacificBlu pone en duda continuidad operativa"
