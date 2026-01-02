@@ -2,12 +2,13 @@ const Article = require('../models/Article');
 
 const manualArticles = [
     {
-        title: "Tras nueva rebaja en cuota de merluza común, gerente de PacificBlu pone en duda continuidad operativa",
-        source: "Diario Financiero",
-        date: new Date("2025-12-26"),
-        category: "Pesca Industrial",
-        summary: "Marcel Moenne argumentó que la baja sostenida hace inviable la operación de plantas procesadoras, escenario que podría traer como consecuencia un aumento del desempleo.",
-        url: "https://www.df.cl/regiones/biobio/empresas/tras-nueva-reduccion-en-cuota-de-merluza-comun-gerente-de-pacificblu-pone"
+        title: "Caso Bruma: Ratifican sanciones gravísimas y cancelan licencia del capitán de El Cobra",
+        source: "La Tercera",
+        date: new Date("2026-01-02"),
+        category: "Pesca Artesanal",
+        summary: "La Corte Suprema confirmó las sanciones aplicadas al capitán del buque pesquero El Cobra en el caso Bruma, incluyendo la cancelación de su licencia.",
+        url: "https://www.latercera.com/nacional/noticia/caso-bruma-ratifican-sanciones-gravisimas-y-cancelan-licencia-del-capitan-de-el-cobra/",
+        image: "/placeholder-news.svg"
     }
 ];
 

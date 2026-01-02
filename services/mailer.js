@@ -192,42 +192,32 @@ const sendDailyClipping = async () => {
         // NOTE: My `createRawEmail` helper above only takes `to`. I should handle BCC.
 
         // Revised Strategy: Send to GMAIL_USER_EMAIL, put recipients in Bcc header.
+        // Loop through recipients and send individual emails
         const sender = process.env.GMAIL_USER_EMAIL || 'pescaboletin@gmail.com';
 
-        // Re-construct raw email with BCC logic if needed, but simplest for "clipping" is often individual or BCC.
-        // Let's modify the helper logic inline here or assume 1 generic send.
+        for (const recipient of recipients) {
+            console.log(`Sending to ${recipient}...`);
+            const messageParts = [
+                `From: ${sender}`,
+                `To: ${recipient}`,
+                'Content-Type: text/html; charset=utf-8',
+                'MIME-Version: 1.0',
+                `Subject: =?utf-8?B?${Buffer.from(subject).toString('base64')}?=`,
+                '',
+                html
+            ];
 
-        // Actually, let's just loop for now to be safe and personal, or use BCC header which is standard.
-        // If I update `createRawEmail` to accept bcc...
+            const raw = encodeBase64(messageParts.join('\n'));
+            const auth = getGmailClient();
 
-        // For now, I'll update the sendEmailViaGmail call to handle the BCC aggregation.
-        // But headers must clearly state separate TO and BCC.
-
-        // Let's use the 'To' field as the Sender (self) and 'Bcc' as recipient list.
-        const bccList = recipients.join(', ');
-
-        // Manually constructing message with Bcc
-        const messageParts = [
-            `From: ${sender}`,
-            `To: ${sender}`,
-            `Bcc: ${bccList}`,
-            'Content-Type: text/html; charset=utf-8',
-            'MIME-Version: 1.0',
-            `Subject: =?utf-8?B?${Buffer.from(subject).toString('base64')}?=`,
-            '',
-            html
-        ];
-
-        const raw = encodeBase64(messageParts.join('\n'));
-        const auth = getGmailClient();
-
-        if (auth) {
-            const gmail = google.gmail({ version: 'v1', auth });
-            await gmail.users.messages.send({
-                userId: 'me',
-                requestBody: { raw }
-            });
-            console.log(`Clipping Sent to ${recipients.length} recipients via BCC.`);
+            if (auth) {
+                const gmail = google.gmail({ version: 'v1', auth });
+                await gmail.users.messages.send({
+                    userId: 'me',
+                    requestBody: { raw }
+                });
+                console.log(`Clipping Sent successfully to ${recipient}`);
+            }
         }
 
     } catch (error) {

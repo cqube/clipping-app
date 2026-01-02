@@ -6,28 +6,43 @@ const { sendDailyClipping } = require('./mailer');
 const initScheduler = () => {
     console.log('Initializing scheduler...');
 
-    // Cron pattern: 30 7 * * 1-5 (At 07:30, Monday through Friday)
-    // Cron pattern: 30 7 * * 1-5 (At 07:30, Monday through Friday)
+    // Job 1: Scraper at 07:00 AM (Mon-Fri)
     const scraperJob = new CronJob(
-        '30 7 * * 1-5',
+        '0 7 * * 1-5',
         async function () {
-            console.log('Running scheduled scrape...');
+            console.log('Running scheduled scrape (07:00 AM)...');
             try {
                 await runScraper();
-                console.log('Scrape finished successfully.');
+                console.log('Scheduled scrape finished.');
             } catch (error) {
                 console.error('Error during scheduled scrape:', error);
             }
-
-            console.log('Proceeding to send daily clipping email...');
-            await sendDailyClipping();
         },
         null,
         true,
         'America/Santiago'
     );
 
-    console.log('Scheduler started. Scrape/Email job next:', scraperJob.nextDate().toString());
+    // Job 2: Email at 07:55 AM (Mon-Fri)
+    const emailJob = new CronJob(
+        '55 7 * * 1-5',
+        async function () {
+            console.log('Running scheduled email send (07:55 AM)...');
+            try {
+                await sendDailyClipping();
+                console.log('Scheduled email sent.');
+            } catch (error) {
+                console.error('Error during scheduled email:', error);
+            }
+        },
+        null,
+        true,
+        'America/Santiago'
+    );
+
+    console.log('Scheduler started.');
+    console.log('Next Scrape:', scraperJob.nextDate().toString());
+    console.log('Next Email:', emailJob.nextDate().toString());
 };
 
 module.exports = { initScheduler };

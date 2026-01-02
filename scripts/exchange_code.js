@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { google } = require('googleapis');
 
-const code = '4/0ATX87lOTf4b7JlzojvaWpMihcOTgOfY2bA6wJefe5lGC3bENfVGCbRnm9La_yNGh0nSPRw';
+const code = '4/0ATX87lPvlDgnLjsN9Jv-K_5_T8QXw-v0jgEnRRmCTX01KNFWPacLe89Bydc6uT-0Ut9_FQ';
 const clientId = process.env.GMAIL_CLIENT_ID;
 const clientSecret = process.env.GMAIL_CLIENT_SECRET;
 const redirectUri = 'http://localhost';

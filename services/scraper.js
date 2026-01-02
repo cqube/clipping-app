@@ -41,6 +41,25 @@ const loginToElMercurio = async () => {
         return false;
     }
 };
+
+const loginToDf = async () => {
+    if (!process.env.DF_USER || !process.env.DF_PASS) return false;
+
+    try {
+        console.log('Logging in to Diario Financiero...');
+        // Placeholder for actual login
+        // const loginUrl = 'https://www.df.cl/api/auth/login'; 
+        // const { data } = await axios.post(loginUrl, ...);
+        console.log('  DF Login credentials loaded. Waiting for endpoint verification.');
+        return true;
+
+    } catch (error) {
+        console.error('  Error logging in to DF:', error.message);
+        return false;
+    }
+};
+
+
 try {
     const alertsPath = path.join(__dirname, 'ALERTS-SUBSCRIPTIONS.JSON');
     if (fs.existsSync(alertsPath)) {
@@ -923,6 +942,29 @@ const scrapeRssFeeds = async () => {
                             url = realUrl;
                         }
                     }
+                    // Handle Google News RSS articles URLs that redirect to actual source
+                    // Example: https://news.google.com/rss/articles/CBMi...
+                    else if (u.hostname.includes('news.google.com') && u.pathname.includes('/rss/articles/')) {
+                        try {
+                            // Follow redirect to get actual article URL
+                            const response = await axios.get(url, {
+                                maxRedirects: 5,
+                                timeout: 5000,
+                                headers: HEADERS
+                            });
+                            // axios follows redirects automatically, so response.request.res.responseUrl has final URL
+                            // But that's not always available, so we check the final URL from the response
+                            if (response.request && response.request.res && response.request.res.responseUrl) {
+                                url = response.request.res.responseUrl;
+                            }
+                        } catch (error) {
+                            // If redirect fails, try to extract from error response
+                            if (error.response && error.response.request && error.response.request.res && error.response.request.res.responseUrl) {
+                                url = error.response.request.res.responseUrl;
+                            }
+                            // Otherwise keep original URL, extractSourceFromUrl will handle it
+                        }
+                    }
                 } catch (e) {
                     // unexpected url format, keep original
                 }
@@ -965,6 +1007,8 @@ const runScraper = async () => {
 
     // Trigger El Mercurio Login
     await loginToElMercurio();
+    // Trigger DF Login
+    await loginToDf();
 
     // Scrape traditional news sites
     // NOTE: Keep only sites that definitely need direct scraping (BioBio, La Tercera)
