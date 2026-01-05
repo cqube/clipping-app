@@ -3,4 +3,4 @@ data/
 !data/recipients.json
 .DS_Store
 *.log
-# .env
+.env

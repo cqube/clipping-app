@@ -2,8 +2,6 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const Parser = require('rss-parser');
 const Article = require('../models/Article');
-const fs = require('fs');
-const path = require('path');
 
 let KEYWORDS = ['pesca', 'pescador', 'salmonicultura', 'acuicultura', 'marítimo', 'sernapesca', 'subpesca'];
 
@@ -1019,37 +1017,12 @@ const runScraper = async () => {
             continue;
         }
         const scrapedArticles = await scrapeSite(site);
-
-        for (const articleData of scrapedArticles) {
-            try {
-                const exists = await Article.findOne({ url: articleData.url });
-                if (!exists) {
-                    await Article.create(articleData);
-                    totalNew++;
-                    console.log(`Saved: [${articleData.category}] ${articleData.title}`);
-                }
-            } catch (err) {
-                // console.error('Error saving article:', err.message);
-            }
-        }
+        allResults.push(...scrapedArticles);
     }
 
     // Scrape RSS feeds
     if (RSS_FEEDS.length > 0) {
         const feedArticles = await scrapeRssFeeds();
-
-        for (const articleData of feedArticles) {
-            try {
-                const exists = await Article.findOne({ url: articleData.url });
-                if (!exists) {
-                    await Article.create(articleData);
-                    totalNew++;
-                    console.log(`Saved (RSS): [${articleData.category}] ${articleData.title}`);
-                }
-            } catch (err) {
-                // console.error('Error saving article:', err.message);
-            }
-        }
     }
 
     console.log(`Scrape finished. ${totalNew} new articles found.`);

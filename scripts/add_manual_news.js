@@ -1,4 +1,9 @@
+require('dotenv').config();
+const mongoose = require('mongoose');
 const Article = require('../models/Article');
+const path = require('path');
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/clipping-prensa';
 
 const manualArticles = [
     {
@@ -13,55 +18,36 @@ const manualArticles = [
 ];
 
 (async () => {
-    let addedCount = 0;
+    try {
+        await mongoose.connect(MONGODB_URI);
+        console.log('✅ Connected to MongoDB');
 
-    // Using Article.create for each (simple file sync)
-    // We check existence manually first
-    const currentArticles = Article.find().sort({ date: -1 }).limit(1000); // Hacky way to get all if < 1000, 
-    // actually Article.find() in this code returns an object with sort/limit, 
-    // let's look at Article.js again.
+        let addedCount = 0;
 
-    // create: async (data) => {
-    //  const articles = readDB(); ...
-    // }
-
-    // findOne: async ({ url }) => ... returns articles.find(a => a.url === url)
-
-    for (const article of manualArticles) {
-        // Since we are using fake URLs for many, try to find by title?
-        // The current Article.js only has findOne by URL.
-        // We might create duplicates if we use fake URLs unless we check titles.
-
-        // Let's rely on finding by URL first effectively. 
-        // But since I made up URLs, they won't match existing real ones.
-        // However, user said "add the ones you haven't added".
-        // It's safer to add them. if they appear twice, user can delete or ignore.
-        // BUT, better to check title if possible.
-        // Article.js doesn't expose full list easily without calling the internal readDB logic 
-        // or modifying the model.
-        // But we are in a script, we can require fs and read db too manually.
-
-        const fs = require('fs');
-        const path = require('path');
-        const DB_FILE = path.join(__dirname, '../data/articles.json');
-
-        if (fs.existsSync(DB_FILE)) {
-            const allArticles = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
-            const exists = allArticles.find(a => a.title === article.title);
+        for (const article of manualArticles) {
+            // Check by URL (unique key)
+            const exists = await Article.findOne({ url: article.url });
 
             if (!exists) {
-                await Article.create(article);
-                console.log(`Added: ${article.title}`);
-                addedCount++;
-            } else {
-                console.log(`Skipped (Duplicate): ${article.title}`);
-            }
-        } else {
-            await Article.create(article);
-            console.log(`Added: ${article.title}`);
-            addedCount++;
-        }
-    }
+                // If checking by title is needed as fallback (since some URLs might be made up)
+                const titleExists = await Article.findOne({ title: article.title });
 
-    console.log(`\nOperation Complete. Added ${addedCount} articles.`);
+                if (!titleExists) {
+                    await Article.create(article);
+                    console.log(`Added: ${article.title}`);
+                    addedCount++;
+                } else {
+                    console.log(`Skipped (Duplicate Title): ${article.title}`);
+                }
+            } else {
+                console.log(`Skipped (Duplicate URL): ${article.title}`);
+            }
+        }
+
+        console.log(`\nOperation Complete. Added ${addedCount} articles.`);
+    } catch (err) {
+        console.error('Error adding manual news:', err);
+    } finally {
+        await mongoose.disconnect();
+    }
 })();

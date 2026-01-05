@@ -14,6 +14,11 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/clippi
 const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
 let isScraping = false;
 
+// Connect to MongoDB
+mongoose.connect(MONGODB_URI)
+    .then(() => console.log('✅ Connected to MongoDB Atlas'))
+    .catch(err => console.error('❌ MongoDB Connection Error:', err));
+
 // Middleware
 app.use(express.static('public'));
 app.use(express.json());
