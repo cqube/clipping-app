@@ -2,13 +2,13 @@ const Article = require('../models/Article');
 
 const manualArticles = [
     {
-        title: "Caso Bruma: Ratifican sanciones gravísimas y cancelan licencia del capitán de El Cobra",
-        source: "La Tercera",
-        date: new Date("2026-01-02"),
-        category: "Pesca Artesanal",
-        summary: "La Corte Suprema confirmó las sanciones aplicadas al capitán del buque pesquero El Cobra en el caso Bruma, incluyendo la cancelación de su licencia.",
-        url: "https://www.latercera.com/nacional/noticia/caso-bruma-ratifican-sanciones-gravisimas-y-cancelan-licencia-del-capitan-de-el-cobra/",
-        image: "/placeholder-news.svg"
+        title: "Fin a la Ley Longueira: en la práctica nuevo fraccionamiento entra en 2026 y artesanales piden garantías sociales",
+        source: "El Ciudadano",
+        date: new Date(),
+        category: "Ley de Pesca",
+        summary: "Nuevo fraccionamiento entra en 2026 y artesanales piden garantías sociales tras el fin práctico de la Ley Longueira.",
+        url: "https://www.elciudadano.com/chile/fin-a-la-ley-longueira-en-la-practica-nuevo-fraccionamiento-entra-en-2026-y-artesanales-piden-garantias-sociales/01/02/",
+        image: "https://www.elciudadano.com/wp-content/uploads/2026/01/Fraccionamiento.jpg"
     }
 ];
 

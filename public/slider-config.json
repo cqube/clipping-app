@@ -1,47 +1,27 @@
 [
-    {
-        "imageUrl": "https://www.latercera.com/resizer/v2/BPGI3H3UZRGKDHP2ZJKPPA4ZHE.jpg?auth=0d70ac75e4f73078b59bf3a65931db0696ff67290bbd46b4a17b0b79221245c4&height=630&width=1200&smart=true",
-        "linkUrl": "https://www.latercera.com/nacional/noticia/caso-bruma-ratifican-sanciones-gravisimas-y-cancelan-licencia-del-capitan-de-el-cobra/",
-        "altText": "Caso Bruma: Ratifican sanciones gravísimas y cancelan licencia del capitán de El Cobra"
-    },
-    {
-        "imageUrl": "merluza-pacificblu.jpg",
-        "linkUrl": "https://www.df.cl/regiones/biobio/empresas/tras-nueva-reduccion-en-cuota-de-merluza-comun-gerente-de-pacificblu-pone",
-        "altText": "Tras nueva rebaja en cuota de merluza común, gerente de PacificBlu pone en duda continuidad operativa"
-    },
-    {
-        "imageUrl": "merluza-pacificblu.jpg",
-        "linkUrl": "https://www.latercera.com/pulso/noticia/gobierno-define-cuota-de-merluza-para-2026-y-pacificblu-arremete-decision-confirma-el-fracaso-total-de-la-gestion/",
-        "altText": "Gobierno define cuota de merluza para 2026 y PacificBlu arremete contra decisión"
-    },
-    {
-        "imageUrl": "https://trade-news.cl/wp-content/uploads/2024/12/ferepa-biobio.jpg",
-        "linkUrl": "https://trade-news.cl/ferepa-apoya-apertura-del-registro-pesquero-artesanal-bajo-ciertos-criterios/",
-        "altText": "Ferepa apoya apertura del Registro Pesquero Artesanal bajo ciertos criterios"
-    },
-    {
-        "imageUrl": "https://www.elciudadano.com/wp-content/uploads/2024/12/pescadores-artesanales.jpg",
-        "linkUrl": "https://www.elciudadano.com/politica/pescadores-artesanales-le-ponen-la-cruz-a-kast-no-queremos-un-empleado-de-la-industria-en-la-subpesca/12/24/",
-        "altText": "Pescadores artesanales le ponen la cruz a Kast: \"No queremos un empleado de la industria\" en la Subpesca"
-    },
-    {
-        "imageUrl": "sector-pesquero-contraloria.jpg",
-        "linkUrl": "sector-pesquero-contraloria.jpg",
-        "altText": "Sector pesquero pide a Contraloría revisar acceso al registro artesanal"
-    },
-    {
-        "imageUrl": "https://eldesconcierto.cl/img/asset/Y2xvdWRfbWVkaWEvMjc3OTQtYS11bm8tMTI1NTk3MS53ZWJw/27794-a-uno-1255971.webp?p=seo_pro_og&s=b8e5874d1e70138b0261ce9cbbbc0b30",
-        "linkUrl": "https://eldesconcierto.cl/2025/12/22/es-antidemocratico-pesca-artesanal-responde-a-la-industria-por-intento-de-impugnar-ley-de-fraccionamiento",
-        "altText": "\"Es antidemocrático\": pesca artesanal responde a la industria por intento de impugnar ley de fraccionamiento"
-    },
-    {
-        "imageUrl": "https://www.df.cl/noticias/site/artic/20251222/imag/foto_0000001720251222130948/Aton_1006541.jpg",
-        "linkUrl": "https://www.df.cl/regiones/biobio/empresas/resurge-polemica-por-ley-de-fraccionamiento-pesquero-industriales-y",
-        "altText": "Resurge polémica por Ley de Fraccionamiento Pesquero: industriales y artesanales piden a Contraloría impugnar apertura de registro a nuevos actores"
-    },
-    {
-        "imageUrl": "https://static.emol.cl/emol50/Fotos/2025/12/22/file_20251222112653.jpg",
-        "linkUrl": "https://www.emol.com/noticias/Economia/2025/12/22/1186540/pescadores-contraloria-subsecretaria.html",
-        "altText": "Pescadores acuden a Contraloría por ley de fraccionamiento: acusan \"vicios\" en actuar de la Subsecretaría"
-    }
+  {
+    "imageUrl": "https://www.elciudadano.com/wp-content/uploads/2026/01/Fraccionamiento.jpg",
+    "linkUrl": "https://www.elciudadano.com/chile/fin-a-la-ley-longueira-en-la-practica-nuevo-fraccionamiento-entra-en-2026-y-artesanales-piden-garantias-sociales/01/02/",
+    "altText": "Fin a la Ley Longueira: en la práctica nuevo fraccionamiento entra en 2026 y artesanales piden garantías sociales"
+  },
+  {
+    "imageUrl": "https://www.latercera.com/resizer/v2/BPGI3H3UZRGKDHP2ZJKPPA4ZHE.jpg?auth=0d70ac75e4f73078b59bf3a65931db0696ff67290bbd46b4a17b0b79221245c4&height=630&width=1200&smart=true",
+    "linkUrl": "https://www.latercera.com/nacional/noticia/caso-bruma-ratifican-sanciones-gravisimas-y-cancelan-licencia-del-capitan-de-el-cobra/",
+    "altText": "Caso Bruma: Ratifican sanciones gravísimas y cancelan licencia del capitán de El Cobra"
+  },
+  {
+    "imageUrl": "merluza-pacificblu.jpg",
+    "linkUrl": "https://www.df.cl/regiones/biobio/empresas/tras-nueva-reduccion-en-cuota-de-merluza-comun-gerente-de-pacificblu-pone",
+    "altText": "Tras nueva rebaja en cuota de merluza común, gerente de PacificBlu pone en duda continuidad operativa"
+  },
+  {
+    "imageUrl": "merluza-pacificblu.jpg",
+    "linkUrl": "https://www.latercera.com/pulso/noticia/gobierno-define-cuota-de-merluza-para-2026-y-pacificblu-arremete-decision-confirma-el-fracaso-total-de-la-gestion/",
+    "altText": "Gobierno define cuota de merluza para 2026 y PacificBlu arremete contra decisión"
+  },
+  {
+    "imageUrl": "https://trade-news.cl/wp-content/uploads/2024/12/ferepa-biobio.jpg",
+    "linkUrl": "https://trade-news.cl/ferepa-apoya-apertura-del-registro-pesquero-artesanal-bajo-ciertos-criterios/",
+    "altText": "Ferepa apoya apertura del Registro Pesquero Artesanal bajo ciertos criterios"
+  }
 ]
