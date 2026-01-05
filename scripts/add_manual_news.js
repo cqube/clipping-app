@@ -8,7 +8,7 @@ const manualArticles = [
         category: "Ley de Pesca",
         summary: "Nuevo fraccionamiento entra en 2026 y artesanales piden garantías sociales tras el fin práctico de la Ley Longueira.",
         url: "https://www.elciudadano.com/chile/fin-a-la-ley-longueira-en-la-practica-nuevo-fraccionamiento-entra-en-2026-y-artesanales-piden-garantias-sociales/01/02/",
-        image: "https://www.elciudadano.com/wp-content/uploads/2026/01/Fraccionamiento.jpg"
+        image: "img/fraccionamiento-pesca.jpg"
     }
 ];
 
