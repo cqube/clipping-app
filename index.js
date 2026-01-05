@@ -15,36 +15,13 @@ const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
 let isScraping = false;
 
 // Connect to MongoDB
-if (!process.env.MONGODB_URI) {
-    console.error('⚠️  CRITICAL: MONGODB_URI is not defined in environment variables!');
-} else {
-    console.log('Attempting to connect to MongoDB...');
-}
-
 mongoose.connect(MONGODB_URI)
     .then(() => console.log('✅ Connected to MongoDB Atlas'))
-    .catch(err => {
-        console.error('❌ MongoDB Connection Error:', err.message);
-        console.error('Full Error:', err);
-    });
-
-// Monitor connection state
-mongoose.connection.on('error', err => {
-    console.error('Mongoose connection error handler:', err);
-});
-
-mongoose.connection.on('disconnected', () => {
-    console.log('Mongoose disconnected');
-});
+    .catch(err => console.error('❌ MongoDB Connection Error:', err));
 
 // Middleware
 app.use(express.static('public'));
 app.use(express.json());
-
-app.use((req, res, next) => {
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-    next();
-});
 
 // --- API ROUTES ---
 
@@ -145,8 +122,7 @@ app.get('/api/articles', async (req, res) => {
 
         res.json(articles);
     } catch (err) {
-        console.error('ERROR in /api/articles:', err);
-        res.status(500).json({ error: err.message, stack: err.stack });
+        res.status(500).json({ error: err.message });
     }
 });
 

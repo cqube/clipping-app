@@ -227,24 +227,11 @@
             dashboardDiv.innerHTML = '';
             statusBar.textContent = '';
 
-            if (window.location.protocol === 'file:') {
-                dashboardDiv.innerHTML = '<div class="error-state">Error: Estás abriendo el archivo directamente. Debes entrar vía <b>http://localhost:3000</b></div>';
-                loadingDiv.style.display = 'none';
-                return;
-            }
-
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
-
             try {
-                console.log('Fetching articles...');
-                const res = await fetch('/api/articles', { signal: controller.signal });
-                console.log('Response received, status:', res.status);
-
+                const res = await fetch('/api/articles');
                 if (!res.ok) throw new Error(`HTTP Error ${res.status}`);
 
                 const articles = await res.json();
-                console.log('Articles parsed:', articles.length);
 
                 if (articles.length === 0) {
                     dashboardDiv.innerHTML = `
@@ -377,7 +364,7 @@
 
             } catch (err) {
                 console.error(err);
-                dashboardDiv.innerHTML = `<div class="error-state">Error cargando noticias: ${err.message}</div>`;
+                dashboardDiv.innerHTML = '<div class="error-state">Error cargando noticias.</div>';
             } finally {
                 loadingDiv.style.display = 'none';
             }
