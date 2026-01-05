@@ -2,6 +2,8 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const Parser = require('rss-parser');
 const Article = require('../models/Article');
+const fs = require('fs');
+const path = require('path');
 
 let KEYWORDS = ['pesca', 'pescador', 'salmonicultura', 'acuicultura', 'marítimo', 'sernapesca', 'subpesca'];
 
@@ -1002,6 +1004,7 @@ const scrapeRssFeeds = async () => {
 const runScraper = async () => {
     console.log('Starting daily scrape...');
     let totalNew = 0;
+    const allResults = [];
 
     // Trigger El Mercurio Login
     await loginToElMercurio();
@@ -1009,23 +1012,49 @@ const runScraper = async () => {
     await loginToDf();
 
     // Scrape traditional news sites
-    // NOTE: Keep only sites that definitely need direct scraping (BioBio, La Tercera)
-    // Most others are now covered by GN RSS
     for (const site of SITES) {
-        // Skip if already covered by RSS
         if (['El Mercurio Valparaíso', 'La Estrella de Iquique', 'La Estrella de Valparaíso', 'La Prensa Austral', 'Estrella Chiloé'].includes(site.name)) {
             continue;
         }
-        const scrapedArticles = await scrapeSite(site);
-        allResults.push(...scrapedArticles);
+        try {
+            const scrapedArticles = await scrapeSite(site);
+            allResults.push(...scrapedArticles);
+        } catch (e) {
+            console.error(`Error scraping ${site.name}:`, e.message);
+        }
     }
 
     // Scrape RSS feeds
     if (RSS_FEEDS.length > 0) {
-        const feedArticles = await scrapeRssFeeds();
+        try {
+            const feedArticles = await scrapeRssFeeds();
+            allResults.push(...feedArticles);
+        } catch (e) {
+            console.error('Error scraping RSS feeds:', e.message);
+        }
     }
 
-    console.log(`Scrape finished. ${totalNew} new articles found.`);
+    console.log(`Processing ${allResults.length} articles found...`);
+
+    // Deduplicate and Save to MongoDB
+    for (const article of allResults) {
+        try {
+            // Check existence in DB by URL
+            // Ensure URL is present
+            if (!article.url) continue;
+
+            const existing = await Article.findOne({ url: article.url });
+            if (!existing) {
+                await Article.create(article);
+                console.log(`Saved: [${article.category}] ${article.title}`);
+                totalNew++;
+            }
+        } catch (e) {
+            console.error(`Error saving article ${article.title}:`, e.message);
+        }
+    }
+
+    console.log(`Scrape finished. ${totalNew} new articles saved.`);
     return totalNew;
 };
 

@@ -228,8 +228,14 @@
             statusBar.textContent = '';
 
             try {
+                console.log('Fetching articles...');
                 const res = await fetch('/api/articles');
+                console.log('Response received, status:', res.status);
+
+                if (!res.ok) throw new Error(`HTTP Error ${res.status}`);
+
                 const articles = await res.json();
+                console.log('Articles parsed:', articles.length);
 
                 if (articles.length === 0) {
                     dashboardDiv.innerHTML = `
@@ -362,7 +368,7 @@
 
             } catch (err) {
                 console.error(err);
-                dashboardDiv.innerHTML = '<div class="error-state">Error cargando noticias.</div>';
+                dashboardDiv.innerHTML = `<div class="error-state">Error cargando noticias: ${err.message}</div>`;
             } finally {
                 loadingDiv.style.display = 'none';
             }
