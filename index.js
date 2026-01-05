@@ -127,7 +127,8 @@ app.get('/api/articles', async (req, res) => {
 
         res.json(articles);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error('ERROR in /api/articles:', err);
+        res.status(500).json({ error: err.message, stack: err.stack });
     }
 });
 
