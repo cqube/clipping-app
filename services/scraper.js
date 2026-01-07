@@ -1054,6 +1054,20 @@ const runScraper = async () => {
         }
     }
 
+    // Save to local file as fallback
+    try {
+        const dataPath = path.join(__dirname, '../data/latest_articles.json');
+        if (!fs.existsSync(path.join(__dirname, '../data'))) {
+            fs.mkdirSync(path.join(__dirname, '../data'), { recursive: true });
+        }
+        // Save at most 500 articles to avoid huge file
+        const toSave = allResults.slice(0, 500);
+        fs.writeFileSync(dataPath, JSON.stringify(toSave, null, 4));
+        console.log(`Articles also saved to ${dataPath} as fallback.`);
+    } catch (e) {
+        console.error('Error saving articles to local file fallback:', e.message);
+    }
+
     console.log(`Scrape finished. ${totalNew} new articles saved.`);
     return totalNew;
 };

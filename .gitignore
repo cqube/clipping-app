@@ -1,6 +1,7 @@
 node_modules/
 data/
 !data/recipients.json
+!data/latest_articles.json
 .DS_Store
 *.log
 .env

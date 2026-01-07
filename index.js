@@ -12,6 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/clipping-prensa';
 const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
+const ARTICLES_FILE = path.join(__dirname, 'data/latest_articles.json');
 let isScraping = false;
 
 // Connect to MongoDB
@@ -119,6 +120,28 @@ app.get('/api/articles', async (req, res) => {
             // If neither, sort by date (newest first)
             return new Date(b.date) - new Date(a.date);
         });
+
+        // 4. Fallback: If DB is empty or lacks today's news, load from file
+        const today = new Date().toISOString().split('T')[0];
+        const hasTodayNews = articles.some(a => new Date(a.date).toISOString().startsWith(today));
+
+        if ((articles.length === 0 || !hasTodayNews) && fs.existsSync(ARTICLES_FILE)) {
+            try {
+                const fileArticles = JSON.parse(fs.readFileSync(ARTICLES_FILE, 'utf8'));
+                // Merge and deduplicate by URL
+                const existingUrls = new Set(articles.map(a => a.url));
+                fileArticles.forEach(a => {
+                    if (!existingUrls.has(a.url)) {
+                        articles.push(a);
+                    }
+                });
+
+                // Re-sort after merge
+                articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } catch (fileErr) {
+                console.error('Error loading articles from file:', fileErr);
+            }
+        }
 
         res.json(articles);
     } catch (err) {
