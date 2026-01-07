@@ -120,7 +120,22 @@ app.get('/api/articles', async (req, res) => {
             return new Date(b.date) - new Date(a.date);
         });
 
-        res.json(articles);
+        // 4. Group by category and limit to 30
+        const grouped = {};
+        const finalArticles = [];
+
+        // Use the same order as frontend for grouping if helpful, but here we just want to limit.
+        // The frontend will do its own ordering.
+        articles.forEach(art => {
+            const cat = art.category || 'Otros';
+            if (!grouped[cat]) grouped[cat] = [];
+            if (grouped[cat].length < 6) {
+                grouped[cat].push(art);
+                finalArticles.push(art);
+            }
+        });
+
+        res.json(finalArticles);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

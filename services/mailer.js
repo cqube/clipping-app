@@ -77,12 +77,17 @@ const getRecipients = () => {
 };
 
 const generateHtml = (articles) => {
-    // Group by category
+    // Sort by date descending
+    articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Group by category and limit to 6
     const grouped = {};
     articles.forEach(art => {
         const cat = art.category || 'Otros';
         if (!grouped[cat]) grouped[cat] = [];
-        grouped[cat].push(art);
+        if (grouped[cat].length < 6) {
+            grouped[cat].push(art);
+        }
     });
 
     // Priority order (same as frontend)
@@ -168,7 +173,7 @@ const sendDailyClipping = async () => {
     cutoff.setDate(cutoff.getDate() - 4);
 
     try {
-        const articles = await Article.find().sort({ date: -1 }).limit(60);
+        const articles = await Article.find().sort({ date: -1 }).limit(300);
         let articlesToSend = articles.filter(a => new Date(a.date) > cutoff);
 
         if (process.env.FORCE_SEND_EMAIL === 'true' && articlesToSend.length === 0) {
