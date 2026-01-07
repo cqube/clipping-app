@@ -244,14 +244,12 @@
                     return;
                 }
 
-                // Group by category and limit to 30
+                // Group by category
                 const grouped = {};
                 articles.forEach(art => {
                     const cat = art.category || 'Otros';
                     if (!grouped[cat]) grouped[cat] = [];
-                    if (grouped[cat].length < 6) {
-                        grouped[cat].push(art);
-                    }
+                    grouped[cat].push(art);
                 });
 
                 // Render in order
