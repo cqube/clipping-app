@@ -97,51 +97,49 @@ app.get('/api/articles', async (req, res) => {
             'Mega Noticias' // Meganoticias
         ];
 
-        // 3. Sort function
-        articles.sort((a, b) => {
-            const indexA = PRIORITY_SOURCES.indexOf(a.source);
-            const indexB = PRIORITY_SOURCES.indexOf(b.source);
-
-            // If both are in priority list
-            if (indexA !== -1 && indexB !== -1) {
-                if (indexA !== indexB) {
-                    return indexA - indexB; // Lower index = higher priority
-                }
-                // If same priority source, sort by date
-                return new Date(b.date) - new Date(a.date);
-            }
-
-            // If only A is in priority list
-            if (indexA !== -1) return -1;
-
-            // If only B is in priority list
-            if (indexB !== -1) return 1;
-
-            // If neither, sort by date (newest first)
-            return new Date(b.date) - new Date(a.date);
-        });
-
-        // 4. Fallback: If DB is empty or lacks today's news, load from file
-        const today = new Date().toISOString().split('T')[0];
-        const hasTodayNews = articles.some(a => new Date(a.date).toISOString().startsWith(today));
-
-        if ((articles.length === 0 || !hasTodayNews) && fs.existsSync(ARTICLES_FILE)) {
+        // 1. Fallback/Merge: Always check the local file for potentially newer or missing news
+        if (fs.existsSync(ARTICLES_FILE)) {
             try {
                 const fileArticles = JSON.parse(fs.readFileSync(ARTICLES_FILE, 'utf8'));
-                // Merge and deduplicate by URL
                 const existingUrls = new Set(articles.map(a => a.url));
                 fileArticles.forEach(a => {
                     if (!existingUrls.has(a.url)) {
                         articles.push(a);
                     }
                 });
-
-                // Re-sort after merge
-                articles.sort((a, b) => new Date(b.date) - new Date(a.date));
             } catch (fileErr) {
-                console.error('Error loading articles from file:', fileErr);
+                console.error('Error loading articles from file fallback:', fileErr);
             }
         }
+
+        // 2. Smarter Sorting: By Day (Newest first), then by PRIORITY_SOURCES, then by exact Date
+        articles.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+
+            // Group by Day (normalized to YYYY-MM-DD)
+            const dayA = dateA.toISOString().split('T')[0];
+            const dayB = dateB.toISOString().split('T')[0];
+
+            if (dayA !== dayB) {
+                return dayB.localeCompare(dayA); // Newer day first
+            }
+
+            // Within the same day, check priority
+            const indexA = PRIORITY_SOURCES.indexOf(a.source);
+            const indexB = PRIORITY_SOURCES.indexOf(b.source);
+
+            if (indexA !== -1 && indexB !== -1) {
+                if (indexA !== indexB) return indexA - indexB; // Lower index = higher priority
+            } else if (indexA !== -1) {
+                return -1;
+            } else if (indexB !== -1) {
+                return 1;
+            }
+
+            // If same priority (or neither), sort by exact time within the day
+            return dateB - dateA;
+        });
 
         res.json(articles);
     } catch (err) {
