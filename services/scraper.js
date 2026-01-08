@@ -1003,59 +1003,57 @@ const scrapeRssFeeds = async () => {
 
 const runScraper = async () => {
     console.log('Starting daily scrape...');
+    console.time('run-scraper');
     let totalNew = 0;
-    const allResults = [];
 
     // Trigger El Mercurio Login
     await loginToElMercurio();
     // Trigger DF Login
     await loginToDf();
 
-    // Scrape traditional news sites
-    for (const site of SITES) {
-        if (['El Mercurio Valparaíso', 'La Estrella de Iquique', 'La Estrella de Valparaíso', 'La Prensa Austral', 'Estrella Chiloé'].includes(site.name)) {
-            continue;
-        }
-        try {
-            const scrapedArticles = await scrapeSite(site);
-            allResults.push(...scrapedArticles);
-        } catch (e) {
-            console.error(`Error scraping ${site.name}:`, e.message);
-        }
-    }
-
-    // Scrape RSS feeds
-    if (RSS_FEEDS.length > 0) {
-        try {
-            const feedArticles = await scrapeRssFeeds();
-            allResults.push(...feedArticles);
-        } catch (e) {
-            console.error('Error scraping RSS feeds:', e.message);
-        }
-    }
-
-    console.log(`Processing ${allResults.length} articles found...`);
-
-    // Deduplicate and Save to MongoDB
-    for (const article of allResults) {
-        try {
-            // Check existence in DB by URL
-            // Ensure URL is present
-            if (!article.url) continue;
-
-            const existing = await Article.findOne({ url: article.url });
-            if (!existing) {
-                await Article.create(article);
-                console.log(`Saved: [${article.category}] ${article.title}`);
-                totalNew++;
-            }
-        } catch (e) {
-            console.error(`Error saving article ${article.title}:`, e.message);
-        }
-    }
-
-    // Save to local file as fallback
     try {
+        // --- OPTIMIZED SCRAPING ---
+        // Create an array of promises for scraping each site
+        const sitePromises = SITES
+            .filter(site => !['El Mercurio Valparaíso', 'La Estrella de Iquique', 'La Estrella de Valparaíso', 'La Prensa Austral', 'Estrella Chiloé'].includes(site.name))
+            .map(site => scrapeSite(site));
+
+        // Create a promise for scraping all RSS feeds
+        const rssPromise = RSS_FEEDS.length > 0 ? scrapeRssFeeds() : Promise.resolve([]);
+
+        // Run all scraping tasks in parallel and wait for all to complete
+        const results = await Promise.allSettled([...sitePromises, rssPromise]);
+
+        // Filter out rejected promises and flatten the results
+        const successfulResults = results
+            .filter(result => result.status === 'fulfilled')
+            .map(result => result.value);
+
+        const allResults = successfulResults.flat();
+
+        // Log any rejected promises
+        results.filter(result => result.status === 'rejected').forEach(result => {
+            console.error('A scraping promise was rejected:', result.reason);
+        });
+
+        console.log(`Processing ${allResults.length} articles found from ${successfulResults.length} successful sources...`);
+
+        // Deduplicate and Save to MongoDB
+        for (const article of allResults) {
+            try {
+                if (!article.url) continue;
+                const existing = await Article.findOne({ url: article.url });
+                if (!existing) {
+                    await Article.create(article);
+                    console.log(`Saved: [${article.category}] ${article.title}`);
+                    totalNew++;
+                }
+            } catch (e) {
+                console.error(`Error saving article ${article.title}:`, e.message);
+            }
+        }
+
+        // Save to local file as fallback
         const dataPath = path.join(__dirname, '../data/latest_articles.json');
         if (!fs.existsSync(path.join(__dirname, '../data'))) {
             fs.mkdirSync(path.join(__dirname, '../data'), { recursive: true });
@@ -1064,10 +1062,12 @@ const runScraper = async () => {
         const toSave = allResults.slice(0, 500);
         fs.writeFileSync(dataPath, JSON.stringify(toSave, null, 4));
         console.log(`Articles also saved to ${dataPath} as fallback.`);
-    } catch (e) {
-        console.error('Error saving articles to local file fallback:', e.message);
+
+    } catch (error) {
+        console.error('An error occurred during parallel scraping:', error);
     }
 
+    console.timeEnd('run-scraper');
     console.log(`Scrape finished. ${totalNew} new articles saved.`);
     return totalNew;
 };
