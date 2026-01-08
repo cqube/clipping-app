@@ -189,41 +189,39 @@ const sendDailyClipping = async () => {
         const html = generateHtml(articlesToSend);
         const subject = `Clipping Pesca - ${new Date().toLocaleDateString('es-CL')}`;
 
-        // Send to each recipient (BCC implementation via loop or single BCC header? Gmail API limits 'to' field visible)
-        // Better to send purely via BCC to avoid exposing list, or loop.
-        // For simplicity and hiding, we can send to SELF and put real recipients in BCC header.
-        // OR better yet, iterate if list is small.
-        // Let's us BCC header approach in `createRawEmail`. 
-        // NOTE: My `createRawEmail` helper above only takes `to`. I should handle BCC.
+        // --- OPTIMIZED SENDING ---
+        console.log(`Preparing to send to ${recipients.length} recipients...`);
+        console.time('send-daily-clipping'); // Start timer
 
-        // Revised Strategy: Send to GMAIL_USER_EMAIL, put recipients in Bcc header.
-        // Loop through recipients and send individual emails
+        const auth = getGmailClient();
+        if (!auth) {
+            console.error('Failed to get Gmail client. Aborting email send.');
+            return;
+        }
+        const gmail = google.gmail({ version: 'v1', auth });
         const sender = process.env.GMAIL_USER_EMAIL || 'pescaboletin@gmail.com';
 
-        for (const recipient of recipients) {
-            console.log(`Sending to ${recipient}...`);
-            const messageParts = [
-                `From: ${sender}`,
-                `To: ${recipient}`,
-                'Content-Type: text/html; charset=utf-8',
-                'MIME-Version: 1.0',
-                `Subject: =?utf-8?B?${Buffer.from(subject).toString('base64')}?=`,
-                '',
-                html
-            ];
+        const messageParts = [
+            `From: "Clipping de Prensa" <${sender}>`,
+            `To: ${sender}`, // Send to self for record
+            `Bcc: ${recipients.join(', ')}`, // BCC all recipients
+            'Content-Type: text/html; charset=utf-8',
+            'MIME-Version: 1.0',
+            `Subject: =?utf-8?B?${Buffer.from(subject).toString('base64')}?=`,
+            '',
+            html
+        ];
 
-            const raw = encodeBase64(messageParts.join('\n'));
-            const auth = getGmailClient();
+        const raw = encodeBase64(messageParts.join('\n'));
 
-            if (auth) {
-                const gmail = google.gmail({ version: 'v1', auth });
-                await gmail.users.messages.send({
-                    userId: 'me',
-                    requestBody: { raw }
-                });
-                console.log(`Clipping Sent successfully to ${recipient}`);
-            }
-        }
+        await gmail.users.messages.send({
+            userId: 'me',
+            requestBody: { raw }
+        });
+
+        console.log(`Clipping sent successfully to ${recipients.length} recipients.`);
+        console.timeEnd('send-daily-clipping'); // End timer
+        // --- END OPTIMIZED SENDING ---
 
     } catch (error) {
         console.error('Error sending email:', error);
