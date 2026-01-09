@@ -200,6 +200,41 @@ ul {
     background: rgba(231, 111, 81, 0.2);
 }
 
+/* Last Update Section */
+.last-update-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 12px 0;
+}
+
+.last-update-content {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.last-update-content i {
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+/* Manual Email Container */
+.manual-email-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.manual-email-container .btn {
+    width: 100%;
+    justify-content: center;
+}
+
 /* Main Content Area */
 .main-content {
     flex: 1;

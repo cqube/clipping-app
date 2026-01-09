@@ -42,6 +42,14 @@
             <div id="status-bar" class="status-bar"></div>
         </header>
 
+        <!-- Last Update Section -->
+        <div class="last-update-section">
+            <div class="last-update-content">
+                <i class="fa-solid fa-clock"></i>
+                <span id="lastUpdateText">Última actualización: Cargando...</span>
+            </div>
+        </div>
+
         <!-- Main Content -->
         <main class="main-content">
 
@@ -93,6 +101,11 @@
                     <ul id="recipientList" class="recipient-list">
                         <!-- List items injected here -->
                     </ul>
+                    <div class="manual-email-container">
+                        <button id="sendEmailBtn" class="btn btn-primary">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar Clipping Ahora
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,6 +124,8 @@
         const addEmailBtn = document.getElementById('addEmailBtn');
         const recipientList = document.getElementById('recipientList');
         const closeModalBtn = document.getElementById('closeModalBtn');
+        const sendEmailBtn = document.getElementById('sendEmailBtn');
+        const lastUpdateText = document.getElementById('lastUpdateText');
 
         // Toggle Modal
         manageEmailsBtn.addEventListener('click', () => {
@@ -416,8 +431,63 @@
             }
         });
 
+        // Load last update timestamp
+        async function loadLastUpdate() {
+            try {
+                const res = await fetch('/api/last-update');
+                const data = await res.json();
+
+                if (data.lastUpdate) {
+                    const updateDate = new Date(data.lastUpdate);
+                    const formattedDate = updateDate.toLocaleDateString('es-CL', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    const formattedTime = updateDate.toLocaleTimeString('es-CL', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    lastUpdateText.textContent = `Última actualización: ${formattedDate} a las ${formattedTime}`;
+                } else {
+                    lastUpdateText.textContent = 'Última actualización: Sin datos';
+                }
+            } catch (err) {
+                console.error('Error loading last update:', err);
+                lastUpdateText.textContent = 'Última actualización: Error al cargar';
+            }
+        }
+
+        // Manual email send
+        sendEmailBtn.addEventListener('click', async () => {
+            if (!confirm('¿Deseas enviar el clipping a todos los suscriptores ahora?')) {
+                return;
+            }
+
+            try {
+                sendEmailBtn.disabled = true;
+                sendEmailBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+
+                const res = await fetch('/api/send-email', { method: 'POST' });
+                const data = await res.json();
+
+                if (data.success) {
+                    alert('¡Correos enviados exitosamente!');
+                } else {
+                    alert('Error al enviar correos: ' + (data.error || 'Error desconocido'));
+                }
+            } catch (err) {
+                console.error('Error sending emails:', err);
+                alert('Error de conexión al enviar correos');
+            } finally {
+                sendEmailBtn.disabled = false;
+                sendEmailBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar Clipping Ahora';
+            }
+        });
+
         // Load on start
         loadArticles();
+        loadLastUpdate();
 
         // --- SLIDER LOGIC ---
         const sliderContainer = document.getElementById('slider-container');

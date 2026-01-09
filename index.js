@@ -172,6 +172,41 @@ app.post('/api/scrape', async (req, res) => {
     res.status(202).json({ message: 'Scraping started in background' });
 });
 
+// Get last update timestamp
+app.get('/api/last-update', async (req, res) => {
+    try {
+        const latestArticle = await Article.findOne().sort({ date: -1 });
+        if (latestArticle) {
+            res.json({ lastUpdate: latestArticle.date });
+        } else {
+            res.json({ lastUpdate: null });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Manually send email
+app.post('/api/send-email', async (req, res) => {
+    try {
+        const { sendDailyClipping } = require('./services/mailer');
+        console.log('Manual email send requested via API...');
+
+        // Send email asynchronously
+        sendDailyClipping()
+            .then(() => {
+                console.log('Manual email sent successfully');
+            })
+            .catch(err => {
+                console.error('Error sending manual email:', err);
+            });
+
+        res.json({ success: true, message: 'Email sending initiated' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // Start server directly without MongoDB
 initScheduler();
 app.listen(PORT, '0.0.0.0', () => {
