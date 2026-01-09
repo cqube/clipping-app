@@ -94,6 +94,13 @@
                         <!-- List items injected here -->
                     </ul>
                 </div>
+
+                <div class="manual-send-container">
+                    <button id="sendNowBtn" class="btn btn-secondary">
+                        <i class="fa-solid fa-paper-plane"></i> Enviar Clipping Manualmente
+                    </button>
+                    <div id="sendNowStatus" class="status-text"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -111,6 +118,8 @@
         const addEmailBtn = document.getElementById('addEmailBtn');
         const recipientList = document.getElementById('recipientList');
         const closeModalBtn = document.getElementById('closeModalBtn');
+        const sendNowBtn = document.getElementById('sendNowBtn');
+        const sendNowStatus = document.getElementById('sendNowStatus');
 
         // Toggle Modal
         manageEmailsBtn.addEventListener('click', () => {
@@ -534,6 +543,33 @@
 
         // Initialize Slider
         initSlider();
+
+        sendNowBtn.addEventListener('click', async () => {
+            sendNowBtn.disabled = true;
+            sendNowStatus.textContent = 'Enviando...';
+            sendNowStatus.className = 'status-text sending';
+
+            try {
+                const res = await fetch('/api/send-now', { method: 'POST' });
+                const data = await res.json();
+
+                if (data.success) {
+                    sendNowStatus.textContent = '¡Clipping enviado con éxito!';
+                    sendNowStatus.className = 'status-text success';
+                } else {
+                    throw new Error(data.message || 'Error desconocido');
+                }
+            } catch (err) {
+                sendNowStatus.textContent = `Error: ${err.message}`;
+                sendNowStatus.className = 'status-text error';
+            } finally {
+                setTimeout(() => {
+                    sendNowBtn.disabled = false;
+                    sendNowStatus.textContent = '';
+                    sendNowStatus.className = 'status-text';
+                }, 5000);
+            }
+        });
     </script>
 </body>
 

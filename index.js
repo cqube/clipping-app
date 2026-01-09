@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const { initScheduler } = require('./services/scheduler');
 const { runScraper } = require('./services/scraper');
-const { sendConfirmationEmail } = require('./services/mailer');
+const { sendConfirmationEmail, sendDailyClipping } = require('./services/mailer');
 const Article = require('./models/Article');
 const fs = require('fs');
 
@@ -170,6 +170,17 @@ app.post('/api/scrape', async (req, res) => {
 
     // Return immediately
     res.status(202).json({ message: 'Scraping started in background' });
+});
+
+app.post('/api/send-now', async (req, res) => {
+    console.log('Manual email sending requested via API...');
+    try {
+        await sendDailyClipping();
+        res.status(200).json({ success: true, message: 'Email sent successfully.' });
+    } catch (error) {
+        console.error('Manual email sending failed:', error);
+        res.status(500).json({ success: false, message: 'Failed to send email.' });
+    }
 });
 
 // Start server directly without MongoDB
