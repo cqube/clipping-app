@@ -225,6 +225,7 @@ const sendDailyClipping = async () => {
 
     } catch (error) {
         console.error('Error sending email:', error);
+        throw error;
     }
 };
 
