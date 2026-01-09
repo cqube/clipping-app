@@ -7,6 +7,15 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/clippi
 
 const manualArticles = [
     {
+        title: "Presidente del Consejo por la Defensa del Patrimonio Pesquero critica designación de Jorge Quiroz",
+        source: "El Ciudadano",
+        date: new Date('2025-01-08'),
+        category: "Ley de Pesca",
+        summary: "Nombrar a Jorge Quiroz como ministro de hacienda es una preocupación para el país. No sólo fue el ideólogo que blindó a la industria pesquera, produciendo informes favorables a la asignación de recursos a dedo en la corrupta Ley de Pesca.",
+        url: "https://www.elciudadano.com/actualidad/presidente-del-consejo-por-la-defensa-del-patrimonio-pesquero-critica-designacion-de-jorge-quiroz/01/08/",
+        image: "https://www.elciudadano.com/wp-content/uploads/2025/01/Quiroz-Ministro-de-Hacienda.jpg"
+    },
+    {
         title: "Fin a la Ley Longueira: en la práctica nuevo fraccionamiento entra en 2026 y artesanales piden garantías sociales",
         source: "El Ciudadano",
         date: new Date(),
