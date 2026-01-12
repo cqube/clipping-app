@@ -4,6 +4,7 @@ const path = require('path');
 const Article = require('../models/Article');
 
 const RECIPIENTS_FILE = path.join(__dirname, '../data/recipients.json');
+const APP_URL = process.env.APP_URL || process.env.APP_CURL || 'https://clipping-app-production.up.railway.app';
 
 // Gmail API Configuration
 const getGmailClient = () => {
@@ -123,12 +124,17 @@ const generateHtml = (articles) => {
             .meta { font-size: 12px; color: #666; margin-bottom: 5px; }
             .summary { font-size: 14px; line-height: 1.4; }
             .footer { margin-top: 30px; font-size: 12px; color: #999; text-align: center; border-top: 1px solid #eee; padding-top: 10px;}
+            .btn-cta { display: inline-block; padding: 12px 24px; background-color: #005f73; color: #ffffff !important; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0; }
+            .center { text-align: center; }
         </style>
     </head>
     <body>
         ${imageHtml}
         <h1>Clipping de Prensa: Pesca en Chile</h1>
         <p>Resumen diario de noticias - ${new Date().toLocaleDateString('es-CL')}</p>
+        <div class="center">
+            <a href="${APP_URL}" class="btn-cta">Ver Dashboard Online</a>
+        </div>
     `;
 
     ORDERED_CATEGORIES.forEach(cat => {
@@ -149,7 +155,7 @@ const generateHtml = (articles) => {
 
     html += `
         <div class="footer">
-            Este es un correo automático generado por Clipping App.
+            Este es un correo automático generado por <a href="${APP_URL}">Clipping App</a>.
         </div>
     </body>
     </html>
@@ -247,6 +253,7 @@ const sendConfirmationEmail = async (email) => {
             <p>Hola,</p>
             <p>Gracias por suscribirte a nuestro clipping de noticias sobre pesca en Chile.</p>
             <p>A partir de mañana, recibirás diariamente un resumen con las noticias más relevantes de la industria, pesca artesanal y normativa.</p>
+            <p>Puedes ver el dashboard en tiempo real aquí: <a href="${APP_URL}">${APP_URL}</a></p>
         </div>
         <div class="footer">
             Si no te suscribiste a este servicio, por favor ignora este correo.

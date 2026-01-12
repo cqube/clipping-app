@@ -7,6 +7,7 @@ const Article = require('./models/Article');
 
 const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/clipping-prensa';
+const APP_URL = process.env.APP_URL || process.env.APP_CURL || 'https://clipping-app-production.up.railway.app';
 
 const getGmailClient = () => {
     const oAuth2Client = new google.auth.OAuth2(
@@ -57,6 +58,8 @@ async function send() {
         .article a{text-decoration:none;color:#2a9d8f}
         .meta{font-size:12px;color:#666}
         .footer{margin-top:30px;font-size:12px;color:#999;text-align:center;border-top:1px solid #eee;padding-top:10px}
+        .btn-cta { display: inline-block; padding: 12px 24px; background-color: #005f73; color: #ffffff !important; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0; }
+        .center { text-align: center; }
     </style></head><body>`;
 
     const imagePath = path.join(__dirname, 'public/img/email-header.png');
@@ -69,6 +72,7 @@ async function send() {
     html += imageHtml;
     html += `<h1>Clipping de Prensa: Pesca en Chile</h1>`;
     html += `<p>Resumen de noticias - ${new Date().toLocaleDateString('es-CL')}</p>`;
+    html += `<div class="center"><a href="${APP_URL}" class="btn-cta">Ver Dashboard Online</a></div>`;
 
     ORDERED_CATS.forEach(cat => {
         const catArticles = grouped[cat];
@@ -84,7 +88,7 @@ async function send() {
         }
     });
 
-    html += `<div class="footer">Este es un correo automático generado por Clipping App.</div>`;
+    html += `<div class="footer">Este es un correo automático generado por <a href="${APP_URL}">Clipping App</a>.</div>`;
     html += `</body></html>`;
 
     const sender = process.env.GMAIL_USER_EMAIL;
