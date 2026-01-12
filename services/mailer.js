@@ -13,8 +13,7 @@ const getGmailClient = () => {
     const refreshToken = process.env.GMAIL_REFRESH_TOKEN;
 
     if (!clientId || !clientSecret || !refreshToken) {
-        console.error('Missing Gmail API credentials in .env');
-        return null;
+        throw new Error('Missing Gmail API credentials in .env. Please check GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, and GMAIL_REFRESH_TOKEN.');
     }
 
     const oAuth2Client = new google.auth.OAuth2(clientId, clientSecret);
@@ -200,10 +199,6 @@ const sendDailyClipping = async () => {
         console.time('send-daily-clipping'); // Start timer
 
         const auth = getGmailClient();
-        if (!auth) {
-            console.error('Failed to get Gmail client. Aborting email send.');
-            return;
-        }
         const gmail = google.gmail({ version: 'v1', auth });
         const sender = process.env.GMAIL_USER_EMAIL || 'pescaboletin@gmail.com';
 

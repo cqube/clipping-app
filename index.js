@@ -192,19 +192,19 @@ app.post('/api/send-email', async (req, res) => {
         const { sendDailyClipping } = require('./services/mailer');
         console.log('Manual email send requested via API...');
 
-        // Send email asynchronously
-        sendDailyClipping()
-            .then(() => {
-                console.log('Manual email sent successfully');
-            })
-            .catch(err => {
-                console.error('Error sending manual email:', err);
-            });
+        // Send email synchronously to report errors
+        await sendDailyClipping();
 
-        res.json({ success: true, message: 'Email sending initiated' });
+        console.log('Manual email sent successfully');
+        res.json({ success: true, message: 'Email sent successfully' });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error('Error sending manual email:', err);
+        res.status(500).json({ error: err.message, details: 'Check server logs for more info.' });
     }
+});
+    } catch (err) {
+    res.status(500).json({ error: err.message });
+}
 });
 
 // Start server directly without MongoDB
