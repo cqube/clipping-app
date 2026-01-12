@@ -246,7 +246,7 @@ const RSS_FEEDS = [
     },
     {
         "url": "https://news.google.com/rss/search?q=site:diariochañarcillo.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
-        "sourceName": "Diario Chañarcillo"
+        "sourceName": "El Chañarcillo"
     },
     {
         "url": "https://news.google.com/rss/search?q=site:diarioconcepcion.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
@@ -274,7 +274,7 @@ const RSS_FEEDS = [
     },
     {
         "url": "https://news.google.com/rss/search?q=site:australtemuco.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
-        "sourceName": "El Austral de Temuco"
+        "sourceName": "El Austral de la Araucanía"
     },
     {
         "url": "https://news.google.com/rss/search?q=site:Coquimbo+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
@@ -282,7 +282,7 @@ const RSS_FEEDS = [
     },
     {
         "url": "https://news.google.com/rss/search?q=site:Aysén+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
-        "sourceName": "El Divisadero"
+        "sourceName": "el divisadero"
     },
     {
         "url": "https://news.google.com/rss/search?q=site:mercurioantofagasta.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
@@ -322,7 +322,7 @@ const RSS_FEEDS = [
     },
     {
         "url": "https://news.google.com/rss/search?q=site:estrellaIquique.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
-        "sourceName": "La Estrella de Iquique"
+        "sourceName": "Estrella de Iquique"
     },
     {
         "url": "https://news.google.com/rss/search?q=site:estrellavalpo.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
@@ -330,7 +330,7 @@ const RSS_FEEDS = [
     },
     {
         "url": "https://news.google.com/rss/search?q=site:Atacama+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
-        "sourceName": "Maray Radio"
+        "sourceName": "Maray online"
     },
     {
         "url": "https://news.google.com/rss/search?q=site:mauleopina.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
@@ -571,6 +571,26 @@ const RSS_FEEDS = [
     {
         url: "https://news.google.com/rss/search?q=site:soychile.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419",
         sourceName: "SoyChile"
+    },
+    {
+        url: 'https://news.google.com/rss/search?q=site:diariofutrono.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419',
+        sourceName: 'Diario Futrono'
+    },
+    {
+        url: 'https://news.google.com/rss/search?q=site:radiopolar.com+pesca&hl=es-CL&gl=CL&ceid=CL:es-419',
+        sourceName: 'Radio Polar'
+    },
+    {
+        url: 'https://news.google.com/rss/search?q=site:regionesnoticias.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419',
+        sourceName: 'Regiones Noticias'
+    },
+    {
+        url: 'https://news.google.com/rss/search?q=site:portalinnova.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419',
+        sourceName: 'Portal Innova'
+    },
+    {
+        url: 'https://news.google.com/rss/search?q=site:radio.uchile.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419',
+        sourceName: 'Radio Uchile'
     }
 ];
 
@@ -904,7 +924,13 @@ const scrapeRssFeeds = async () => {
                 'lasegunda.com': 'La Segunda',
                 'economia.cl': 'Economía',
                 'subpesca.cl': 'Subpesca',
-                'sernapesca.cl': 'Sernapesca'
+                'sernapesca.cl': 'Sernapesca',
+                'diariofutrono.cl': 'Diario Futrono',
+                'radiopolar.com': 'Radio Polar',
+                'regionesnoticias.cl': 'Regiones Noticias',
+                'portalinnova.cl': 'Portal Innova',
+                'radio.uchile.cl': 'Radio Uchile',
+                'australtemuco.cl': 'El Austral de la Araucanía'
             };
 
             // Check if domain is in map
