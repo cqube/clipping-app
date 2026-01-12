@@ -202,10 +202,6 @@ app.post('/api/send-email', async (req, res) => {
         res.status(500).json({ error: err.message, details: 'Check server logs for more info.' });
     }
 });
-    } catch (err) {
-    res.status(500).json({ error: err.message });
-}
-});
 
 // Start server directly without MongoDB
 initScheduler();
