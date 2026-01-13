@@ -45,6 +45,6 @@ const articleSchema = new mongoose.Schema({
 
 // Index for efficient sorting and querying
 articleSchema.index({ date: -1 });
-articleSchema.index({ url: 1 });
+// articleSchema.index({ url: 1 }); // Removed duplicate (already unique: true)
 
 module.exports = mongoose.model('Article', articleSchema);

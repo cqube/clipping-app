@@ -15,10 +15,21 @@ const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
 const ARTICLES_FILE = path.join(__dirname, 'data/latest_articles.json');
 let isScraping = false;
 
-// Connect to MongoDB
-mongoose.connect(MONGODB_URI)
-    .then(() => console.log('✅ Connected to MongoDB Atlas'))
-    .catch(err => console.error('❌ MongoDB Connection Error:', err));
+// Connect to MongoDB with improved options
+const connectDB = async () => {
+    try {
+        console.log('⏳ Connecting to MongoDB Atlas...');
+        await mongoose.connect(MONGODB_URI, {
+            serverSelectionTimeoutMS: 10000,
+            heartbeatFrequencyMS: 2000,
+        });
+        console.log('✅ Connected to MongoDB Atlas');
+    } catch (err) {
+        console.error('❌ MongoDB Connection Error:', err);
+        // On critical connection error at startup, we might want to exit
+        // but for now we'll just log and let the app fail gracefully on requests
+    }
+};
 
 // Middleware
 app.use(express.static('public'));
@@ -213,8 +224,18 @@ app.post('/api/send-email', async (req, res) => {
     }
 });
 
-// Start server directly without MongoDB
-initScheduler();
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on http://0.0.0.0:${PORT}`);
-});
+// Main Initialization
+const startApp = async () => {
+    // 1. Wait for MongoDB
+    await connectDB();
+
+    // 2. Init Scheduler
+    initScheduler();
+
+    // 3. Start Express
+    app.listen(PORT, '0.0.0.0', () => {
+        console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
+    });
+};
+
+startApp();

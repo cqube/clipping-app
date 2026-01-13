@@ -489,7 +489,7 @@ const runScraper = async () => {
         for (const article of allResults) {
             try {
                 if (!article.url) continue;
-                const existing = await Article.findOne({ url: article.url });
+                const existing = await Article.findOne({ url: article.url, clientId: CLIENT_ID });
                 if (!existing) {
                     article.clientId = CLIENT_ID; // Add Client ID
                     await Article.create(article);
