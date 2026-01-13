@@ -1,6 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const Parser = require('rss-parser');
+const mongoose = require('mongoose');
 const Article = require('../models/Article');
 const fs = require('fs');
 const path = require('path');
@@ -485,19 +486,36 @@ const runScraper = async () => {
 
         console.log(`Processing ${allResults.length} articles found from ${successfulResults.length} successful sources...`);
 
-        // Deduplicate and Save to MongoDB
-        for (const article of allResults) {
-            try {
-                if (!article.url) continue;
-                const existing = await Article.findOne({ url: article.url, clientId: CLIENT_ID });
-                if (!existing) {
-                    article.clientId = CLIENT_ID; // Add Client ID
-                    await Article.create(article);
-                    console.log(`Saved: [${article.category}] ${article.title}`);
-                    totalNew++;
+        // Check DB connection before intensive operations
+        if (mongoose.connection.readyState !== 1) {
+            console.error('❌ MongoDB not connected. readyState:', mongoose.connection.readyState);
+            console.log('Falling back to file save only.');
+        } else {
+            // Deduplicate and Save to MongoDB using BulkWrite for efficiency
+            if (allResults.length > 0) {
+                console.log(`Preparing bulk save for ${allResults.length} candidates...`);
+
+                const bulkOps = allResults
+                    .filter(article => article.url)
+                    .map(article => ({
+                        updateOne: {
+                            filter: { url: article.url, clientId: CLIENT_ID },
+                            update: { $setOnInsert: { ...article, clientId: CLIENT_ID } },
+                            upsert: true
+                        }
+                    }));
+
+                try {
+                    const result = await Article.bulkWrite(bulkOps, { ordered: false });
+                    totalNew = result.upsertedCount;
+                    console.log(`✅ Bulk save finished. New articles: ${totalNew}, Existing matching articles: ${result.matchedCount}`);
+                } catch (bulkErr) {
+                    console.error('⚠️ Partial error during bulk save:', bulkErr.message);
+                    if (bulkErr.result) {
+                        totalNew = bulkErr.result.upsertedCount;
+                        console.log(`   Actually saved ${totalNew} articles before error.`);
+                    }
                 }
-            } catch (e) {
-                console.error(`Error saving article ${article.title}:`, e.message);
             }
         }
 

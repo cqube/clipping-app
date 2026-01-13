@@ -19,15 +19,19 @@ let isScraping = false;
 const connectDB = async () => {
     try {
         console.log('⏳ Connecting to MongoDB Atlas...');
+
+        // Setup event listeners before connecting
+        mongoose.connection.on('disconnected', () => console.log('⚠️ MongoDB disconnected.'));
+        mongoose.connection.on('reconnected', () => console.log('✅ MongoDB reconnected.'));
+        mongoose.connection.on('error', (err) => console.error('❌ MongoDB Connection Error:', err));
+
         await mongoose.connect(MONGODB_URI, {
-            serverSelectionTimeoutMS: 10000,
+            serverSelectionTimeoutMS: 15000,
             heartbeatFrequencyMS: 2000,
         });
         console.log('✅ Connected to MongoDB Atlas');
     } catch (err) {
-        console.error('❌ MongoDB Connection Error:', err);
-        // On critical connection error at startup, we might want to exit
-        // but for now we'll just log and let the app fail gracefully on requests
+        console.error('❌ MongoDB Connection Error during startup:', err);
     }
 };
 
@@ -222,6 +226,15 @@ app.post('/api/send-email', async (req, res) => {
         console.error('Error sending manual email:', err);
         res.status(500).json({ error: err.message, details: 'Check server logs for more info.' });
     }
+});
+
+// Handle SIGTERM for Railway graceful shutdown
+process.on('SIGTERM', () => {
+    console.log('🛑 SIGTERM received. Shutting down gracefully...');
+    // We don't exit immediately to allow logs to flush
+    setTimeout(() => {
+        process.exit(0);
+    }, 1000);
 });
 
 // Main Initialization
