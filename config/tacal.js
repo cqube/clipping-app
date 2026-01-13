@@ -29,6 +29,9 @@ module.exports = {
         { url: 'https://news.google.com/rss/search?q="capacitación+de+personas+con+discapacidad"+Chile&hl=es-CL&gl=CL&ceid=CL:es-419', sourceName: 'Google News - Capacitación Discapacidad' },
         { url: 'https://news.google.com/rss/search?q="Ley+de+Inclusión+Laboral"+OR+"Ley+21.015"&hl=es-CL&gl=CL&ceid=CL:es-419', sourceName: 'Google News - Ley 21.015' },
         { url: 'https://news.google.com/rss/search?q="casos+de+éxito"+contratación+discapacidad&hl=es-CL&gl=CL&ceid=CL:es-419', sourceName: 'Google News - Casos Éxito' },
+        'https://www.google.com/alerts/feeds/08397670603095634428/5318811460532813958',
+        'https://www.google.com/alerts/feeds/08397670603095634428/5033396631359850017',
+        'https://www.google.com/alerts/feeds/08397670603095634428/8295167973895683185',
 
         'https://www.ciperchile.cl/feed/',
         'https://www.theclinic.cl/feed/',
