@@ -10,7 +10,20 @@ const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/clipping-prensa';
+
+// Connect to MongoDB - Choose between Atlas (env) or Local (fallback)
+const rawUri = process.env.MONGODB_URI || process.env.MONGODB_URL;
+if (!rawUri) {
+    console.warn('⚠️  MONGODB_URI is not defined in environment variables.');
+    if (process.env.NODE_ENV === 'production') {
+        console.error('❌ CRITICAL: Running in production without MONGODB_URI. This will likely fail.');
+    }
+} else {
+    const maskedUri = rawUri.replace(/:([^@]+)@/, ':****@'); // Hide password
+    console.log(`📡 MongoDB Connection String detected: ${maskedUri.startsWith('mongodb+srv') ? 'Atlas URI' : 'Standard URI'}`);
+}
+
+const MONGODB_URI = rawUri || 'mongodb://localhost:27017/clipping-prensa';
 const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
 const ARTICLES_FILE = path.join(__dirname, 'data/latest_articles.json');
 let isScraping = false;
