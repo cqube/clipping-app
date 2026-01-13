@@ -350,19 +350,11 @@
                             showMoreBtn.onclick = () => {
                                 const isHidden = hiddenContainer.style.display === 'none';
                                 if (isHidden) {
-                                    hiddenContainer.style.display = 'grid'; // Use grid to match parent layout if needed, or 'contents'/'block' depending on CSS. 
-                                    // Actually .category-articles usually has grid. 
-                                    // If we use 'contents', it flattens. If 'grid', it needs columns.
-                                    // Best to make hiddenContainer use grid-template-columns too or subgrid.
-                                    // Simpler: use 'contents' if supported or just append items to parent?
-                                    // Re-appending is cleaner.
-                                    // Let's just make the hiddenContainer display: contents to inherit grid.
                                     hiddenContainer.style.display = 'contents';
                                     showMoreBtn.innerHTML = `Mostrar menos <i class="fa-solid fa-chevron-up"></i>`;
                                 } else {
                                     hiddenContainer.style.display = 'none';
                                     showMoreBtn.innerHTML = `Leer más noticias <i class="fa-solid fa-chevron-down"></i>`;
-                                    // Scroll back to top of section? Optional.
                                 }
                             };
 

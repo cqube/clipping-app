@@ -32,6 +32,12 @@ const articleSchema = new mongoose.Schema({
     image: {
         type: String,
         trim: true
+    },
+    clientId: {
+        type: String,
+        required: true,
+        default: 'pesca', // Backwards compatibility / default
+        index: true
     }
 }, {
     timestamps: true // Adds createdAt and updatedAt

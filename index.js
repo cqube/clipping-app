@@ -24,6 +24,14 @@ mongoose.connect(MONGODB_URI)
 app.use(express.static('public'));
 app.use(express.json());
 
+const CLIENT_ID = process.env.CLIENT_ID || 'pesca';
+
+// Root Route - Serve correct HTML
+app.get('/', (req, res) => {
+    const file = CLIENT_ID === 'tacal' ? 'tacal.html' : 'pesca.html';
+    res.sendFile(path.join(__dirname, 'public', file));
+});
+
 // --- API ROUTES ---
 
 // Recipients Management
@@ -80,8 +88,10 @@ app.delete('/api/recipients', (req, res) => {
 // Routes
 app.get('/api/articles', async (req, res) => {
     try {
-        // 1. Get articles (fetch more to ensure we have enough from priority sources)
-        const articles = await Article.find().sort({ date: -1 }).limit(300);
+        // 1. Get articles for current client
+        const articles = await Article.find({ clientId: CLIENT_ID })
+            .sort({ date: -1 })
+            .limit(300);
 
         // 2. Define Priority Order
         const PRIORITY_SOURCES = [

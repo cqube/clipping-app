@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node scripts/add_manual_news.js && node index.js",
+    "start": "node index.js",
+    "start:pesca": "CLIENT_ID=pesca node index.js",
+    "start:tacal": "CLIENT_ID=tacal node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
