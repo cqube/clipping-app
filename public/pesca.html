@@ -226,6 +226,7 @@
         };
 
         const ORDERED_CATEGORIES = [
+            'Más recientes',
             'Pesca Artesanal',
             'Pesca Industrial',
             'Ley de Pesca',
@@ -261,6 +262,10 @@
 
                 // Group by category
                 const grouped = {};
+
+                // Virtual Category: Más recientes (First 6 articles regardless of theme)
+                grouped['Más recientes'] = articles.slice(0, 6);
+
                 articles.forEach(art => {
                     const cat = art.category || 'Otros';
                     if (!grouped[cat]) grouped[cat] = [];

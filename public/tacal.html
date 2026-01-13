@@ -226,6 +226,7 @@
         };
 
         const ORDERED_CATEGORIES = [
+            'Más recientes',
             'Fundación Tacal',
             'Ley de Inclusión (21.015)',
             'Capacitación y Empleo',
@@ -260,6 +261,10 @@
 
                 // Group by category
                 const grouped = {};
+
+                // Virtual Category: Más recientes (First 6 articles regardless of theme)
+                grouped['Más recientes'] = articles.slice(0, 6);
+
                 articles.forEach(art => {
                     const cat = art.category || 'Otros';
                     if (!grouped[cat]) grouped[cat] = [];
