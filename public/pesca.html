@@ -249,7 +249,50 @@
 
                 const articles = await res.json();
 
-                if (articles.length === 0) {
+                // 1. Filter: Only Chile
+                const CHILEAN_DOMAINS = [
+                    '.cl',
+                    'latercera.com',
+                    'emol.com',
+                    'cnnchile.com',
+                    'meganoticias.cl',
+                    '24horas.cl',
+                    't13.cl',
+                    'chvnoticias.cl',
+                    'elmostrador.cl',
+                    'biobiochile.cl',
+                    'cooperativa.cl',
+                    'adnradio.cl',
+                    'df.cl',
+                    'pulso.cl',
+                    'latercera.com',
+                    'elmercurio.com',
+                    'lasegunda.com',
+                    'theclinic.cl',
+                    'elciudadano.com',
+                    'ciperchile.cl',
+                    'interferencia.cl',
+                    'eldesconcierto.cl'
+                ];
+
+                const isChilean = (art) => {
+                    const text = (art.title + ' ' + (art.summary || '') + ' ' + (art.source || '')).toLowerCase();
+                    const hasChileMention = text.includes('chile');
+
+                    let isChileanDomain = false;
+                    try {
+                        if (art.url) {
+                            const domain = new URL(art.url).hostname.replace('www.', '');
+                            isChileanDomain = CHILEAN_DOMAINS.some(d => domain.endsWith(d));
+                        }
+                    } catch (e) { }
+
+                    return hasChileMention || isChileanDomain;
+                };
+
+                const filteredArticles = articles.filter(isChilean);
+
+                if (filteredArticles.length === 0) {
                     dashboardDiv.innerHTML = `
                         <div class="empty-state">
                             <i class="fa-regular fa-newspaper"></i>
@@ -263,10 +306,23 @@
                 // Group by category
                 const grouped = {};
 
-                // Virtual Category: Más recientes (First 6 articles regardless of theme)
-                grouped['Más recientes'] = articles.slice(0, 6);
+                // Virtual Category: Más recientes 
+                // ONLY from: PESCA ARTESANAL, PESCA INDUSTRIAL, LEY DE PESCA, SECTOR PESQUERO, PAIS Y SECTOR EMPRESARIAL
+                const RECENT_ALLOWED_CATEGORIES = [
+                    'Pesca Artesanal',
+                    'Pesca Industrial',
+                    'Ley de Pesca',
+                    'Sector Pesquero',
+                    'Pais y Sector Empresarial'
+                ];
 
-                articles.forEach(art => {
+                const recentCandidates = filteredArticles.filter(art =>
+                    RECENT_ALLOWED_CATEGORIES.includes(art.category)
+                );
+
+                grouped['Más recientes'] = recentCandidates.slice(0, 6);
+
+                filteredArticles.forEach(art => {
                     const cat = art.category || 'Otros';
                     if (!grouped[cat]) grouped[cat] = [];
                     grouped[cat].push(art);
