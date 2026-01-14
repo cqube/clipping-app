@@ -1,0 +1,130 @@
+/* tacal.css - Fundación Tacal Specific Styles */
+@import url('index.css');
+
+:root {
+    /* Tacal Design Tokens */
+    --primary-color: #FF6701;    /* Naranjo Principal (Tecnología) */
+    --secondary-color: #5A588C;  /* Azul Inclusión (o #3E588C) */
+    --brand-dark: #253259;       /* Azul Oscuro (Brand) */
+    --accent-red: #D83636;       /* Rojo (Arrebol) */
+    --text-main: #333333;        /* Color de Texto */
+    --bg-body: #F5F5F5;          /* Fondo General */
+
+    /* Override standard variables from index.css */
+    --primary-dark: #cc5200;     /* Darker orange for hover */
+    --radius-sm: 3px;
+    --radius-md: 4px;
+    --radius-lg: 4px;
+    --bg-header: #ffffff;
+}
+
+/* Typography Overrides */
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; /* Montserrat Bold */
+    color: var(--brand-dark);
+}
+
+/* UI Adjustments */
+.app-header {
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.header-title h1 {
+    color: var(--brand-dark);
+}
+
+.header-title .subtitle {
+    color: var(--secondary-color);
+}
+
+.section-title {
+    color: var(--brand-dark);
+}
+
+.section-title::after {
+    background: var(--primary-color);
+    width: 80px;
+    height: 3px;
+}
+
+.badge {
+    background: var(--secondary-color);
+}
+
+.news-card {
+    border: none;
+    box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.1);
+}
+
+.news-card:hover {
+    box-shadow: 12px 12px 50px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.card-source {
+    color: var(--secondary-color);
+}
+
+.read-more {
+    color: var(--primary-color);
+}
+
+.read-more:hover {
+    color: var(--primary-dark);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+    background-color: var(--brand-dark);
+    color: white;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #1a2441;
+    color: white;
+}
+
+/* Modal Adjustments */
+.modal-header {
+    background: var(--brand-dark);
+    color: white;
+}
+
+.modal-header h3 {
+    color: white;
+}
+
+.form-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 103, 1, 0.1);
+}
+
+/* Slider Overrides */
+.slider-container {
+    background-color: var(--brand-dark);
+}
+
+.slide-caption {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.dot.active {
+    background: var(--primary-color);
+}
