@@ -24,6 +24,7 @@ module.exports = {
         'https://www.google.com/alerts/feeds/08397670603095634428/16468006218765934227',
         'https://www.google.com/alerts/feeds/08397670603095634428/10693748374007498663',
         'https://www.google.com/alerts/feeds/08397670603095634428/10693748374007498275',
+        'https://mdstrm.com/feeds/grupo-copesa/informacion-privilegiada',
         'https://www.ciperchile.cl/feed/',
         'https://www.theclinic.cl/feed/',
         'https://www.elciudadano.com/feed/',

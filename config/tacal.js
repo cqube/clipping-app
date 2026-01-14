@@ -32,6 +32,7 @@ module.exports = {
         'https://www.google.com/alerts/feeds/08397670603095634428/5318811460532813958',
         'https://www.google.com/alerts/feeds/08397670603095634428/5033396631359850017',
         'https://www.google.com/alerts/feeds/08397670603095634428/8295167973895683185',
+        'https://mdstrm.com/feeds/grupo-copesa/informacion-privilegiada',
 
         'https://www.ciperchile.cl/feed/',
         'https://www.theclinic.cl/feed/',
