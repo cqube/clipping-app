@@ -61,6 +61,7 @@ module.exports = {
         { url: "https://news.google.com/rss/search?q=site:elllanquihue.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419", sourceName: "El Llanquihue" },
         { url: "https://news.google.com/rss/search?q=site:laprensaaustral.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419", sourceName: "La Prensa Austral" },
         { url: "https://news.google.com/rss/search?q=site:estrellachiloe.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419", sourceName: "Estrella Chiloé" },
+        'https://www.aqua.cl/feed/',
         { url: "https://news.google.com/rss/search?q=site:aqua.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419", sourceName: "Aqua" },
         { url: "https://news.google.com/rss/search?q=site:pescahoy.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419", sourceName: "PescaHoy" },
         { url: "https://news.google.com/rss/search?q=site:pulso.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419", sourceName: "Pulso" },
@@ -222,6 +223,14 @@ module.exports = {
             titleSelector: 'a',
             linkSelector: 'a',
             summarySelector: 'p'
+        },
+        {
+            name: 'Aqua',
+            url: 'https://www.aqua.cl/',
+            selector: 'article.et_pb_post',
+            titleSelector: 'h2.entry-title a',
+            linkSelector: 'h2.entry-title a',
+            summarySelector: '.post-content p, .et_pb_post_content p'
         },
         {
             name: 'El Mercurio Beta',
