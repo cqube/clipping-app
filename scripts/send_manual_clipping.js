@@ -2,8 +2,13 @@ require('dotenv').config();
 const { sendDailyClipping } = require('../services/mailer');
 const Article = require('../models/Article');
 
+const mongoose = require('mongoose');
+
 async function main() {
     console.log('--- Manual Clipping Send ---');
+
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log('✅ Connected to MongoDB');
 
     // Check article count first
     const articles = await Article.find().sort({ date: -1 }).limit(10); // Check recent 10
