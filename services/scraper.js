@@ -23,6 +23,8 @@ const CATEGORIES = config.categories;
 const RSS_FEEDS = config.rssFeeds;
 const SITES = config.sites || [];
 
+const MAX_ARTICLE_AGE_DAYS = 30;
+
 // Load additional keywords from ALERTS-SUBSCRIPTIONS.JSON (Optional, if still needed for legacy support)
 const qs = require('querystring');
 
@@ -275,12 +277,23 @@ const scrapeSite = async (site) => {
         }
 
         // Now fetch metadata for each candidate (with await)
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - MAX_ARTICLE_AGE_DAYS);
+
         for (const candidate of candidates) {
             const metadata = await fetchArticleMetadata(candidate.url);
+            const finalDate = metadata.date || candidate.date;
+
+            // Filter by age
+            if (finalDate < thirtyDaysAgo) {
+                console.log(`  Skipping old article (${finalDate.toLocaleDateString()}): ${candidate.title.substring(0, 50)}...`);
+                continue;
+            }
+
             articles.push({
                 ...candidate,
                 image: metadata.image || DEFAULT_IMAGE,
-                date: metadata.date || candidate.date // Use extracted date or fallback to scrape date
+                date: finalDate
             });
         }
 
@@ -427,13 +440,23 @@ const scrapeRssFeeds = async () => {
 
                     // Fetch metadata (image + date)
                     const metadata = await fetchArticleMetadata(url);
+                    const finalDate = metadata.date || date;
+
+                    // Filter by age
+                    const thirtyDaysAgo = new Date();
+                    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - MAX_ARTICLE_AGE_DAYS);
+
+                    if (finalDate < thirtyDaysAgo) {
+                        console.log(`  Skipping old RSS article (${finalDate.toLocaleDateString()}): ${title.substring(0, 50)}...`);
+                        continue;
+                    }
 
                     articles.push({
                         title,
                         url,
                         source,
                         summary: summary.substring(0, 300), // Limit summary length
-                        date: metadata.date || date, // Use extracted date or RSS date
+                        date: finalDate,
                         category: classifyArticle(title + ' ' + summary),
                         image: metadata.image || DEFAULT_IMAGE
                     });
@@ -521,13 +544,25 @@ const runScraper = async () => {
 
         // Save to local file as fallback
         const dataPath = path.join(__dirname, '../data/latest_articles.json');
+        const statusPath = path.join(__dirname, '../data', `status-${CLIENT_ID}.json`);
+
         if (!fs.existsSync(path.join(__dirname, '../data'))) {
             fs.mkdirSync(path.join(__dirname, '../data'), { recursive: true });
         }
+
         // Save at most 500 articles to avoid huge file
         const toSave = allResults.slice(0, 500);
         fs.writeFileSync(dataPath, JSON.stringify(toSave, null, 4));
         console.log(`Articles also saved to ${dataPath} as fallback.`);
+
+        // Save status timestamp
+        const status = {
+            lastUpdate: new Date().toISOString(),
+            articlesFound: allResults.length,
+            newArticles: totalNew
+        };
+        fs.writeFileSync(statusPath, JSON.stringify(status, null, 2));
+        console.log(`Status saved to ${statusPath}`);
 
     } catch (error) {
         console.error('An error occurred during parallel scraping:', error);

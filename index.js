@@ -116,8 +116,14 @@ app.delete('/api/recipients', (req, res) => {
 // Routes
 app.get('/api/articles', async (req, res) => {
     try {
-        // 1. Get articles for current client
-        const articles = await Article.find({ clientId: CLIENT_ID })
+        // 1. Get articles for current client within the last 30 days
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+        const articles = await Article.find({
+            clientId: CLIENT_ID,
+            date: { $gte: thirtyDaysAgo }
+        })
             .sort({ date: -1 })
             .limit(300);
 
@@ -213,7 +219,18 @@ app.post('/api/scrape', async (req, res) => {
 // Get last update timestamp
 app.get('/api/last-update', async (req, res) => {
     try {
-        const latestArticle = await Article.findOne().sort({ date: -1 });
+        const statusFile = path.join(__dirname, 'data', `status-${CLIENT_ID}.json`);
+
+        // 1. Try to read from status file (most accurate for system run time)
+        if (fs.existsSync(statusFile)) {
+            const status = JSON.parse(fs.readFileSync(statusFile, 'utf8'));
+            if (status.lastUpdate) {
+                return res.json({ lastUpdate: status.lastUpdate });
+            }
+        }
+
+        // 2. Fallback to latest article date
+        const latestArticle = await Article.findOne({ clientId: CLIENT_ID }).sort({ date: -1 });
         if (latestArticle) {
             res.json({ lastUpdate: latestArticle.date });
         } else {

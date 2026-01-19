@@ -75,6 +75,10 @@ module.exports = {
             "sourceName": "Diario Financiero"
         },
         {
+            "url": "https://news.google.com/rss/search?q=site:latercera.com+discapacidad&hl=es-CL&gl=CL&ceid=CL:es-419",
+            "sourceName": "La Tercera"
+        },
+        {
             "url": "https://news.google.com/rss/search?q=site:elmercurio.com+discapacidad&hl=es-CL&gl=CL&ceid=CL:es-419",
             "sourceName": "El Mercurio"
         },
@@ -84,6 +88,14 @@ module.exports = {
         }
     ],
     sites: [
+        {
+            name: 'La Tercera',
+            url: 'https://www.latercera.com/search/?q=discapacidad',
+            selector: 'article, .card, h2, h3',
+            titleSelector: 'a',
+            linkSelector: 'a',
+            summarySelector: '.deck, p'
+        },
         {
             name: 'El Desconcierto',
             url: 'https://eldesconcierto.cl/?s=discapacidad',
