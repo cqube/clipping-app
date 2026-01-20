@@ -117,6 +117,26 @@ const HEADERS = {
 
 const DEFAULT_IMAGE = '/placeholder-news.svg';
 
+// Helper to extract date from URL
+const extractDateFromUrl = (url) => {
+    try {
+        // Match /YYYY/MM/DD/ pattern common in WordPress sites like hora12.cl
+        const dateMatch = url.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//);
+        if (dateMatch) {
+            const year = parseInt(dateMatch[1], 10);
+            const month = parseInt(dateMatch[2], 10) - 1; // Months are 0-indexed in JS Date
+            const day = parseInt(dateMatch[3], 10);
+            const date = new Date(year, month, day);
+            if (!isNaN(date.getTime())) {
+                return date;
+            }
+        }
+    } catch (e) {
+        return null;
+    }
+    return null;
+};
+
 // Fetch article metadata (image and date) from the actual page
 const fetchArticleMetadata = async (url) => {
     try {
@@ -170,7 +190,16 @@ const fetchArticleMetadata = async (url) => {
             date = new Date(dateMeta);
         }
 
-        // If invalid date, reset to null
+        // If invalid date or no meta date, try extracting from URL
+        if (!date || isNaN(date.getTime())) {
+            const urlDate = extractDateFromUrl(url);
+            if (urlDate) {
+                date = urlDate;
+                // console.log(`    Extracted date from URL: ${date.toLocaleDateString()} for ${url}`);
+            }
+        }
+
+        // If still invalid date, reset to null
         if (date && isNaN(date.getTime())) {
             date = null;
         }
