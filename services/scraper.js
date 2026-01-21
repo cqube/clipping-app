@@ -467,6 +467,13 @@ const scrapeRssFeeds = async () => {
                     // Extract source from URL
                     const source = forcedSource || extractSourceFromUrl(url);
 
+                    // --- DOMAIN FILTER ---
+                    if (!forcedSource && !isChileanSource(url)) {
+                        console.log(`  Skipping foreign/blocked source: ${url}`);
+                        continue;
+                    }
+                    // ---------------------
+
                     // Fetch metadata (image + date)
                     const metadata = await fetchArticleMetadata(url);
                     const finalDate = metadata.date || date;
@@ -498,8 +505,54 @@ const scrapeRssFeeds = async () => {
         }
     }
 
+    // Helper to check if source is Chilean
+    const isChileanSource = (url) => {
+        try {
+            const u = new URL(url);
+            const hostname = u.hostname.toLowerCase();
+
+            // 1. Allow all .cl domains
+            if (hostname.endsWith('.cl')) {
+                return true;
+            }
+
+            // 2. Whitelist of known Chilean .com/.net/.org sites
+            const whiteList = [
+                'elmercurio.com',
+                'latercera.com',
+                'emol.com',
+                'cnnchile.com',
+                'elciudadano.com',
+                'lun.com',
+                'lasegunda.com',
+                'itvpatagonia.com',
+                'elpinguino.com',
+                'curicoalbirrojo.com',
+                'biobiochile.cl', // listed for completeness
+                'cooperativa.cl'  // listed for completeness
+            ];
+
+            if (whiteList.some(domain => hostname.includes(domain))) {
+                return true;
+            }
+
+            // 3. Explicitly block common foreign extensions (sanity check)
+            const blockList = ['.pe', '.es', '.ar', '.co', '.mx', '.ec', '.bo', '.uy'];
+            if (blockList.some(ext => hostname.endsWith(ext))) {
+                return false;
+            }
+
+            return false; // Default to blocked for non-.cl and non-whitelisted .com
+        } catch (e) {
+            return false;
+        }
+    };
+
+    // ... inside scrapeRssFeeds loop ...
+
     return articles;
 };
+
 
 const runScraper = async () => {
     console.log('Starting daily scrape...');
