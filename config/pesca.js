@@ -192,14 +192,7 @@ module.exports = {
             linkSelector: 'a',
             summarySelector: 'p'
         },
-        {
-            name: 'Hora 12',
-            url: 'https://www.hora12.cl/?s=pesca',
-            selector: 'article, .post, h2, h3',
-            titleSelector: 'a',
-            linkSelector: 'a',
-            summarySelector: 'p'
-        },
+
         {
             name: 'Diario Talca',
             url: 'https://www.diariotalca.cl/?s=pesca',
