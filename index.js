@@ -268,16 +268,17 @@ process.on('SIGTERM', () => {
 });
 
 // Main Initialization
-const startApp = async () => {
-    // 1. Wait for MongoDB
-    await connectDB();
-
-    // 2. Init Scheduler
-    initScheduler();
-
-    // 3. Start Express
+const startApp = () => {
+    // 1. Start Express IMMEDIATELY (Satisfy Health Check)
     app.listen(PORT, '0.0.0.0', () => {
         console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
+    });
+
+    // 2. Connect to MongoDB & Init Scheduler in background
+    connectDB().then(() => {
+        initScheduler();
+    }).catch(err => {
+        console.error('❌ Failed to connect to DB during background startup:', err);
     });
 };
 
