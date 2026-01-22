@@ -1,5 +1,15 @@
 [
   {
+    "imageUrl": "https://eldesconcierto.cl/img/asset/Y2xvdWRfbWVkaWEvMjkwNTQtYS11bm8tMTI1NTk3MC53ZWJw/29054-a-uno-1255970.webp?p=seo_pro_og&s=aa0d5349437b6e2e084956354632c048",
+    "linkUrl": "https://eldesconcierto.cl/2026/01/21/pesca-artesanal-pide-considerar-excepciones-ante-caducidad-de-registro-pesquero-mas-de-12-mil-quedarian-sin-trabajo",
+    "altText": "Pesca artesanal pide considerar excepciones ante caducidad de registro pesquero: Más de 12 mil quedarían sin trabajo"
+  },
+  {
+    "imageUrl": "https://media.biobiochile.cl/wp-content/uploads/2026/01/social-nombramientos-economia-defensa-hacienda-un-balde-agua-fria-para-pesca-artesanal.png",
+    "linkUrl": "https://www.biobiochile.cl/noticias/opinion/cartas-al-director/2026/01/21/nombramientos-en-economia-defensa-y-hacienda-un-balde-de-agua-fria-para-la-pesca-artesanal.shtml",
+    "altText": "Nombramientos en Economía, Defensa y Hacienda: un balde de agua fría para la pesca artesanal"
+  },
+  {
     "imageUrl": "https://www.latercera.com/resizer/v2/JX6KLS4ZVJEGVMOCGCTUWVSRYQ.jpg?auth=c260be2898ea9668469479723d4712db2eb14759105fe6a8b6c267d8246ac415&height=630&width=1200&smart=true",
     "linkUrl": "https://www.latercera.com/pulso/noticia/daniel-mas-salta-desde-la-cpc-a-encabezar-el-ministerio-de-economia/",
     "altText": "Daniel Mas salta desde la CPC a encabezar el Ministerio de Economía - La Tercera"
@@ -23,15 +33,5 @@
     "imageUrl": "https://www.latercera.com/resizer/v2/BPGI3H3UZRGKDHP2ZJKPPA4ZHE.jpg?auth=0d70ac75e4f73078b59bf3a65931db0696ff67290bbd46b4a17b0b79221245c4&height=630&width=1200&smart=true",
     "linkUrl": "https://www.latercera.com/nacional/noticia/caso-bruma-ratifican-sanciones-gravisimas-y-cancelan-licencia-del-capitan-de-el-cobra/",
     "altText": "Caso Bruma: Ratifican sanciones gravísimas y cancelan licencia del capitán de El Cobra"
-  },
-  {
-    "imageUrl": "merluza-pacificblu.jpg",
-    "linkUrl": "https://www.df.cl/regiones/biobio/empresas/tras-nueva-reduccion-en-cuota-de-merluza-comun-gerente-de-pacificblu-pone",
-    "altText": "Tras nueva rebaja en cuota de merluza común, gerente de PacificBlu pone en duda continuidad operativa"
-  },
-  {
-    "imageUrl": "merluza-pacificblu.jpg",
-    "linkUrl": "https://www.latercera.com/pulso/noticia/gobierno-define-cuota-de-merluza-para-2026-y-pacificblu-arremete-decision-confirma-el-fracaso-total-de-la-gestion/",
-    "altText": "Gobierno define cuota de merluza para 2026 y PacificBlu arremete contra decisión"
   }
 ]
