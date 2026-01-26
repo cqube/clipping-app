@@ -137,3 +137,23 @@ Asegurarse de que MongoDB esté corriendo:
 # macOS con Homebrew
 brew services start mongodb-community
 ```
+
+## Problemas Comunes de Autenticación (Gmail)
+
+### Error: `invalid_grant` (Token Expirado o Inválido)
+Si ves este error, el `GMAIL_REFRESH_TOKEN` ya no es válido.
+
+**Posibles Causas:**
+1. **Modo Testing (Más común):** Si la app en Google Cloud está en "Testing", el token expira en 7 días.
+   - *Solución:* Publicar la app a "Production".
+2. **Cambio de Contraseña:** Si cambias la contraseña de la cuenta de Google (`pescaboletin@gmail.com`), todos los tokens se revocan.
+3. **Revocación Manual:** Si alguien quita el acceso a la app en los ajustes de seguridad de Google.
+4. **Límite de Tokens:** Existe un límite de 50 refresh tokens por cuenta/app. Si se generan muchos, los más antiguos se borran.
+
+**Solución General:**
+Independientemente de la causa, la solución es generar un nuevo token:
+1. Corre `node scripts/generate_auth_url.js` localmente.
+2. Visita el link, autoriza y obtén el `code`.
+3. Pega el código en `scripts/exchange_code.js` y corre `node scripts/exchange_code.js`.
+4. Actualiza la variable `GMAIL_REFRESH_TOKEN` en tu archivo `.env` y en el **Dashboard de Railway**.
+

@@ -8,7 +8,7 @@ const initScheduler = () => {
 
     // Job 1: Scraper at 07:00 AM (Mon-Fri)
     const scraperJob = new CronJob(
-        '0 7 * * 1-5',
+        '0 7 * * *',
         async function () {
             console.log('Running scheduled scrape (07:00 AM)...');
             try {
@@ -25,7 +25,7 @@ const initScheduler = () => {
 
     // Job 2: Email at 07:45 AM (Mon-Fri)
     const emailJob = new CronJob(
-        '45 7 * * 1-5',
+        '45 7 * * *',
         async function () {
             console.log('Running scheduled email send (07:45 AM)...');
             try {
