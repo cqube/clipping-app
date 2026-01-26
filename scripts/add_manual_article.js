@@ -1,74 +1,44 @@
-const fs = require('fs');
-const path = require('path');
-const https = require('https');
+const mongoose = require('mongoose');
+const Article = require('../models/Article');
+require('dotenv').config();
 
-const ARTICLES_FILE = path.join(__dirname, '../data/articles.json');
-const SLIDER_FILE = path.join(__dirname, '../public/slider-config.json');
+const MONGODB_URI = process.env.MONGODB_URI;
 
-const NEW_ARTICLE = {
-    title: "Fin a la Ley Longueira: en la práctica nuevo fraccionamiento entra en 2026 y artesanales piden garantías sociales",
-    url: "https://www.elciudadano.com/chile/fin-a-la-ley-longueira-en-la-practica-nuevo-fraccionamiento-entra-en-2026-y-artesanales-piden-garantias-sociales/01/02/",
-    source: "El Ciudadano",
-    category: "Ley de Pesca",
-    date: new Date().toISOString(), // Use current time to ensure it's picked up
-    summary: "Nuevo fraccionamiento entra en 2026 y artesanales piden garantías sociales tras el fin práctico de la Ley Longueira."
-};
+async function addArticle() {
+    try {
+        console.log('Conectando a MongoDB...');
+        await mongoose.connect(MONGODB_URI);
+        console.log('Conectado exitosamente.');
 
-// Function to fetch OG image
-const fetchOgImage = (url) => {
-    return new Promise((resolve) => {
-        https.get(url, (res) => {
-            let data = '';
-            res.on('data', chunk => data += chunk);
-            res.on('end', () => {
-                const match = data.match(/<meta property="og:image" content="([^"]+)"/);
-                resolve(match ? match[1] : null);
-            });
-        }).on('error', () => resolve(null));
-    });
-};
+        const newArticle = {
+            title: 'Nuevo timonel de Lota Protein asume con el desafío de crecer con sustentabilidad',
+            url: 'https://trade-news.cl/nuevo-timonel-de-lota-protein-asume-con-el-desafio-de-crecer-con-sustentabilidad/',
+            source: 'Trade News',
+            date: new Date('2026-01-17'),
+            category: 'Pesca Industrial',
+            summary: 'El ex gerente de Operaciones, Francisco Rodríguez Latorre, reemplazó en el cargo a Simón Gundelach, quien lideró por 30 años la compañía pesquera propiedad del conglomerado noruego-danés TripleNine. Rodríguez Latorre es ingeniero civil industrial y lleva 28 años en la compañía, habiendo ocupado diversos roles estratégicos.',
+            clientId: 'pesca'
+        };
 
-async function run() {
-    console.log('Adding manual article...');
+        console.log('Insertando/Actualizando artículo...');
 
-    // 1. Update articles.json
-    let articles = [];
-    if (fs.existsSync(ARTICLES_FILE)) {
-        articles = JSON.parse(fs.readFileSync(ARTICLES_FILE, 'utf8'));
+        const result = await Article.findOneAndUpdate(
+            { url: newArticle.url, clientId: newArticle.clientId },
+            { $set: newArticle },
+            { upsert: true, new: true, runValidators: true }
+        );
+
+        console.log('✅ Artículo procesado correctamente:');
+        console.log(JSON.stringify(result, null, 2));
+
+        await mongoose.disconnect();
+        console.log('Desconectado de MongoDB.');
+        process.exit(0);
+
+    } catch (err) {
+        console.error('❌ Error al insertar el artículo:', err);
+        process.exit(1);
     }
-
-    // Check if already exists to avoid duplicates
-    const exists = articles.find(a => a.url === NEW_ARTICLE.url);
-    if (!exists) {
-        articles.push(NEW_ARTICLE);
-        fs.writeFileSync(ARTICLES_FILE, JSON.stringify(articles, null, 2));
-        console.log('✅ Article added to articles.json');
-    } else {
-        console.log('⚠️ Article already in articles.json');
-    }
-
-    // 2. Update slider-config.json
-    let sliderConfig = [];
-    if (fs.existsSync(SLIDER_FILE)) {
-        sliderConfig = JSON.parse(fs.readFileSync(SLIDER_FILE, 'utf8'));
-    }
-
-    const imageUrl = await fetchOgImage(NEW_ARTICLE.url) || "https://www.elciudadano.com/wp-content/uploads/2024/12/pescadores-artesanales.jpg"; // Fallback
-
-    const sliderEntry = {
-        imageUrl: imageUrl,
-        linkUrl: NEW_ARTICLE.url,
-        altText: NEW_ARTICLE.title
-    };
-
-    // Add to beginning
-    sliderConfig.unshift(sliderEntry);
-    // Limit to 10
-    if (sliderConfig.length > 10) sliderConfig = sliderConfig.slice(0, 10);
-
-    fs.writeFileSync(SLIDER_FILE, JSON.stringify(sliderConfig, null, 2));
-    console.log('✅ Article added to slider-config.json with image:', imageUrl);
-
 }
 
-run().catch(console.error);
+addArticle();
