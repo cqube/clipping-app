@@ -149,7 +149,8 @@ module.exports = {
         { url: 'https://news.google.com/rss/search?q=site:radiopolar.com+pesca&hl=es-CL&gl=CL&ceid=CL:es-419', sourceName: 'Radio Polar' },
         { url: 'https://news.google.com/rss/search?q=site:regionesnoticias.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419', sourceName: 'Regiones Noticias' },
         { url: 'https://news.google.com/rss/search?q=site:portalinnova.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419', sourceName: 'Portal Innova' },
-        { url: 'https://news.google.com/rss/search?q=site:radio.uchile.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419', sourceName: 'Radio Uchile' }
+        { url: 'https://news.google.com/rss/search?q=site:radio.uchile.cl+pesca&hl=es-CL&gl=CL&ceid=CL:es-419', sourceName: 'Radio Uchile' },
+        'https://www.google.com/alerts/feeds/15537294997672951839/3019362087937812266'
     ],
     sites: [
         {
