@@ -192,7 +192,16 @@ const sendDailyClipping = async () => {
         }
 
         const html = generateHtml(articlesToSend);
-        const subject = `Clipping Pesca - ${new Date().toLocaleDateString('es-CL')}`;
+
+        // New subject format (Spanish): 🐟NOTICIAS DE PESCA🇨🇱 - Ene 27, 2026
+        const date = new Date();
+        const monthShort = date.toLocaleString('es-CL', { month: 'short' }).replace('.', '');
+        const month = monthShort.charAt(0).toUpperCase() + monthShort.slice(1);
+        const day = date.getDate();
+        const year = date.getFullYear();
+        const formattedDate = `${month} ${day}, ${year}`;
+
+        const subject = `🐟NOTICIAS DE PESCA🇨🇱 - ${formattedDate}`;
 
         // --- OPTIMIZED SENDING ---
         console.log(`Preparing to send to ${recipients.length} recipients...`);
