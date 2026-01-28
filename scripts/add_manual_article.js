@@ -11,12 +11,13 @@ async function addArticle() {
         console.log('Conectado exitosamente.');
 
         const newArticle = {
-            title: 'Nuevo timonel de Lota Protein asume con el desafío de crecer con sustentabilidad',
-            url: 'https://trade-news.cl/nuevo-timonel-de-lota-protein-asume-con-el-desafio-de-crecer-con-sustentabilidad/',
-            source: 'Trade News',
-            date: new Date('2026-01-17'),
-            category: 'Pesca Industrial',
-            summary: 'El ex gerente de Operaciones, Francisco Rodríguez Latorre, reemplazó en el cargo a Simón Gundelach, quien lideró por 30 años la compañía pesquera propiedad del conglomerado noruego-danés TripleNine. Rodríguez Latorre es ingeniero civil industrial y lleva 28 años en la compañía, habiendo ocupado diversos roles estratégicos.',
+            title: 'Incertidumbre en pesqueros artesanales por gabinete de Kast y magro balance del gobierno actual',
+            url: 'https://www.elmostrador.cl/noticias/pais/2026/01/27/incertidumbre-en-pesqueros-artesanales-por-gabinete-de-kast-y-magro-balance-del-gobierno-actual/',
+            source: 'El Mostrador',
+            date: new Date('2026-01-27'),
+            category: 'Pesca Artesanal',
+            summary: 'El Gobierno cierra su mandato con la aprobación de la Ley de Fraccionamiento, pero sin concretar una nueva Ley de Pesca. El cambio de administración y la nominación del equipo económico de José Antonio Kast reordenan el escenario político del sector.',
+            image: 'https://media-front.elmostrador.cl/2025/03/pag-13-pesca-industrial-foto-diario-constitucional-cl-850x500-1-700x412.jpg',
             clientId: 'pesca'
         };
 

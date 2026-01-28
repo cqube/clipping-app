@@ -41,7 +41,7 @@ const createRawEmail = (to, subject, htmlBody) => {
         htmlBody
     ];
 
-    return encodeBase64(messageParts.join('\n'));
+    return encodeBase64(messageParts.join('\r\n'));
 };
 
 const sendEmailViaGmail = async (to, subject, htmlBody) => {
@@ -222,7 +222,7 @@ const sendDailyClipping = async () => {
             html
         ];
 
-        const raw = encodeBase64(messageParts.join('\n'));
+        const raw = encodeBase64(messageParts.join('\r\n'));
 
         await gmail.users.messages.send({
             userId: 'me',
