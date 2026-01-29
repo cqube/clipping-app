@@ -27,19 +27,27 @@ const encodeBase64 = (str) => {
 };
 
 // Helper: Create Raw Email String
-const createRawEmail = (to, subject, htmlBody) => {
+const createRawEmail = (to, subject, htmlBody, bcc = []) => {
     const from = process.env.GMAIL_USER_EMAIL || 'pescaboletin@gmail.com';
+    const fromName = "Clipping de Prensa";
 
     // Construct MIME message
     const messageParts = [
-        `From: ${from}`,
+        `From: "${fromName}" <${from}>`,
         `To: ${to}`,
-        'Content-Type: text/html; charset=utf-8',
+    ];
+
+    if (bcc && bcc.length > 0) {
+        messageParts.push(`Bcc: ${bcc.join(', ')}`);
+    }
+
+    messageParts.push(
+        'Content-Type: text/html; charset=UTF-8',
         'MIME-Version: 1.0',
-        `Subject: =?utf-8?B?${Buffer.from(subject).toString('base64')}?=`,
+        `Subject: =?UTF-8?B?${Buffer.from(subject).toString('base64')}?=`,
         '',
         htmlBody
-    ];
+    );
 
     return encodeBase64(messageParts.join('\r\n'));
 };
@@ -211,18 +219,8 @@ const sendDailyClipping = async () => {
         const gmail = google.gmail({ version: 'v1', auth });
         const sender = process.env.GMAIL_USER_EMAIL || 'pescaboletin@gmail.com';
 
-        const messageParts = [
-            `From: "Clipping de Prensa" <${sender}>`,
-            `To: ${sender}`, // Send to self for record
-            `Bcc: ${recipients.join(', ')}`, // BCC all recipients
-            'Content-Type: text/html; charset=utf-8',
-            'MIME-Version: 1.0',
-            `Subject: =?utf-8?B?${Buffer.from(subject).toString('base64')}?=`,
-            '',
-            html
-        ];
-
-        const raw = encodeBase64(messageParts.join('\r\n'));
+        // Use the consolidated createRawEmail helper
+        const raw = createRawEmail(sender, subject, html, recipients);
 
         await gmail.users.messages.send({
             userId: 'me',
@@ -275,4 +273,4 @@ const sendConfirmationEmail = async (email) => {
     }
 };
 
-module.exports = { sendDailyClipping, sendConfirmationEmail };
+module.exports = { sendDailyClipping, sendConfirmationEmail, sendEmailViaGmail };
