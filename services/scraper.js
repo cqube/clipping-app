@@ -35,8 +35,8 @@ const loginToElMercurio = async () => {
         console.log('Logging in to El Mercurio...');
         const loginUrl = 'https://digital.elmercurio.com/Authenticate';
         const payload = qs.stringify({
-            login: 'mtrivelli@factorestrategico.cl',
-            password: 'factor',
+            login: process.env.EL_MERCURIO_USER,
+            password: process.env.EL_MERCURIO_PASS,
             action: 'appToken'
         });
 

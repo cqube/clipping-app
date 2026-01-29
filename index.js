@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const helmet = require('helmet');
 const { initScheduler } = require('./services/scheduler');
 const { runScraper } = require('./services/scraper');
 const { sendConfirmationEmail } = require('./services/mailer');
@@ -49,8 +50,20 @@ const connectDB = async () => {
 };
 
 // Middleware
+app.use(helmet({
+    contentSecurityPolicy: false, // Disable CSP to avoid breaking existing inline scripts/styles for now
+}));
 app.use(express.static('public'));
 app.use(express.json());
+
+// API Key Middleware (Simple protection for admin routes)
+const API_KEY = process.env.ADMIN_API_KEY;
+const protectAdmin = (req, res, next) => {
+    if (!API_KEY) return next(); // If not set, allow (for easy setup)
+    const key = req.headers['x-api-key'];
+    if (key === API_KEY) return next();
+    res.status(403).json({ error: 'Access denied' });
+};
 
 const CLIENT_ID = process.env.CLIENT_ID || 'pesca';
 
@@ -93,7 +106,8 @@ app.post('/api/recipients', (req, res) => {
 
         res.json({ success: true, recipients });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error('Error in recipients API:', err);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
@@ -109,7 +123,8 @@ app.delete('/api/recipients', (req, res) => {
             res.json({ success: true, recipients: [] });
         }
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error('Error in delete recipients API:', err);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
@@ -187,11 +202,12 @@ app.get('/api/articles', async (req, res) => {
 
         res.json(articles);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error('Error in articles API:', err);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-app.post('/api/scrape', async (req, res) => {
+app.post('/api/scrape', protectAdmin, async (req, res) => {
     if (isScraping) {
         return res.status(409).json({ message: 'Scraping already in progress' });
     }
@@ -237,12 +253,13 @@ app.get('/api/last-update', async (req, res) => {
             res.json({ lastUpdate: null });
         }
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error('Error in last-update API:', err);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
 // Manually send email
-app.post('/api/send-email', async (req, res) => {
+app.post('/api/send-email', protectAdmin, async (req, res) => {
     try {
         const { sendDailyClipping } = require('./services/mailer');
         console.log('Manual email send requested via API...');
