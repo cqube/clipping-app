@@ -209,7 +209,7 @@ const sendDailyClipping = async () => {
         const year = date.getFullYear();
         const formattedDate = `${month} ${day}, ${year}`;
 
-        const subject = `🐟NOTICIAS DE PESCA🇨🇱 - ${formattedDate}`;
+        const subject = `NOTICIAS DE PESCA - ${formattedDate}`;
 
         // --- OPTIMIZED SENDING ---
         console.log(`Preparing to send to ${recipients.length} recipients...`);

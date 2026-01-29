@@ -3,7 +3,7 @@ const { sendEmailViaGmail } = require('../services/mailer');
 
 async function testFix() {
     const to = 'pescaboletin@gmail.com';
-    const subject = '🐟 PRUEBA DE ASUNTO 🇨🇱 - Ene 29, 2026';
+    const subject = 'PRUEBA DE ASUNTO - Ene 29, 2026';
     const htmlBody = `
         <h1>Prueba de Codificación</h1>
         <p>Este es un correo de prueba para verificar que el asunto se vea correctamente con emojis.</p>

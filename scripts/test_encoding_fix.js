@@ -18,7 +18,7 @@ async function testEncoding(useCRLF = false) {
     const gmail = google.gmail({ version: 'v1', auth });
 
     // Test subject with emojis
-    const subject = `🐟NOTICIAS DE PESCA🇨🇱 - Test ${useCRLF ? 'CRLF' : 'LF'}`;
+    const subject = `NOTICIAS DE PESCA - Test ${useCRLF ? 'CRLF' : 'LF'}`;
     const to = process.env.GMAIL_USER_EMAIL;
     const from = `"Clipping Test" <${process.env.GMAIL_USER_EMAIL}>`;
 

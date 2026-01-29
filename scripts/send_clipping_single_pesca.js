@@ -35,7 +35,7 @@ async function main() {
         const year = date.getFullYear();
         const formattedDate = `${month} ${day}, ${year}`;
 
-        const subject = `🐟NOTICIAS DE PESCA🇨🇱 - ${formattedDate}`;
+        const subject = `NOTICIAS DE PESCA - ${formattedDate}`;
         const recipient = 'pescaboletin@gmail.com';
 
         console.log(`Sending clipping to ${recipient}...`);
