@@ -273,4 +273,4 @@ const sendConfirmationEmail = async (email) => {
     }
 };
 
-module.exports = { sendDailyClipping, sendConfirmationEmail, sendEmailViaGmail };
+module.exports = { sendDailyClipping, sendConfirmationEmail, sendEmailViaGmail, generateHtml };
