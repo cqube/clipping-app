@@ -1,0 +1,866 @@
+[
+    {
+        "title": "Pescadores y Aguas Pacífico realizan nuevo muestreo de salinidad en la bahía de Quintero",
+        "url": "https://www.observador.cl/pescadores-y-aguas-pacifico-realizan-nuevo-muestreo-de-salinidad-en-la-bahia-de-quintero/",
+        "source": "El Observador",
+        "summary": "",
+        "date": "2026-01-27T20:10:51.000Z",
+        "category": "Otros",
+        "image": "https://www.observador.cl/wp-content/uploads/2026/01/principal-aguas-pacifico-1.jpg"
+    },
+    {
+        "title": "Mujeres de la pesca artesanal certifican sus competencias",
+        "url": "https://diariotalca.cl/mujeres-de-la-pesca-artesanal-certifican-sus-competencias/",
+        "source": "Diario Talca",
+        "summary": "",
+        "date": "2026-01-28T09:10:55.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://storage.googleapis.com/diariotalca_cl/2025/05/pesca-artesanal-diario-talca-2.jpg"
+    },
+    {
+        "title": "VIDEO Seremi de Salud refuerza fiscalización a pescados y mariscos en costa maulina",
+        "url": "https://diariotalca.cl/seremi-de-salud-refuerza-fiscalizacion-a-pescados-y-mariscos-en-costa-maulina/",
+        "source": "Diario Talca",
+        "summary": "",
+        "date": "2026-01-13T09:00:52.000Z",
+        "category": "Otros",
+        "image": "https://storage.googleapis.com/diariotalca_cl/2026/01/WhatsApp-Image-2026-01-12-at-17.07.20.jpeg"
+    },
+    {
+        "title": "La salmonicultura como eje del ecosistema de innovación en Los Lagos",
+        "url": "https://www.mundoacuicola.cl/new/la-salmonicultura-como-eje-del-ecosistema-de-innovacion-en-los-lagos/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-30T02:03:56.000Z",
+        "category": "Salmoneras",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/JulioBrintrup.jpg"
+    },
+    {
+        "title": "Más de 50 camiones con donaciones llegaron al centro de acopio Camanchaca Rocuant",
+        "url": "https://www.mundoacuicola.cl/new/mas-de-50-camiones-con-donaciones-llegan-al-centro-de-acopio-camanchaca-rocuant/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-30T01:42:59.000Z",
+        "category": "Pesca Industrial",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/CTO.-ACOPIO-Camanchaca-Rocuant-01.jpeg"
+    },
+    {
+        "title": "Emergencias marítimas: ¿qué revelan los datos sobre pesca industrial y acuicultura?",
+        "url": "https://www.mundoacuicola.cl/new/emergencias-maritimas-como-ha-evolucionado-la-siniestralidad-en-pesca-industrial-y-acuicultura/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-29T09:37:31.000Z",
+        "category": "Pais y Sector Empresarial",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/SiniestralidadPescaIndustrialAcuicultura2.jpg"
+    },
+    {
+        "title": "EpiAqua impulsa nuevas herramientas genómicas para enfrentar desafíos en acuicultura",
+        "url": "https://www.mundoacuicola.cl/new/epiaqua-impulsa-nuevas-herramientas-genomicas-para-enfrentar-desafios-en-acuicultura/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-27T18:02:55.000Z",
+        "category": "Salmoneras",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/Epiaqua2612.jpg"
+    },
+    {
+        "title": "Expertos presentan texto para proyectar una acuicultura con especies nativas y equidad territorial",
+        "url": "https://www.mundoacuicola.cl/new/expertos-presentan-texto-para-proyectar-una-acuicultura-con-especies-nativas-y-equidad-territorial/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-26T18:25:42.000Z",
+        "category": "Otros",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/DorisSotoCF20226.jpeg"
+    },
+    {
+        "title": "Chiloé conmemora Bicentenario con histórica inversión en pesca y acuicultura",
+        "url": "https://www.mundoacuicola.cl/new/chiloe-conmemora-bicentenario-con-historica-inversion-en-pesca-y-acuicultura/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-23T20:47:34.000Z",
+        "category": "Otros",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/BicentenarioChiloe-1.jpg"
+    },
+    {
+        "title": "Disponibilidad de datos, clave para la acuicultura de clase mundial",
+        "url": "https://www.mundoacuicola.cl/new/disponibilidad-de-datos-clave-para-la-acuicultura-de-clase-mundial/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-13T20:22:59.000Z",
+        "category": "Otros",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/Ignacio-Briones.jpg"
+    },
+    {
+        "title": "Inicios de la salmonicultura: La historia y visión de Alexis Bolados",
+        "url": "https://www.mundoacuicola.cl/new/inicios-de-la-salmonicultura-la-historia-y-vision-de-alexis-bolados/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-12T20:23:24.000Z",
+        "category": "Salmoneras",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/Alexis-Bolados-2.jpg"
+    },
+    {
+        "title": "Microalgas nocivas y salmonicultura: tres protagonistas globales en los fiordos del sur de Chile",
+        "url": "https://www.mundoacuicola.cl/new/microalgas-nocivas-y-salmonicultura-tres-protagonistas-globales-en-los-fiordos-del-sur-de-chile/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-13T20:35:14.000Z",
+        "category": "Cultivos y Áreas de Manejo",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/Figura-1.jpg"
+    },
+    {
+        "title": "UACh impulsa acuicultura sostenible con nueva línea de investigación INCAR²",
+        "url": "https://www.mundoacuicola.cl/new/uach-impulsa-acuicultura-sostenible-con-nueva-linea-de-investigacion-incar%c2%b2/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-23T14:08:19.000Z",
+        "category": "Innovación Acuícola",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/INCARUACH.jpg"
+    },
+    {
+        "title": "Histórica certificación de pescadoras artesanales fortalece la profesionalización del sector",
+        "url": "https://www.mundoacuicola.cl/new/historica-certificacion-de-pescadoras-artesanales-fortalece-la-profesionalizacion-del-sector/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-27T15:31:00.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/MujeresPescaArtesanal-1.jpg"
+    },
+    {
+        "title": "Pescadores Industriales del Biobío piden estabilidad y diálogo para reactivar la pesca regional",
+        "url": "https://www.mundoacuicola.cl/new/pescadores-industriales-del-biobio-piden-estabilidad-y-dialogo-para-reactivar-la-pesca-regional/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-21T20:11:56.000Z",
+        "category": "Pais y Sector Empresarial",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/PescadoresIndustrialesBiobio2.jpg"
+    },
+    {
+        "title": "Informe sectorial confirma aumento de participación femenina en pesca y acuicultura",
+        "url": "https://www.mundoacuicola.cl/new/informe-sectorial-confirma-aumento-de-participacion-femenina-en-pesca-y-acuicultura/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-19T16:17:04.000Z",
+        "category": "Otros",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/MujeresEnPescayAcuicultura-1.jpg"
+    },
+    {
+        "title": "Reportan desaparecidos tras hundimiento de embarcación vinculada a la salmonicultura",
+        "url": "https://www.mundoacuicola.cl/new/reportan-desaparecidos-tras-hundimiento-de-embarcacion-vinculada-a-la-salmonicultura/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-27T12:32:43.000Z",
+        "category": "Salmoneras",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/NaufraugioSalmonero2.jpeg"
+    },
+    {
+        "title": "Sernapesca informa que presencia del tiburón en Chinquihue es normal",
+        "url": "https://www.mundoacuicola.cl/new/sernapesca-informa-que-presencia-del-tiburon-en-chinquihue-es-normal/",
+        "source": "Mundo Acuícola",
+        "summary": "",
+        "date": "2026-01-15T19:14:54.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://www.mundoacuicola.cl/new/wp-content/uploads/2026/01/TiburonChinquihue222.jpg"
+    },
+    {
+        "title": "Conoce las nuevas vacantes laborales de la acuicultura en Chile",
+        "url": "https://www.aqua.cl/conoce-las-nuevas-vacantes-laborales-disponibles-de-la-acuicultura-en-chile/",
+        "source": "Aqua",
+        "summary": "Con múltiples vacantes disponibles en el sur del país, las ofertas laborales del sector se encuentran disponibles para postular en Empleos Aqua.",
+        "date": "2026-02-02T13:11:54.953Z",
+        "category": "Salmoneras",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "La apuesta biotecnológica que busca dar un salto en salud de peces",
+        "url": "https://www.aqua.cl/la-apuesta-biotecnologica-que-busca-dar-un-salto-en-salud-de-peces/",
+        "source": "Aqua",
+        "summary": "La startup chilena ISR-BIO introduce CORAL AI, una plataforma de Inteligencia Artificial única en el mundo que está revolucionando la I+D en la acuicultura. Esta tecnología permite simular interacciones celulares para predecir, de manera rápida y precisa, el efecto de nuevos aditivos naturales contra patologías clave del salmón (SRS, Cáligus, BKD).",
+        "date": "2026-02-02T13:11:54.953Z",
+        "category": "Salmoneras",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "Producción pesquera y acuícola en Chile crece sobre el promedio histórico en 2025",
+        "url": "https://www.aqua.cl/produccion-pesquera-y-acuicola-crece-sobre-el-promedio-historico-en-2025/",
+        "source": "Aqua",
+        "summary": "Destacan que 2025 evidenció una recuperación post pandemia del sector, con crecimientos relevantes en producción extractiva, acuicultura y comercio exterior.",
+        "date": "2026-02-02T13:11:54.954Z",
+        "category": "Otros",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "Mujeres de mar de Chiloé impulsan sus emprendimientos con capital semilla productivo",
+        "url": "https://www.aqua.cl/mujeres-de-mar-de-chiloe-impulsan-sus-emprendimientos-con-capital-semilla-productivo/",
+        "source": "Aqua",
+        "summary": "Programa beneficiará a 130 mujeres de la pesca artesanal en el archipiélago.",
+        "date": "2026-02-02T13:11:54.956Z",
+        "category": "Pesca Artesanal",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "Aysén suma dos nuevas áreas de manejo para fortalecer la pesca bentónica artesanal",
+        "url": "https://www.aqua.cl/aysen-suma-dos-nuevas-areas-de-manejo-para-fortalecer-la-pesca-bentonica-artesanal/",
+        "source": "Aqua",
+        "summary": "Las AMERB de Isla Ana y Puerto Gala Sector F permitirán explotación exclusiva bajo planes de manejo sustentables.",
+        "date": "2026-02-02T13:11:54.956Z",
+        "category": "Pesca Artesanal",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "Subpesca recibirá hasta el 30 de enero observaciones a la actualización del reglamento Amerb",
+        "url": "https://www.aqua.cl/subpesca-recibira-hasta-el-30-de-enero-observaciones-a-la-actualizacion-del-reglamento-amerb/",
+        "source": "Aqua",
+        "summary": "La Subsecretaría de Pesca y Acuicultura mantiene abierta la consulta ciudadana para actualizar el reglamento de las Áreas de Manejo y Explotación de Recursos Bentónicos (Amerb), incorporando una definición más amplia que incluye actividades de acuicultura, captación de semillas y nuevas acciones de manejo bajo condiciones específicas.",
+        "date": "2026-02-02T13:11:54.956Z",
+        "category": "Cultivos y Áreas de Manejo",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "ULagos proyecta a CEACIMA-METRI como eje estratégico científico y territorial",
+        "url": "https://www.aqua.cl/ulagos-proyecta-a-ceacima-metri-como-eje-estrategico-cientifico-y-territorial/",
+        "source": "Aqua",
+        "summary": "La Universidad de Los Lagos fortalece al centro como eje estratégico en investigación en acuicultura y ciencias del mar, impulsando su desarrollo científico, territorial y sostenible.",
+        "date": "2026-02-02T13:11:54.957Z",
+        "category": "Innovación Acuícola",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "Revelan cómo el frío y consumo de alcohol afectan supervivencia de parásitos en pescados crudos",
+        "url": "https://www.aqua.cl/revelan-como-el-frio-y-consumo-de-alcohol-afectan-supervivencia-de-parasitos-en-pescados-crudos/",
+        "source": "Aqua",
+        "summary": "octubre 17, 2025",
+        "date": "2026-02-02T13:11:54.957Z",
+        "category": "Otros",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "Acuanativa: Biotecnología chilena para optimizar el manejo sanitario de la salmonicultura",
+        "url": "https://www.aqua.cl/acuanativa-biotecnologia-chilena-para-optimizar-el-manejo-sanitario-de-la-salmonicultura/",
+        "source": "Aqua",
+        "summary": "Acuanativa cuenta con dos reconocidos productos para la prevención y manejo integrado del cáligus, los cuales han mostrado excelentes resultados en campo y presentan un alto potencial para ser incluidos en estrategias de manejo coordinado.",
+        "date": "2026-02-02T13:11:54.958Z",
+        "category": "Salmoneras",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "Hydroionic: Soluciones integrales en tratamiento de aguas para la acuicultura nacional",
+        "url": "https://www.aqua.cl/hydroionic-soluciones-integrales-en-tratamiento-de-aguas-para-la-acuicultura-nacional/",
+        "source": "Aqua",
+        "summary": "La compañía desarrolló, para la salmonicultura local, Hydrolita, un medio filtrante de alta eficiencia diseñado para abatir hierro y manganeso, tecnología que no requiere el uso de químicos, convirtiéndola en una alternativa segura y sostenible para la acuicultura.",
+        "date": "2026-02-02T13:11:54.958Z",
+        "category": "Salmoneras",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "Salmonicultura y futuro de Chile: Una industria que requiere visión de Estado",
+        "url": "https://www.aqua.cl/columnas/salmonicultura-y-futuro-de-chile-una-industria-que-requiere-vision-de-estado/",
+        "source": "Aqua",
+        "summary": "Ene 11, 2026",
+        "date": "2026-02-02T13:11:54.959Z",
+        "category": "Pais y Sector Empresarial",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "Primer Congreso sobre «Gestión de enfermedades bacterianas en acuicultura: Una mirada interdisciplinaria»",
+        "url": "https://www.aqua.cl/multimedia/primer-congreso-sobre-gestion-de-enfermedades-bacterianas-en-acuicultura-una-mirada-interdisciplinaria/",
+        "source": "Aqua",
+        "summary": "",
+        "date": "2026-02-02T13:11:54.960Z",
+        "category": "Ley de Pesca",
+        "image": "/placeholder-news.svg"
+    },
+    {
+        "title": "Camanchaca demanda al fisco por cambios a la Ley de Pesca y acusa un perjuicio cercano a los US$100 millones - emol.com",
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQMzZPV3hoSXk5QVIyektjbUxkQUJqNzl2cVI4QXFMZHNMaHhPeE9hc1Y2VUFxQ2lCUEhmZGJuMXFVNG1USE1GeHFYMUlfd0xRYXgxcjJFTjJYY1FjcWljWk5FZkFjX1dETDlBNV9QQlFYLVdERzNUeVZ2cHNOaFNyNjBYazNYdnREbC1VUjctajJXRWNNaG1YVDhIRnMyTkVBQzRiQw?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Emol",
+        "summary": "Camanchaca demanda al fisco por cambios a la Ley de Pesca y acusa un perjuicio cercano a los US$100 millones  emol.com",
+        "date": "2026-02-02T12:09:35.000Z",
+        "category": "Ley de Pesca",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pescadores artesanales protestan en costanera de Valdivia por \"promesa incumplida\" de cuota de captura - BioBioChile",
+        "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOU1puNW5KYkttZ0RIQzJFVDU1YXprTnZ3U0xzci1HZDBaZHROejN5Q3RaRnVaS0g3VjF4cWdJNG5mbHFKZEptczZGX3JkY0xVblBNLUprS0NFSHgtbzdYUnhTc1NyWTE4N2QwQmh2eDAxaXRKdkJoRTVaRXlVRjBpZkxYODFxcmJ3RWU3YlVUUk9IeFItV2trbEJXYVdqM3RYNWJxc0xHMzQ0MkZMXzVEaFZ1TFJVRzJvWk9XWi1VTUNIeDZ1NFQtMXJFOW1pS0o5MnRObmIwcXkyeEliWDk2MXJyanB5VXE0NzRLWWtTWkZHVmVDNlZjRmplMllCNkpPOVV1Nl9pT3gtRVR1ekE?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "BioBioChile",
+        "summary": "Pescadores artesanales protestan en costanera de Valdivia por \"promesa incumplida\" de cuota de captura  BioBioChile",
+        "date": "2026-01-30T01:57:23.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Amplio operativo para hallar a hombre que desapareció mientras realizaba pesca submarina en Rapa Nui - BioBioChile",
+        "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOUFpUbG1CVzBraTNmYUxFSjZ1di0wNDJvVkNqNHc4TjFwMEVtZDEyc3U3bjBLZzl4cXNJc01KWDRnY3AtUW8zVmJqOEZDMjlSUzhTWUdzcVNtUGlGVzM4b1FjX1JJeVB1THV2a2JPd0dleFViZlJCVTR4bnhkODFuemZsdjJDMVJfNFdjYlNpbk5KV0JSWnFtMlJkLTRrS3F0WmZhOUpjR0xGWGxfTmYtU014VUJoQVFZSkFUcW9vV203Q2hyd2c0Y29OOGhVSVlQZWtNamxILWx6aGRCbzRIM0w4RjdjTzA3THNnV1Y4SllTdFJMSkFJTzkyWWVxamhPZV9SN0Z0dHhXbkZ5akRFUQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "BioBioChile",
+        "summary": "Amplio operativo para hallar a hombre que desapareció mientras realizaba pesca submarina en Rapa Nui  BioBioChile",
+        "date": "2026-01-27T03:55:53.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Familia de pescador desaparecido en Rapa Nui admite que \"ya no podemos encontrarlo vivo\" - BioBioChile",
+        "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOWVcxR19nU1FNV1d1S2R5RlQ2ZE9WYmg3UGUxUm55ejRpSDRsSWRkcWg3VmtVVjhXWllreGs5VE9VRk5YRTRmNkVxV3FwR1VSZFQ0UmJkZjByOEFQb1VDMVBwd0t5Yy1aMTZ2d2t4Tkk4TlM5My1QRFZqUDl5SERwcnFJQlNUVFhrTmpEY1hrRzBhb1VCU1V3MjdhSldmeW1fT1NPYVcyQzg5SUNZSEV0N3Vfakl5TldWeTJPTnN6Qmw1VnpETVVDbjR6SlFIUWxjU0k4N2l6NXBVR3l6WDJjei1WYjdOOU56bmYzVUJWSDhOb2NUcWc3YUwyOUstdw?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "BioBioChile",
+        "summary": "Familia de pescador desaparecido en Rapa Nui admite que \"ya no podemos encontrarlo vivo\"  BioBioChile",
+        "date": "2026-01-30T21:24:30.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "“Está muerto en televisión hace años, nadie lo pesca, nadie lo quiere (...) escoria de Chile” - ADN Radio",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNcjNpLW1MTUhJazY3UVlrRlI2Z0NtajU5eW1aQjVNRU9NaGdCTHNWN3ZkeEVSRF9xeUp4UUY3X3cyUGJCY3lRNXVudjNpMDhUMm9iZTRvWUlidW9kZng2aGdoRThuRVdIejJwUE82bXcxc0REUUZ2ZlFQVUljQ2xmRTE1ZzY3ZF9LMFRNMndRY3BjaFRFend0cHpBcnVIajZ0Qno1b3k3cW14RXltTFlfWVZuYVgyM0RtRm5N0gHPAUFVX3lxTE1LMFdiMDJMMWZ6T2o3dnFnMDJvbTEybnllN1dMLTVXQ0JSNEZGVU5fOXlEYWlIR1N3LWs5TzlOVzlMbzNuaXhaUnFsNjljNURENW05WWlWTl95U3prRHJOcXFJeG1tbnBybmVtNWdqYjk5TWNyRE1rakFXLUIta3R3T0lYdzhZZ0E2amJrcllqUXFvbzhfOXVINjlfdjhxTEVFRnJtcHVoNFoteVV6d2tReWtDcTNmUUQ3MFZ4RkpsZjFMdm5PVDRzWmFwcG41UQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "ADN Radio",
+        "summary": "“Está muerto en televisión hace años, nadie lo pesca, nadie lo quiere (...) escoria de Chile”  ADN Radio",
+        "date": "2026-01-05T08:00:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "La exsubsecretaria de Pesca que podría volver a la cartera: Alicia Gallardo es la favorita para el cargo - Diario Financiero",
+        "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPS2J1QU9ZV0ZvWWt6MVZVWDQ1M1NxVXowVkJIRHhOZkp4cFIwVE8xS0NKRno1bEh6bUJDNmZaekp0djFLVXE4VHhiWXkzZWxQdTlPNzdtN1NnWlowSHJ0ZV94UWx3SjNseG1nV1JDUUUzMkowMXp2cjFLQjd5c1Mycm1KQnVoZVk4aDg5T0hOdmYyLXVEUGNtU2x5TnhRMzZ1b3FqQ2Y3WnhEcXJ3STViZg?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Diario Financiero",
+        "summary": "La exsubsecretaria de Pesca que podría volver a la cartera: Alicia Gallardo es la favorita para el cargo  Diario Financiero",
+        "date": "2026-01-30T07:00:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Manuel Zambra Pessini, armador artesanal de Coquimbo: «100% preparados para comenzar a producir pescado para consumo humano - diariolaregion.cl",
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQM2NBMDRzZS1ERDRZQXdFQlBnTnV1cHkxelJ3blNZcWNlYjRVRnlZbkJBLXA4dWZON1lvcFY5WThlc3ZIQzFLOUc1NE56bXNvYXczUERNNTJFTlI3VlFyVGxiVWRjYjF0QW9iWTVubms0aHJQS0NwWHBLUWozQ2Vhb1RHbmxaN1p2WUhUYUtZNjV3M20ycTdOMFh0WnU0RXZJNlFHX3VmY1Q3Y2N2S3VDcVZWLTlKdlhrckVyMlUyZ0pGTXNlTWdCLVhIV1FOdlItQXUyblRTMWdid0VxMFJFd2JuZEQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "La Región",
+        "summary": "Manuel Zambra Pessini, armador artesanal de Coquimbo: «100% preparados para comenzar a producir pescado para consumo humano  diariolaregion.cl",
+        "date": "2026-01-19T19:38:15.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pescadores acusan al gobierno por incumplimiento en cuotas de captura - La Prensa Austral",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZ3RXbklVam9WZkNZUkRqMFJiRGxPZGVrd2dfT2ZfMEFUOGlSazQ0VjAyR0dDdW5qSjJDcDFGTGstUnR2WFkzUHF4VngwNE1FYlRMcTVZeDJsVEcwUFljSlRLcjROTHl1VVVONl9BSnV2NGJTRDJJWjBxc1VBc1BOTEhQUkk2cDFOVmhVbWJJMklLTUN4bDBUaGlWOGNIWVlNRTRZMW55Ni1fWElz?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "La Prensa Austral",
+        "summary": "Pescadores acusan al gobierno por incumplimiento en cuotas de captura  La Prensa Austral",
+        "date": "2026-01-30T11:37:30.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Aysén suma dos nuevas áreas de manejo para fortalecer la pesca bentónica artesanal - aqua.cl",
+        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOaHRMakRTTnZBM2dWX1QxN3QxQzRiZ1ZxVnVMWXM1LWNldnFpb0ZvMk4zZ0NYdTlrSnBET1hlMWdMR3dDd1dxSDNSRXBXQlg3WjdOZXFyMkV1Si1pX3ZFQTVnYXlUdFlRbkVSRG52RmtwclFvczBoQlQ1WlNaVVFXSHlFR3hVU0NyV0ZHLURpMVZHME5ROXNzOWcwSTJ2OEV4dE5DTk9n?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Aqua",
+        "summary": "Aysén suma dos nuevas áreas de manejo para fortalecer la pesca bentónica artesanal  aqua.cl",
+        "date": "2026-01-28T04:41:15.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Conoce las nuevas vacantes laborales de la acuicultura en Chile - aqua.cl",
+        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNUk1KcWRCSkZCVE5obmI3WkdPQzlMZFJ1ZHhKNDFHdzRyclNLc3hXS3NPTmdWZ055MDZUZ2JVZEsya2xqWlFEOFd6MzFXU2o1cU1EVWFqa24yd01iSnFrdEp2RDNlQWU3bG9NTUc4M0t5d3I3ZTVYNlBCcXZkN2x3cWNLdHJLWE1NMU1Ba2V5NzZURzY4Z2I5azRJU1k?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Aqua",
+        "summary": "Conoce las nuevas vacantes laborales de la acuicultura en Chile  aqua.cl",
+        "date": "2026-02-02T10:00:28.000Z",
+        "category": "Salmoneras",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Aquasur 2026 suma a AquaChile como socio estratégico y refuerza la innovación en salmonicultura - aqua.cl",
+        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOb1YxVE5IVmNuWW5xRVV5V1hmM3A0ZEJvSFlZOWlxTWYzZVV0T28xNTdEQWdWT1BqZnJEemF3NUdNcUFlZzhMdzE2enl5OGhIU3JCX3JES0YxdUt0Rm5XVUdEcGRZcUJzeEhmT3p5QlFDV2FNazNRQzBKbUFORC1tTmRDczFWNU9wV2Q1N0hkYmR1SzBWaTYydWJjQ0dzdHR0MG9uSEk3T2R3TU5XOElyZkR5V3pfbmc?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Aqua",
+        "summary": "Aquasur 2026 suma a AquaChile como socio estratégico y refuerza la innovación en salmonicultura  aqua.cl",
+        "date": "2026-01-28T08:00:00.000Z",
+        "category": "Salmoneras",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Caleta Rumena fortalece su pesca artesanal con apoyo público-privado en Biobío - aqua.cl",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOdGE4Z2R3NHdRYkd4dnJfZFRsUFI4alUxeTFRSmR3a1FQUWhTZU9TcjBVVTFzM19oV0FfbnNDWVJrWU16MGRLYi0xYXdjYlJiOVJxaGhfaEUtbmprdjZvNExETGZPMHhrUVpRLUw0ZTNCRzJTMmRjQ0Njd1YwSjZKakx0YXhzZS1HS21Wa01XMENjM3hlWUIwQUkwbnZoN0Ix?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Aqua",
+        "summary": "Caleta Rumena fortalece su pesca artesanal con apoyo público-privado en Biobío  aqua.cl",
+        "date": "2026-01-15T13:13:37.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Tras visita a Landes: Diputada electa Paz Charpentier pide certidumbre para la pesca industrial - aqua.cl",
+        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPT1o0MVBSd3dwWTJFX2RMYmNGa1h4dlJFY1FoaTVwQThETWlfdFAwZ1lLN0p3Nmdiczl0UXNWc3M1S0ljVDkxSm5ITUlwdnRwU1pVZTl1eWpoUXpQdzUydzVHSkl5enp3ODROWHk0Ml9sQ3dlYXNmVUxBMlZsQUhWQjdRdjdjNVFPUUJuLUdxUUZ1S1BSTnRaZmZRb3JMX1BkZVctR3pRUnJQaEJWUWZxbC1kRUd2QQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Aqua",
+        "summary": "Tras visita a Landes: Diputada electa Paz Charpentier pide certidumbre para la pesca industrial  aqua.cl",
+        "date": "2026-01-13T08:00:00.000Z",
+        "category": "Pais y Sector Empresarial",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "[LA + LEÍDA EL LUNES] Macarena Cepeda: “Biobío es la capital pesquera de Chile y la capital mundial del jurel” - aqua.cl",
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNdEt5alNrUVFteTlSUzNCWTJ5LVpwNkxDS19iRmpKRkM0NjBjUWhDUUpPZlJEVm4zRmh1VlFGbjBqVUVUSXBRd0E4eFRneXRLWDBZUVpGUjVFRmU2NWFfYnc4c216U28zZHlXamJITTIwV25kRWVLMTZPQ082cHh6bFo0clBzanNiZDZOdnRjZ3dQcjk1UHlyUHNuVkdCY0xYX1NEYTlBZW1lUQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Aqua",
+        "summary": "[LA + LEÍDA EL LUNES] Macarena Cepeda: “Biobío es la capital pesquera de Chile y la capital mundial del jurel”  aqua.cl",
+        "date": "2026-01-12T08:00:00.000Z",
+        "category": "Salmoneras",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Subpesca impulsa economía circular en pesca y acuicultura con estudio nacional FIPA - aqua.cl",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVHFkUzN4Um9MZmVQVElpUlQ4M1VIZHFvVHdfZDBhUExQT0NKWmRwRHBoak9FLWxOaEZVTTB6Q2hNREdDNkpOSy10WnlVUGh1Q3JGMG8zNWxGTm9zMWNqcVVNb3VLN1h0TGpBcUswZXh4YURMN09Vbmp4ejZiQ3QwMXljalllQkF4LWNVa2hTSDctVHJvUi1tYWNxejdjYUNxclpEV1U0UQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Aqua",
+        "summary": "Subpesca impulsa economía circular en pesca y acuicultura con estudio nacional FIPA  aqua.cl",
+        "date": "2026-01-09T08:00:00.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Solidaridad del sector pesquero se activa en Lirquén tras incendios forestales - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFAxWjNfLUdPazl3U1BDTWZYYTZ1cXdCTXVFX0ZXQnpjWmNlTDJpRFdHem9RTWE1T21fcDlobzd5eG0tTmtFQk5hRGdObXZyMmtRNUpPTVFtamZVeUhKQlFtM2tpdlphWWc?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Solidaridad del sector pesquero se activa en Lirquén tras incendios forestales  pescahoy.cl",
+        "date": "2026-01-21T18:53:28.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Talcahuano impulsa el uso de tecnología para hacer más segura la pesca artesanal - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9UTENlakdmRG1ieHlKTDJpQmxzM2FtVGs1bFlEWDI1M1l4Wi1reXI3N1k2T0NlT0ZLdzd3UW50ek9PZFc3VzF0TjRIaHZ5UDBPdmFjSE4wWmNfVGVZdXY3SGZxbTF3MjBTUlNmMHJtS0EtSDhFWWMw?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Talcahuano impulsa el uso de tecnología para hacer más segura la pesca artesanal  pescahoy.cl",
+        "date": "2026-01-13T01:47:56.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Sernapesca incauta 750 kilos de machas y 500 kilos de merluza común en operativo en Valparaíso - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5lNkdHMFVmX3QySmNvN0RuWlp0cXhGdVZSWWxVN3lGN2ZLSmFhUlRCc053NHVlSHhYZWpuYTRYTVR5SE9vM2RVUnpHODI2MG9XajB5anE0NDZKbjFWZGtuT0FaUlRqSF9FWWlOanQ2ZzJMaV9mS3Nv?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Sernapesca incauta 750 kilos de machas y 500 kilos de merluza común en operativo en Valparaíso  pescahoy.cl",
+        "date": "2026-01-09T17:57:40.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Lobos marinos cuentan con balsas exclusivas para proteger embarcaciones en Mejillones - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1mQUdrdXNSLXhxc0Y0MWNId05hSXl4RVZVVmRPMXNOQTFYYlZHdE9ERl90VU9FdjdrX0tBX3k3R3JJUnBXQVpuUXYzUWxqN1MzXzNHaXdZSVBQaWtNV0RlRUxn?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Lobos marinos cuentan con balsas exclusivas para proteger embarcaciones en Mejillones  pescahoy.cl",
+        "date": "2026-01-05T08:00:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Mujeres consolidan su presencia en pesca y acuicultura según informe sectorial 2025 - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE8xakhuSHBFcVR0dkM3eGZNMEdPWTNSR3N4RGRuRkpOZDhSVEJudndxN0NWaTJQMW9KdVdNZTFLbnU5Nl9lRVF5UGRUdFZybWgxTXRvQ3JLOTJVREItWERqbDJDemNzYUdMLUJr?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Mujeres consolidan su presencia en pesca y acuicultura según informe sectorial 2025  pescahoy.cl",
+        "date": "2026-01-26T20:48:45.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Asociación Wadalafken propone reducir el Espacio Costero Marino de Pueblos Originarios al 66% en Los Ríos - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1PTDZLaG03OVZvWXU4UEdlOUlZbkNrWlpQQ0xtRlo0bk9GSUFla2RPZUhMSzQ4WERkdVkyZTFDNHEtN3Z0TkNBWXJIY2V6XzFKMjZDcUViOVJ5Z1ZEbFltbDQ0RUc?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Asociación Wadalafken propone reducir el Espacio Costero Marino de Pueblos Originarios al 66% en Los Ríos  pescahoy.cl",
+        "date": "2026-01-12T19:49:57.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Diputado Ramírez destaca que la Ley de Fraccionamiento amplía acceso de la pesca artesanal en Tarapacá - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5ITG0wTWEtQUFOX3cwVkZSalVIVU5XYUJSNWc3MklETkE4SlY3aHpXbEpGRi1LQldQZHNQd0lJVXJvdUxWX1ZmMl9kT1hpS2JCbjljMWp2eWZQaU96YTlXdi1FaG1yaHJYNDFNTWt4UVNISDN2UnFn?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Diputado Ramírez destaca que la Ley de Fraccionamiento amplía acceso de la pesca artesanal en Tarapacá  pescahoy.cl",
+        "date": "2026-01-28T20:40:53.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Caleta Rumena: Construyendo futuro para la pesca artesanal - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBMREttbXNvaEo5a0YxOVlUR2dQeDdfeHpSUktfb3JEeUV0LTJYSmRtRmpISXlQV29qNnY4ajNodWpMYXpwV0E0UXZGTExlNWpmOW1ZSGdpSnpuSHQ0N25VU2tlN3E1bnZJ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Caleta Rumena: Construyendo futuro para la pesca artesanal  pescahoy.cl",
+        "date": "2026-01-16T03:03:53.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pescadores Industriales del Biobío valoran gabinete y piden estabilidad para el sector - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE0tcmVJUHZlSjNOdEd2WDc1Z21NS3B4NlJYWnFxRXpFam1nTWw0RUJMTjdtX291VnZvV25xVktCSVZ3UmZGeFctNDBmSFJFQXZHZGgxZl95NjZTODlSTHItUlRyQ1Zib1pCazJDSA?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Pescadores Industriales del Biobío valoran gabinete y piden estabilidad para el sector  pescahoy.cl",
+        "date": "2026-01-21T18:53:26.000Z",
+        "category": "Pais y Sector Empresarial",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Comisiones de Pesca avanzan en dos frentes: críticas a la aplicación del fraccionamiento y sanciones por manipulación de GPS - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBRZ0xrVFFFVF9Zd1V2Nk5oQmo1LUQyV0hYdUNXWEpRT2VOVmptSHpiZ01GRlBYajFTOUNkX1ZSbDdvZzFKd2s4cldNejZuRHpiSC10R3lBXzNQOEVjNnhJeXZaU0hGSnVTTGVJSw?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Comisiones de Pesca avanzan en dos frentes: críticas a la aplicación del fraccionamiento y sanciones por manipulación de GPS  pescahoy.cl",
+        "date": "2026-01-23T18:49:05.000Z",
+        "category": "Ley de Pesca",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Expedición científica mide presencia de microplásticos en la Patagonia Norte - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1oYzg0WHpJX1hFbm8wMHd1Nk1FRWtfbmJCYURlbDFUeTQ3ZjJvODM1SUJPMHdla0NJS0E1Q2prdjBlRlAxNS1xQV91NlRKQjZFT2c2ODhqMFNzcmFKVHdKbG5PZ2EydTZCVDd6UG8zdw?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Expedición científica mide presencia de microplásticos en la Patagonia Norte  pescahoy.cl",
+        "date": "2026-01-08T08:00:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Diversos expertos del mundo pesquero analizan ¿Fue una derrota para el gobierno de Gabriel Boric no aprobar la nueva Ley de Pesca? - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5rWWo3UW1GV1N5SmxNUzZyUy1Dbm1CVm1SQ0trWmFuWmp3Tzhna0w4dFZZV0had2VHc2JLbWwzQ1BwNzd3cDhjWEVtUVpwTGRUTEVqYk9KcnZHMVJlTUhEZjNtUEw4bklmVWgydFhlSnRzdy1a?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Diversos expertos del mundo pesquero analizan ¿Fue una derrota para el gobierno de Gabriel Boric no aprobar la nueva Ley de Pesca?  pescahoy.cl",
+        "date": "2026-01-30T15:09:42.000Z",
+        "category": "Ley de Pesca",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Embarcación salmonera se hunde en el Estuario de Reloncaví y deja 6 tripulantes desaparecidos - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5UcWtNUV85TzNPaUtKYjQ4TFAzRXJnRXJIdlJraldHY2YwRmp0aTE5UjlQR1dkR1FOZ0JxUEZONlpxeEM2OS0wRjZhb3V0YVczdjZiWTQ0VUNHbGJ5ektHV0lRS2x6cXpveFhrYUs4ODZDZw?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Embarcación salmonera se hunde en el Estuario de Reloncaví y deja 6 tripulantes desaparecidos  pescahoy.cl",
+        "date": "2026-01-27T13:13:17.000Z",
+        "category": "Salmoneras",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Accidente de pescadores en Quellón deja lancha hundida tras choque con motonave - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1hQUVUQVFKNFpmaU9yOWNHOU03TkF1RGdMcVpwdWJwR3NkdWdYR1czemJKeGVmbVZRUEEyOWVyeHJNX3RSbWpZLTBxVmlQdnNuZ0xrMnRlUmdPZEZPLVFoQ0RVa3hwZDhGNHZUb2ZR?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Accidente de pescadores en Quellón deja lancha hundida tras choque con motonave  pescahoy.cl",
+        "date": "2026-01-17T03:01:41.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Robo de jurel en Coronel activa querella por piratería de pescadores industriales - pescahoy.cl",
+        "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBqamMxY0Z2NkVUem5xTl8teGZXcjVUMURTX3BfS0hXSDZ5QVJrN09DR3JqclFXb244T1Joandhb0pSY29FQlhra3plYVZLZ1VPbWxnNURfaHFxR09mWmY4Nndn?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "PescaHoy",
+        "summary": "Robo de jurel en Coronel activa querella por piratería de pescadores industriales  pescahoy.cl",
+        "date": "2026-01-20T18:55:04.000Z",
+        "category": "Pais y Sector Empresarial",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pescador que cayó al río Claro es rescatado con vida - El Rancagüino",
+        "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQUNyQTVocVNiY0xEYlJMTXdMTFkxcGhya2MybHc5a21zMHZKdnYzRHpwTEtxT1o1V2JkdEJVSVA2TG50bHFCbFFTRDdIVVZBQi1xVThtaHV3M1hVcC14RmxoWm9HRGJvMXVGd1VDcDFTX04wQlhMdWxWcGt5Y1pVaDlPVloyTFVSOXBKZDc0em5MclhsWm53?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "El Rancagüino",
+        "summary": "Pescador que cayó al río Claro es rescatado con vida  El Rancagüino",
+        "date": "2026-01-26T18:51:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Sernapesca alerta por aumento de encuentros con fauna marina en playas durante el verano - ITV Patagonia",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQeHJlZnY3X2hMcnY3eTVRX2t3bk5MOURReElCQXhZbW5vU3NFZkJ0S3pqM0tieDhRaXlkRXhTdERfODBmMlhpbUVMalJ2X1J5elRoNU1mR01nSFpMYXRYeld5Ti1Ebk16NkZ6RlBhSEk3aDVDdmx6R2N3T0tGQ3ZmaXFrNGcwamZmY0hfNW42SEdmZWJDSDRlUUxrak91LXZaVjZoY0pOV3ctZ0YxMHVHQV93bw?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "ITV Patagonia",
+        "summary": "Sernapesca alerta por aumento de encuentros con fauna marina en playas durante el verano  ITV Patagonia",
+        "date": "2026-01-28T22:03:23.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pesca Cisne refuerza su compromiso con Magallanes con la incorporación del buque factoría “Isla Edén” - ITV Patagonia",
+        "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPcVZiWWM5WkpPVE9vQzhxQkphcTZLRlNNMFFSRUt3QzFrbnViZXByQ3ZXYUt3TFV6SDkycGNVaDZsbDh2N0doVmpBNURRN0IxNHpPUEZlb3ktSVdISGpyaXV2YW9wQkdIYjhZRDRkRFBBRHdNeDJ1ZjRhVnJicU45V0NtQkMyNjNFUDVtOFRNWDlOc1EtZzYxYlE2aHVta1Y5S0dEZGl5ZTlBSHNNVkJ6N2xEQWlscHpNemxreDBDSGlTdWtfWDFzT3BLVGVMQ3I4RFhWUTJGOGh5dDk2TlRkWmpGWm01MTh2a2xDMWpGSQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "ITV Patagonia",
+        "summary": "Pesca Cisne refuerza su compromiso con Magallanes con la incorporación del buque factoría “Isla Edén”  ITV Patagonia",
+        "date": "2026-01-10T08:00:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Patagonia es elegida entre los mejores destinos de pesca del mundo para este 2026 - ELPINGUINO.COM",
+        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNMHRpMHVpN3ZBdkI5Z0JoM1N4bEJ2SDNsQVdLN0tlcGx1dTRiOTQzbU5vdWphcnkzaEVadXV0UkVYbHFHT252NU5GN1h3OExZSm02SEVnZ2VCcGQ1UFJtNVVNbHlaQ21LZ1VTY2psSlNuNHowZjBER1l0b2VoYnJDQmRVZGtYdmt0NDVZUUZyWjdpY0lEX0NHcUdFWVJLMHhzYm1yTUpfTHRmWS1mM2NPWEZNVDNPdTJ5V0ZWRTc5MGZnbExhZlE?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Pingüino Multimedia/El Pingüino",
+        "summary": "Patagonia es elegida entre los mejores destinos de pesca del mundo para este 2026  ELPINGUINO.COM",
+        "date": "2026-01-29T15:14:10.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pesca Cisne inaugura buque factoría “Isla Edén” en el Muelle Prat - ELPINGUINO.COM",
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPNGQ0Uk40akFkNjJQMVY0S3pOWVJwWDVxRU1EVnhJZnRTTE1jcjFldzR2UTUzSE9iRnBUc0pIZ1JsOXZrc1JfVE9GU2xBLVpwQkhxNlJRcXZtN3NhYTI5d2N3bFNYY3JUUkQ3MFpvRkltYkt0YVBiV2RKUFJ3RUgyZ1g5LVNxWUxDTm41a3gwYV9pX0FzTUZKTmdMVi1LVUZPbmVnWFBUM1lTMGFNOTR3?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Pingüino Multimedia/El Pingüino",
+        "summary": "Pesca Cisne inaugura buque factoría “Isla Edén” en el Muelle Prat  ELPINGUINO.COM",
+        "date": "2026-01-16T08:01:32.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Golfistas regionales e invitados se preparan para el torneo “Pesca Cisne – Open 2026” - ELPINGUINO.COM",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNTVdEMTF5RjNPTVdkLVR2a1gweVoySmtFRmZ6SWg4SU14Y3pyZFM4MG44Ynd5blc0SEpObEMtSXJrMVRlc2hrUkNrRmx3NkI5MWwyRTZYaS1PY0NkYU5qX0p2R3Nxck11REJZY2ptdUQ1b1ctSTlrVjhRTldWbHEyV1oxdS1DUS1DQklwR2lyUWVURncxc2o0QlYxQ3B5UXdKRy1YcWxXMk5obWxHclg1RE1NUE1waHR1aFVYYS1qLXlpUQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Pingüino Multimedia/El Pingüino",
+        "summary": "Golfistas regionales e invitados se preparan para el torneo “Pesca Cisne – Open 2026”  ELPINGUINO.COM",
+        "date": "2026-01-12T22:19:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Zarpe hacia la modernización: Pescacisne inaugura el B/F Isla Edén en Punta Arenas - ELPINGUINO.COM",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPRHE0WTRkU05LYlF1N2RMeEdCVXlCcVJUdm41cEhiaU5vMzJFZEoxZFllQlViZjU4T3hPRXZsTHREb3dJR2pkcGdKcmN5amd1WDU3MTZiQkxnZkZPeHEyTE9EaUxsZkN2WjVPdERsUzZ2eWlvMTJfQnRyeGcxZUtpMUZPWlJPQXJrX0FfV1JjeEJRSkRGdVFJSEloSjdYZVBTQWplVmpzb2pFSVhaTjdkZFNuMGlpdVQ1Sl93LWZDbEJPM3li?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Pingüino Multimedia/El Pingüino",
+        "summary": "Zarpe hacia la modernización: Pescacisne inaugura el B/F Isla Edén en Punta Arenas  ELPINGUINO.COM",
+        "date": "2026-01-15T22:11:29.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Sernapesca Valparaíso incauta más de una tonelada de recursos y refuerza la lucha contra la pesca ilegal - Radio Festival – La radio en colores de Chile",
+        "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNQ0JQWVhCdG5HVEZKdjN4XzBEdGlNSGtad1lpQklkMUgxY3FDMFVVWlpzN25fX0JKcE5JWFJGQmo2aEk0aVpqejBPY3BIVG13R3VDeVF0TG1vUFVnaGRRdS01dWdUSnlmaE5MUTZKNzhmM2lRTHF5cUs1TkR0SFBEWm43LWNiU05ZYkd0YlBUdE5hby1kZWtpWVJoNlFmMXpHbTk0WENDcmRNVEhPcEVqZjVLSnNZb3VLZzByeW1nVTVMVU1DVUU4RDV1SmVMMTA?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Festival (Valparaíso)",
+        "summary": "Sernapesca Valparaíso incauta más de una tonelada de recursos y refuerza la lucha contra la pesca ilegal  Radio Festival – La radio en colores de Chile",
+        "date": "2026-01-24T15:25:54.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Autoridad marítima de Rapa Nui mantiene operativo de búsqueda de persona que realizaba pesca submarina - Radio Festival – La radio en colores de Chile",
+        "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNRHBvcWFGNlIzcENwQ0VKUE1kaGpuajNoRWlrVS1KTVFvb0R1cDQ2ZzRianVJYXFDcU9Yd2JBSnpMejJXY19majRDbGRTamREeWxDTnpGeGdkcDlHWTdiVG9fSkFKeWlBb0xBWXJvU2s3NkhiOGsxQ0MxX0VyY1l4ZDE3X0lfM3M0WW9qLXNXbFNkSGxjYmpTRDBCS2F5MzdlZXpaYld0aExob3p5ai1Cc2x4WUcwZnVvTndXbGt3ck5NM3REb2pqdEptTHA?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Festival (Valparaíso)",
+        "summary": "Autoridad marítima de Rapa Nui mantiene operativo de búsqueda de persona que realizaba pesca submarina  Radio Festival – La radio en colores de Chile",
+        "date": "2026-01-27T20:17:40.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Sernapesca publica nóminas finales de caducidad en el registro pesquero artesanal y abre proceso de reclamaciones - Radio Festival – La radio en colores de Chile",
+        "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPMGlwSUp1clN4OGU0eWNDUk5YTlluM3lkYTM4MnI1ZDVFbndRRHZqdnpJNHBKVE1hbGIyUnFQU3RzcE83U1EycWdnVC1rNnBSUXVtZ1JBQ0FWY0I2ZWMtWEZKYTBGWm1xaTR3RVpVVzhDX2t0LUV4S0dmX0NtWG9JLUcyNzQzMjk2Zl8zYWFxeFZIYUJuUmFLR0ViRS1ONEpXeVFpN0d6M2drMTkxREtkTE5rN1NMaVRaY2Rvb0M3WEI2N2FDeGxDR1ZGYTVVd2VyWVE5RHVhZF8zN28?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Festival (Valparaíso)",
+        "summary": "Sernapesca publica nóminas finales de caducidad en el registro pesquero artesanal y abre proceso de reclamaciones  Radio Festival – La radio en colores de Chile",
+        "date": "2026-01-20T14:16:51.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Sernapesca hace un llamado a cuidar la fauna marina protegida - Radio Festival – La radio en colores de Chile",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOS3VRNzRVOEpUV2pKUkJ6S0ljNnZrVGxCOHRMeDlrRzdBYUNqbWhlU3cyV0JIaDluc0tzQzdSZ2QxRGhsNmpraThDcmdlNHhyZmlmREY4UGRhTDg5cmtvMmk4UlpUV29YbklucTZrMXZPTVZMODdWMElCRFRJelFmYmVHYWgyVF90NmRtM1BCTFdVZlF2Q0E?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Festival (Valparaíso)",
+        "summary": "Sernapesca hace un llamado a cuidar la fauna marina protegida  Radio Festival – La radio en colores de Chile",
+        "date": "2026-01-28T14:14:04.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Autoridad marítima de Rapa Nui mantiene operativo de búsqueda de persona que realizaba pesca submarina - Radio Festival – La radio en colores de Chile",
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFA1N2s3MmljZjNxY1ZLNExEQ1hmbW5fZXZ4QjlTWGlDOUFIQTQ5LXRCbkJBcFZ2ZzU4N0d5UWlOdjZ0VjdYdUthQ3RTWTV2emFUWkhIV0hn?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Festival (Valparaíso)",
+        "summary": "Autoridad marítima de Rapa Nui mantiene operativo de búsqueda de persona que realizaba pesca submarina  Radio Festival – La radio en colores de Chile",
+        "date": "2026-01-25T08:00:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Puerto Cisnes | Este viernes comienza tradicional Fiesta del Pesca’o Frito - Santa María – Radio y Televisión",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOYy1HSk16MDdYcGlZSzVUQUVkWkE4ZDdQMXNIU3hDaFR3VGlTVzEzLU94TlJJT3F1RWZNNzlQaTNRWmhQcU50bk8wUGxzLS1vV2F4SVg2Vkc4cTE3alpJVlFiNHpVUEQ3R1Z3ckVRS3dPXzdtekxyN05sQlFUU1ZfdWZCa0dVeUxCcDBjMFhsc2dud0REZ0stb0ltc09YcnQycVZwbi1fcklEU1oyZDBXZHhSYno?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Santa María (Aysén)",
+        "summary": "Puerto Cisnes | Este viernes comienza tradicional Fiesta del Pesca’o Frito  Santa María – Radio y Televisión",
+        "date": "2026-01-28T21:41:58.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Municipio de Cisnes recuerda cierre de plazo para permisos de la Fiesta del Pesca’o Frito 2026 - Santa María – Radio y Televisión",
+        "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPQUdOUHNiYVVHNjI0ZjFfWENIOFdUdUJDZjBNVDRMZ0p2cTFiQldzRTF5RTVIdEpheVBRME1pYS1OVE05cnZNMzg0VFdlcmJlU0VPQVZybzdVUmdoMVJTVmN1NFR2ai1yU1VtS2o2bTZLeWNjLWQzOTBkVGFPN2w0cXM2aVAzd243Mi1xY1g2VmtsM1pvN0FmTHcyMmZvWDNqN0xxLTc0QVRSS0diNkd5TmgxSXFYMUI0NmZIRkE0d1hqS2c2bmhYbm1iYmpPTDNrMGc?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Santa María (Aysén)",
+        "summary": "Municipio de Cisnes recuerda cierre de plazo para permisos de la Fiesta del Pesca’o Frito 2026  Santa María – Radio y Televisión",
+        "date": "2026-01-21T19:02:44.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pescadores se movilizan en Valdivia y acusan al Gobierno por incumplimiento en cuotas de captura - RioenLinea",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPcUhNNjV6cVJRcE9la1kzOU5VdENPVEVLYTNwVGNsQkF6eWlPelJnWnQ3UjY4ZzJKZnQ2b1NWRV9KNk5qcVF4NG5oU3FycjRyQzhiWmtFb0sycldIb05ldmZsdjNkQlRmdlFPMkR5c1BHYnJkWl9pWHFGT0VYMENaVjBHYjRQaTJhaW0xT2k2Wnk0UGdLd1BGZGxGUTZkaDNWZl9DSl9Ed1R4eUVhZ1RuMzc3VHpJdDM0cGZoM1Itckc?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Río en Línea (Los Ríos)",
+        "summary": "Pescadores se movilizan en Valdivia y acusan al Gobierno por incumplimiento en cuotas de captura  RioenLinea",
+        "date": "2026-01-29T16:00:56.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Valparaíso: histórica inversión a la pesca artesanal y acuicultura de pequeña escala marcó el 2025 para el sector - soychile.cl",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQbkFHeHBJdTdzTTk3Sk8xem5EQ2FxcE5JNkZRQ1VBTzhTMlB1Snd3OVFPRDF2X1ZlZXY3V3M5UXpEdHUzZ3JTN2M0YjczeUlhTlQyVTFVSm15cmItN0JSZkJiaVRJUDBUelhvUC1WMVkzMl9rOW1NdGtOS1g0TTJMZDgtOFhZbXF1OE04Zm1vak15OTd4bUxGTHczeEdnc3VUQmQyaUpST0ZBa1dRc2Z6VExHTHlSRzdRbFlDTUZ2NjhwTTJE?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "SoyChile",
+        "summary": "Valparaíso: histórica inversión a la pesca artesanal y acuicultura de pequeña escala marcó el 2025 para el sector  soychile.cl",
+        "date": "2026-01-31T17:25:40.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pescadores pelágicos se movilizan con embarcaciones en el río Calle-Calle - soychile.cl",
+        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOVmMzR01yS2lDNG5KbUFZdTNKTUROSFkwZlZVRTlGMlp0MTBMd1RTY3oybERWb2dkMmk3c3BnVVd1YjJzU3FlUFZRVnVWcmxERDlnc05aWG9WZ2tQSkhyLXl6cUlUekRYZkx6RGxoZXIzSjVnaWNxS2pqbWkyZWE0TVNsandaSE5EZ2lkXzdjczdGRVdlQmd2eEhteEVaOGs?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "SoyChile",
+        "summary": "Pescadores pelágicos se movilizan con embarcaciones en el río Calle-Calle  soychile.cl",
+        "date": "2026-01-29T15:10:16.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Sernapesca llamó a cuidar la fauna marina protegida y recordó las distancias mínimas de observación - soychile.cl",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQWnk5S2pRYXdvNTg3UEw1Z2R2LWFOMTNLTHBJeVFueHd1c1dNQ1A4UkxDeGU5cWc3Y1NLUmRXVkFYbUFxOTBoa3RiQ2N1UndMSzFLMGJBR0hyTG8zbU1vc1d1N3RrTVlKcDRtVzBNSUljRG9oOXBRbVZOS19fcUFFbW9qY09RMXZtRXVVWi1KWHJKWW9xM1VpeXdTYjg3Z1BocE1Kd055T24xaC1BcWVjWVN3?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "SoyChile",
+        "summary": "Sernapesca llamó a cuidar la fauna marina protegida y recordó las distancias mínimas de observación  soychile.cl",
+        "date": "2026-01-27T21:05:15.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Sernapesca llama a respetar a fauna marina protegida durante la temporada de verano - soychile.cl",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPQW12RFRBQ213RFRJUjlacWQ0S2gwbmk0VTBDcmdGU1F1NWpxTVNyOG9RNWQwcVEwUUYyOEVEU1p2ZVB4MHZKR1JUYlJuX1ZWQ0hwdUFhTnFIVGJjQkFKVWpnZjJjTHBINWVqZWZDWm5VVkF3VGxuX00zNWRlTTdfalZtYzZ6bWFWMWxuZzg5RmxmWnF2bEtYMXQwNlR5cTEzdzYtTEh4Q0FlMVN6WTdmLS1n?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "SoyChile",
+        "summary": "Sernapesca llama a respetar a fauna marina protegida durante la temporada de verano  soychile.cl",
+        "date": "2026-01-31T13:45:41.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Diputado Berger respalda eliminación de norma que hubiese permitido pesca comercial en ríos y lagos - Diario Futrono",
+        "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPY1kwWThyLUtzY0hKb2V6eDdnZm9iZDdUbFdIbTBWdF9oenZEVTFLUUxDTnlza1BBbGRvVEhVRTlQdW9LaE1pdmJJT25DNVlNRXVITUNlRDM2MGNLUV9McjJIR0hoeTEzdm1LY1hfOVVmTXZQemNUSHM2MDJZam1yWGFmM0hxaW15S2JaYWZpR2JUeVY5eWQtS0hHa0JCbWduN0lyVUdTdlBObWdOU0VRbHlBM1E5dmpXYjZoWHdWbC1pUXpZMU1SUVZSc2xPMk1sWnlOTjRxb0hxT0RuTlNIdE1nNVhCVm1D?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Diario Futrono",
+        "summary": "Diputado Berger respalda eliminación de norma que hubiese permitido pesca comercial en ríos y lagos  Diario Futrono",
+        "date": "2026-01-10T08:00:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pescadores dialogaron con autoridades regionales en medio de movilización - Diario Futrono",
+        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNRlpUY1RFR2hoc3JwcGtKNTdOTHJPajBKLXlUMXZhaVBQZnBoa0FCZi1adjdQemVFZFJqaEF3YW8zZzExSnlyLWJZLWplWFRlaWxrRXAtM1RsTVl0eS1IbWluYTJpamtBYmp0LVhVZDE0NmZxUEVFTmtRdF9NWGJrUU1naEZ5V1NzbTAySDF1SVZCYzhLWVZVMlMxOHhkc2VLM3JfcE01R0ZtZVczX0pSUVRqb0VMLTllLS1mb3h6c0c1aGtnSTRZYQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Diario Futrono",
+        "summary": "Pescadores dialogaron con autoridades regionales en medio de movilización  Diario Futrono",
+        "date": "2026-01-29T19:53:16.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pescadores inician movilizaciones en muelle Schuster - Diario Futrono",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPMm1fSktBNEpnMjAyN2R3YXRNZlVvb2JKMVMtU1k4RDJQS3VEdzZzVDVielBQZUFsWS1rMW9vbUJmNEU3a3F4UEF0Mlp4bFhibFdLRVRicnIwOFI3NnluZXpHaUJ2MlBXejlIT2VOdkJtM2N5THhCVGl3M2ZLZFBub01aTDV5c0V2NmdJb1o5SWRxTVRxbE9sN1R2Y1FmZnZIclBoOUp6WDVjVzdm?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Diario Futrono",
+        "summary": "Pescadores inician movilizaciones en muelle Schuster  Diario Futrono",
+        "date": "2026-01-29T14:19:12.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Carabineros incauta redes y bote tras operativo contra pesca furtiva en lago Neltume - Diario Futrono",
+        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNVjdwT09oVk5fLVo3VlU2YmhiMmdJcW52WndWTkh5M01yVEVGX0xpYkZSRmtKRUhtalJyRVo5VVhub2hvNC1yVHFSYm9BZktaUjZwM0FUdFpMUmJLY3Z1RXVPLXMzZGRtY2w3SHhENlo3Z0N6MkhMR1pqc0NycnpJX25WWXk1dVlGTF90SEJaeGNnR2E2NWQ5bHplcVMtT0ZHQVRaWWg5MzZ4UXF5bjZqMGQ4dlVJaGtLRUhPLWhfc2dqLWQ4eFJoNEUzSFNtRk9qVW8tNnhMMA?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Diario Futrono",
+        "summary": "Carabineros incauta redes y bote tras operativo contra pesca furtiva en lago Neltume  Diario Futrono",
+        "date": "2026-01-27T19:17:06.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pescadores levantaron la movilización, pero seguirán en alerta - Diario Futrono",
+        "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOTkxSODJTdjZvcVVONXNxLUJ1bGFVZW5lRjdhRHRtNGdlRzNoajUwSGdZMi1EZVY5TlNkTVVlTEdQY1c2NFBoVEpBTmlJZWV0M0ZNYXB6WXpMeFhEdlRlVTN0MzZQa01ic3VZRFdEWjFza09JVjBwdXotZEVhTllQLWVzeXlLdF90MF95a1YwLUJIaWNGYUNlZFRIOVdtVUtveXoyamdyY1FoQzExNVFWak8xWXFIODZS?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Diario Futrono",
+        "summary": "Pescadores levantaron la movilización, pero seguirán en alerta  Diario Futrono",
+        "date": "2026-01-30T22:12:33.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Rescate en el río Pilmaiquén: pescador fue arrastrado por la corriente - Diario Futrono",
+        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNUWowMUpuc2kxdzRad1VnaFlpM0lEZG0xWUdPR1dFS3lpUXB1dGhLRkREQmN3VnlPUFNXbXNoMVNRaVAzcmdmQmVyR1NtUkN1OHBFRjVqcW1xTzVQU1V3UUZUdi1ZcnVtWU5qdjJ0UmV6dGdKQ0xka3B6U2t0RGZpOWpLcUxPYnpuZkR6UnZVQWxEZmw2UEpoU2duMjVoNEVGaEl4Y0NBUDBlZnMtVG1HeHlzWDJMQW1nSWJOazR3Ni1XWjA?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Diario Futrono",
+        "summary": "Rescate en el río Pilmaiquén: pescador fue arrastrado por la corriente  Diario Futrono",
+        "date": "2026-01-23T17:32:07.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "DIRECTORA REGIONAL DE SERNAPESCA INFORMA AVANCES EN FISCALIZACIÓN, REGISTRO PESQUERO Y FALLO HISTÓRICO DE LA CORTE SUPREMA EN MAGALLANES - Radio Polar",
+        "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPelk5WlZ6NGxFbEdoV0Nhb1VFUDR2djBqeXgyR2RGb3ZWdjl5TGtxY0ZKa1pQdzRDWVFnZGRlbVd1YzJqRXhxMTJVQ1NQWl9uS3BvMUUxbWxKeWVTLXBBMVN0LTBKenllaUd3UnFZTXI4T25qLW9TYU0ybVI1VlkyS08xbFQxdjVOVGpleVJXMFA1SmhWZnpfLVRLNFpMZFBxSDJUR1lIUlUxTm1CN01FU3Y0VTZ1cm1WakFacWNzelUxeGd6cDFkdk1ibFNZdU55Sld4d3lsd3M3VFk1aWc?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Polar",
+        "summary": "DIRECTORA REGIONAL DE SERNAPESCA INFORMA AVANCES EN FISCALIZACIÓN, REGISTRO PESQUERO Y FALLO HISTÓRICO DE LA CORTE SUPREMA EN MAGALLANES  Radio Polar",
+        "date": "2026-01-23T02:30:00.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "BALANCE 2025 Y HOJA DE RUTA 2026: PERIODISTA CLAUDIO ANDRADE ABORDA EL FUTURO DE LA PESCA Y LA SALMONICULTURA EN MAGALLANES - Radio Polar",
+        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNSlN6MHZwTk9XQ0lwZjAycERCQlY1OUxtMHA2Z3VrbkdUbnoyUTBJUlAzV2lZWEluNzhBbmhVeE4zb21SNHpJM3paN05TeHV6eWFaeDFzRElOaGg3UmtrRG54MDhLbGlCWElreGJfZG5iVkJiby1nM0ZuNmE4bjI3Z2NtQlhySkZuLVdodFdZNk5hN25tSWNFUTBNVE8wOGhja0c2N2M0RVJGanNyRFBBTlNrMzg1ZDlhenAyOHNSNXdhejVKMVE?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Polar",
+        "summary": "BALANCE 2025 Y HOJA DE RUTA 2026: PERIODISTA CLAUDIO ANDRADE ABORDA EL FUTURO DE LA PESCA Y LA SALMONICULTURA EN MAGALLANES  Radio Polar",
+        "date": "2026-01-09T00:19:58.000Z",
+        "category": "Salmoneras",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "INDESPA DESTINÓ MÁS DE $2.000 MILLONES A MAGALLANES DURANTE 2025 PARA FORTALECER LA PESCA ARTESANAL - Radio Polar",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNZW1MbVlPTTFNZUhSVTlJRDhCQUJ6cGJWb05Wd1lYdUNlbU5RYzBPTXhQOThjdEhpR3otTlE2cXhIU2pNU3hKVEtGd2xNZlQ1SGsxQ3FiZzFXN2EyMzdiVG15MnZrdXpoaEpRS09UajBsMVBxVGcwM1YzaG1oM0JuTDZqck5PeWstVzVjeE8wZHZubUxiZEZ4czBnRVhldG1m?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Polar",
+        "summary": "INDESPA DESTINÓ MÁS DE $2.000 MILLONES A MAGALLANES DURANTE 2025 PARA FORTALECER LA PESCA ARTESANAL  Radio Polar",
+        "date": "2026-02-01T17:00:00.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "CON UNA INVERSIÓN SUPERIOR A US$8 MILLONES DE DÓLARES LA EMPRESA PESCA CISNE REAFIRMA SU COMPROMISO CON MAGALLANES CON LA ADQUISICIÓN DE UN NUEVO BUQUE FACTORIA - Radio Polar",
+        "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNVXpJRTZhX1Zxbk0xSDVwVE1CZy1IY0JvQ2o2VWVGN2h6bUlhbzE2T3lYNUp5RkVJaVhVNFd1c1hKVFJpZ2NyMXV1S1ZBdUlaT1Fib0RnZFI5UHZPZlRlSGtOc0RXLWx4YmlhbnBibkktaXlKc0p6OS1zWEVidTNSMHI5UVVrdWc3b3JGd2FxQ1JkR21xa2NsY0lNYmFaeW1LZXR6bGJRR0J2MjdyV0RBZ1Y2SS1xR3hJSDg0MkdSTVRVVWNKT05YRVJRaEZiSDdvOXpqUDhrVTQ5d2NWc2c?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Polar",
+        "summary": "CON UNA INVERSIÓN SUPERIOR A US$8 MILLONES DE DÓLARES LA EMPRESA PESCA CISNE REAFIRMA SU COMPROMISO CON MAGALLANES CON LA ADQUISICIÓN DE UN NUEVO BUQUE FACTORIA  Radio Polar",
+        "date": "2026-01-11T08:00:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "PESCA CISNE INCORPORA MODERNO BUQUE FACTORÍA \"ISLA EDÉN\" PARA LA PESCA DEL BACALAO EN MAGALLANES - Radio Polar",
+        "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPeUkxVkVwRTlBWmVMWHhqVng2b2xQempjd3ZteUVlZTA1X2dUTmNDbTI0RTFJT2tOM09UczM2c3JwNEhDNGhIZ0lVNDRXdDgzcmlzdWpBTHhINHNJN1hLVGM5NlhERDhrWF8xMDVQTXBJblBKRmgyVnQtNzVjSWxKdzdTMGRIVExxZFBneldHdVVFSkxHS3FGVkN5S2FNeDFjZUE?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Polar",
+        "summary": "PESCA CISNE INCORPORA MODERNO BUQUE FACTORÍA \"ISLA EDÉN\" PARA LA PESCA DEL BACALAO EN MAGALLANES  Radio Polar",
+        "date": "2026-01-16T08:00:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "SALMONICULTURA EN MAGALLANES PROYECTA EXPANSIÓN Y ALCANZA POSITIVAS CIFRAS PRODUCTIVAS DURANTE EL 2025 - Radio Polar",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQcHVsSUItM0pqeUVPVFliVDlsekw2QUdmWnJTTzNxR0RHdjF4WVFLNEJsRktNcXRlaEdVYU5OTHdxcEVYZ28wSFJtVXJWRmlQVV9ia1h2NEFBRmtIcjVJNjM2NnAxUWxtdlRVcFVOSVk1MUN0Z09PejZHX3BZYkZwTkMyR2NfNGlzQWxqd1czUnozc3FVUU9qdi1ORi1GMThSN1RaSTgzZjlPaUtNV1V3a0phcw?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Polar",
+        "summary": "SALMONICULTURA EN MAGALLANES PROYECTA EXPANSIÓN Y ALCANZA POSITIVAS CIFRAS PRODUCTIVAS DURANTE EL 2025  Radio Polar",
+        "date": "2026-01-30T01:45:00.000Z",
+        "category": "Salmoneras",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "SERNAPESCA LLAMA A RESPETAR A LA FAUNA MARINA PROTEGIDA DURANTE LA TEMPORADA ESTIVAL EN MAGALLANES - Radio Polar",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOVkRyem5TdU5abnJTdGFXNV9hNlpXeUhMSDlSc1lHbGt2NmdLVGRHZi1tYW9HU3pRcW14MDB2Z0pNZWNpWE9GMXZ1LXJadXpNdTNfMlpSQlJ2dHhpNjNfQmcxX25iRFVhSDdKMGZ0QWZLbmllYVhKVWd3b1BpcmNSLTJWaV9OTDNTaXVoMzJGelk5Z1FBQVB4Wk0yS3plTFdOTjA3RVZSZw?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Polar",
+        "summary": "SERNAPESCA LLAMA A RESPETAR A LA FAUNA MARINA PROTEGIDA DURANTE LA TEMPORADA ESTIVAL EN MAGALLANES  Radio Polar",
+        "date": "2026-02-01T11:00:00.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "FISCALIZACIÓN CONJUNTA DE LA AUTORIDAD MARÍTIMA DE TIERRA DEL FUEGO Y SERNAPESCA SE DESPLEGÓ A LAGO BLANCO - Radio Polar",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQaE84WWQwLVV2bDlsUGhVbVdROFhVeEZKb3NHYXRpMUdjUE56MzlybDFjTXB0Sm8xZWFtOTBQelNiMkg5cFcxZDF1RDdNeUFFeHhHUktKYnFuRDFaUnJ3NW5VN2FLMjk2anFPODdhTTZsX1g1OTJOV0hZNHdEczNWR0pvMkcwNTY0aHd6OFNoTUJYZmpDNFRmd0JvMnh0bHBhTEhhak9DcGxuSDVpZWtMVGE2VQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Polar",
+        "summary": "FISCALIZACIÓN CONJUNTA DE LA AUTORIDAD MARÍTIMA DE TIERRA DEL FUEGO Y SERNAPESCA SE DESPLEGÓ A LAGO BLANCO  Radio Polar",
+        "date": "2026-01-16T12:00:00.000Z",
+        "category": "Sector Pesquero",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "FARO \"ISLOTE EVANGELISTA\" PATRIMONIO MARÍTIMO NACIONAL DE RECONOCIMIENTO MUNDIAL - Radio Polar",
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNaDBJUFFxWEJfSXI0XzhNTm5NbnhsTGtia2Z1UXBjVklGZmlsNzI5cEQ1Q1dUQ0J4MUpzM2duT3pIekdSWmxDRk1UNzluWDdKNHk2d1o2bTYtZFZ2MFV5LVJyOC05X3JrUnJkaTNHSHhKZElJWkZISER4dGhUVXo0RjBfWUd0NUZ3Vk94ZS14aTF5R0llbkwza1BvNjhuX1BmS2FQOQ?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Polar",
+        "summary": "FARO \"ISLOTE EVANGELISTA\" PATRIMONIO MARÍTIMO NACIONAL DE RECONOCIMIENTO MUNDIAL  Radio Polar",
+        "date": "2026-01-11T20:00:00.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Pescadores y pescadoras pasarán a administrar la Caleta Punta Arenas gracias a la Ley de Caletas - Regiones Noticias",
+        "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxObklwcUpJX0pITmEtaUFzMzFjSEVlUkNGbmFhZVlXZmZQRzVKWHRYYU44ZV9Hc0hWZmJXRUlLdmx6aWszQ0p4VThxQ3BkMUFhTWJBZEZmQVY1WWFUQ1E0VFI5c3pjZFl0MnVwaFNqZjhnbktVZkZzWFNNTTNmODB6czhjclBjZnZISHRnSzBnY0s5ZUpfaGtwa0tjRXdnd2pXcnl1SzBIcFhQRWdieHBLMjdydmdmbjNVTUNsNWdKbVB0dHMwUTZ6R3FDTTQ3RnBMUmppR2VUYlNiUi1zYWg0MFlnYUpBLVdH0gHuAUFVX3lxTE14LW1neFdSLXF5MS1rT3dHOG9NUUhtNi05LW10RFRnMmhsLURCem9rX0dPS1p6Vm9kc29RdDM3bGwydFp3QVB4dXJVWTVtRmlQTTE3eHlNT2gzb0NmVE1ELWlNbXJEM196dmhYRGlXd2hCdGpfcjAwUVBGRlVHR201amRCU0h1cDNLbFYtUXNGSE15UWhHdzlQUWpySjBKRmJydG1fekNZVWNjOTlfdWVUZGtUbWVGcV8ydkRFMXhCanF5MW5YMHpjNkhUeE1NV1Qyc3Z0UW5kX3QwODA2anh3OVJJMzNxblRkUWtqNkE?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Regiones Noticias",
+        "summary": "Pescadores y pescadoras pasarán a administrar la Caleta Punta Arenas gracias a la Ley de Caletas  Regiones Noticias",
+        "date": "2026-01-30T21:11:27.000Z",
+        "category": "Pesca Artesanal",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    },
+    {
+        "title": "Clave: Pesca Reductiva - Radio Universidad de Chile",
+        "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE84N1VRYURHUjNBVVd4ei1PbFNCOUVEYl9ZZmJrNEFNVlBmXzZTaUt0dUxnU2JYc3VFTWVPdGxNbzg0YXFvRXdmWC1QR2tYSWtFdmtTYnJPYw?oc=5&hl=es-419&gl=CL&ceid=CL:es-419",
+        "source": "Radio Uchile",
+        "summary": "Clave: Pesca Reductiva  Radio Universidad de Chile",
+        "date": "2026-01-31T19:27:19.000Z",
+        "category": "Otros",
+        "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
+    }
+]
