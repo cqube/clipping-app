@@ -150,9 +150,21 @@ const generateHtml = (articles) => {
             html += `<h3>${cat} (${catArticles.length})</h3>`;
             catArticles.forEach(art => {
                 const dateStr = new Date(art.date).toLocaleDateString('es-CL');
+
+                // --- RESTRICTED LINK LOGIC ---
+                // If from El Mercurio or restricted, and has image, link to image
+                const RESTRICTED_DOMAINS = ['elmercurio.com', 'lasegunda.com'];
+                let finalUrl = art.url;
+                if (art.source === 'El Mercurio' || RESTRICTED_DOMAINS.some(d => art.url.includes(d))) {
+                    if (art.image && art.image !== '/placeholder-news.svg') {
+                        finalUrl = art.image.startsWith('http') ? art.image : `${APP_URL}${art.image.startsWith('/') ? '' : '/'}${art.image}`;
+                    }
+                }
+                // -----------------------------
+
                 html += `
                 <div class="article">
-                    <h2><a href="${art.url}">${art.title}</a></h2>
+                    <h2><a href="${finalUrl}">${art.title}</a></h2>
                     <div class="meta">${art.source} | ${dateStr}</div>
                     <div class="summary">${art.summary || ''}</div>
                 </div>`;
@@ -171,7 +183,7 @@ const generateHtml = (articles) => {
     return html;
 };
 
-const sendDailyClipping = async () => {
+const sendDailyClipping = async (customSubject = null) => {
     console.log('Preparing daily clipping email (Gmail API)...');
 
     // 1. Get recipients
@@ -209,7 +221,7 @@ const sendDailyClipping = async () => {
         const year = date.getFullYear();
         const formattedDate = `${month} ${day}, ${year}`;
 
-        const subject = `NOTICIAS DE PESCA - ${formattedDate}`;
+        const subject = customSubject || `NOTICIAS DE PESCA - ${formattedDate}`;
 
         // --- OPTIMIZED SENDING ---
         console.log(`Preparing to send to ${recipients.length} recipients...`);

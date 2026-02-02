@@ -44,7 +44,7 @@ async function main() {
         const year = date.getFullYear();
         const formattedDate = `${month} ${day}, ${year}`;
 
-        const subject = `ACTUALIZACIÓN: NOTICIAS DE PESCA - ${formattedDate}`;
+        const subject = `ACTUALIZACION: NOTICIAS DE PESCA - ${formattedDate}`;
         const recipient = 'pescaboletin@gmail.com'; // Testing or single send if requested?
 
         // Actually the user wants to "enviar un mensaje de actualización", 
@@ -118,7 +118,7 @@ function generateCustomHtml(articles) {
         <div class="container">
             <div class="header">
                 ${imageHtml}
-                <h1 style="color: #005f73; margin-top: 20px;">ACTUALIZACIÓN DE NOTICIAS</h1>
+                <h1 style="color: #005f73; margin-top: 20px;">ACTUALIZACION DE NOTICIAS</h1>
                 <p>Pesca en Chile - ${new Date().toLocaleDateString('es-CL')}</p>
             </div>
 
