@@ -26,15 +26,30 @@ const encodeBase64 = (str) => {
     return Buffer.from(str).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 };
 
-// Helper: Create Raw Email String
+// Helper: Create Raw Email String (Multipart MIME for better deliverability)
 const createRawEmail = (to, subject, htmlBody, bcc = []) => {
     const from = process.env.GMAIL_USER_EMAIL || 'pescaboletin@gmail.com';
     const fromName = "Clipping de Prensa";
+
+    // Create a simple plain text version by removing HTML tags
+    const textBody = htmlBody
+        .replace(/<style([\s\S]*?)<\/style>/gi, '')
+        .replace(/<[^>]+>/g, '\n')
+        .replace(/\n\s*\n/g, '\n\n')
+        .trim();
+
+    const boundary = "__clipping_app_boundary__";
 
     // Construct MIME message
     const messageParts = [
         `From: "${fromName}" <${from}>`,
         `To: ${to}`,
+        `Subject: =?UTF-8?B?${Buffer.from(subject).toString('base64')}?=`,
+        'MIME-Version: 1.0',
+        `Content-Type: multipart/alternative; boundary="${boundary}"`,
+        'Precedence: bulk',
+        'X-Auto-Response-Suppress: All',
+        'Auto-Submitted: auto-generated',
     ];
 
     if (bcc && bcc.length > 0) {
@@ -42,11 +57,20 @@ const createRawEmail = (to, subject, htmlBody, bcc = []) => {
     }
 
     messageParts.push(
-        'Content-Type: text/html; charset=UTF-8',
-        'MIME-Version: 1.0',
-        `Subject: =?UTF-8?B?${Buffer.from(subject).toString('base64')}?=`,
         '',
-        htmlBody
+        `--${boundary}`,
+        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: 7bit',
+        '',
+        textBody,
+        '',
+        `--${boundary}`,
+        'Content-Type: text/html; charset=UTF-8',
+        'Content-Transfer-Encoding: quoted-printable',
+        '',
+        htmlBody,
+        '',
+        `--${boundary}--`
     );
 
     return encodeBase64(messageParts.join('\r\n'));
