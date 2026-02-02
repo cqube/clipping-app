@@ -258,23 +258,29 @@ app.get('/api/last-update', async (req, res) => {
     }
 });
 
-// Send email with "ACTUALIZACION" prefix for manual sends
-const date = new Date();
-const monthShort = date.toLocaleString('es-CL', { month: 'short' }).replace('.', '');
-const month = monthShort.charAt(0).toUpperCase() + monthShort.slice(1);
-const day = date.getDate();
-const year = date.getFullYear();
-const formattedDate = `${month} ${day}, ${year}`;
-const subject = `ACTUALIZACION: NOTICIAS DE PESCA - ${formattedDate}`;
+// Manually send email
+app.post('/api/send-email', protectAdmin, async (req, res) => {
+    try {
+        const { sendDailyClipping } = require('./services/mailer');
+        console.log('Manual email send requested via API...');
 
-await sendDailyClipping(subject);
+        // Send email with "ACTUALIZACION" prefix for manual sends
+        const date = new Date();
+        const monthShort = date.toLocaleString('es-CL', { month: 'short' }).replace('.', '');
+        const month = monthShort.charAt(0).toUpperCase() + monthShort.slice(1);
+        const day = date.getDate();
+        const year = date.getFullYear();
+        const formattedDate = `${month} ${day}, ${year}`;
+        const subject = `ACTUALIZACION: NOTICIAS DE PESCA - ${formattedDate}`;
 
-console.log('Manual email sent successfully');
-res.json({ success: true, message: 'Email sent successfully' });
+        await sendDailyClipping(subject);
+
+        console.log('Manual email sent successfully');
+        res.json({ success: true, message: 'Email sent successfully' });
     } catch (err) {
-    console.error('Error sending manual email:', err);
-    res.status(500).json({ error: err.message, details: 'Check server logs for more info.' });
-}
+        console.error('Error sending manual email:', err);
+        res.status(500).json({ error: err.message, details: 'Check server logs for more info.' });
+    }
 });
 
 // Handle SIGTERM for Railway graceful shutdown
