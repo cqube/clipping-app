@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Article = require('../models/Article');
 require('dotenv').config();
 
-const MONGODB_URI = "mongodb://cristianquevedo_db_user:t2NdobPm7o3Sntce@ac-5bpvqmy-shard-00-00.mm28t6i.mongodb.net:27017,ac-5bpvqmy-shard-00-01.mm28t6i.mongodb.net:27017,ac-5bpvqmy-shard-00-02.mm28t6i.mongodb.net:27017/?ssl=true&authSource=admin";
+const MONGODB_URI = "mongodb://cristianquevedo_db_user:1SrGCb53YWAbI9va@ac-5bpvqmy-shard-00-00.mm28t6i.mongodb.net:27017,ac-5bpvqmy-shard-00-01.mm28t6i.mongodb.net:27017,ac-5bpvqmy-shard-00-02.mm28t6i.mongodb.net:27017/?ssl=true&authSource=admin";
 
 async function addArticle() {
     try {
