@@ -132,6 +132,7 @@ const generateHtml = (articles) => {
         'Pais y Sector Empresarial',
         'Salmoneras',
         'Innovación Acuícola',
+        'Economía',
         'Otros'
     ];
 
@@ -175,14 +176,22 @@ const generateHtml = (articles) => {
             catArticles.forEach(art => {
                 const dateStr = new Date(art.date).toLocaleDateString('es-CL');
 
-                // --- RESTRICTED LINK LOGIC ---
-                // If from El Mercurio or restricted, and has image, link to image
+                // --- IMPROVED LINK LOGIC ---
+                // If it's a manual image link or from a restricted source like El Mercurio, link to the image
                 const RESTRICTED_DOMAINS = ['elmercurio.com', 'lasegunda.com'];
+                const isManualImage = art.url.startsWith('/img/manual/') || /\.(jpg|jpeg|png|webp|gif|svg)$/i.test(art.url);
+                const isRestricted = art.source === 'El Mercurio' || RESTRICTED_DOMAINS.some(d => art.url.includes(d));
+
                 let finalUrl = art.url;
-                if (art.source === 'El Mercurio' || RESTRICTED_DOMAINS.some(d => art.url.includes(d))) {
+                if (isManualImage || isRestricted) {
                     if (art.image && art.image !== '/placeholder-news.svg') {
                         finalUrl = art.image.startsWith('http') ? art.image : `${APP_URL}${art.image.startsWith('/') ? '' : '/'}${art.image}`;
                     }
+                }
+
+                // Ensure relative URLs are prefixed with APP_URL
+                if (finalUrl.startsWith('/')) {
+                    finalUrl = `${APP_URL}${finalUrl}`;
                 }
                 // -----------------------------
 
