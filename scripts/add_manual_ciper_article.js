@@ -56,6 +56,24 @@ async function processArticle() {
         fs.writeFileSync(SLIDER_FILE, JSON.stringify(sliderData, null, 2));
         console.log('✅ slider-pesca.json actualizado.');
 
+        // 3. Update Latest Articles JSON (Fallback)
+        console.log('Actualizando latest_articles.json...');
+        const ARTICLES_FILE = path.join(__dirname, '../data/latest_articles.json');
+        let articlesData = [];
+        if (fs.existsSync(ARTICLES_FILE)) {
+            articlesData = JSON.parse(fs.readFileSync(ARTICLES_FILE, 'utf8'));
+        }
+
+        // Remove if already exists
+        articlesData = articlesData.filter(a => a.url !== newArticle.url);
+        // Add to the front
+        articlesData.unshift(newArticle);
+        // Keep limited
+        if (articlesData.length > 50) articlesData = articlesData.slice(0, 50);
+
+        fs.writeFileSync(ARTICLES_FILE, JSON.stringify(articlesData, null, 2));
+        console.log('✅ latest_articles.json actualizado.');
+
         await mongoose.disconnect();
         console.log('Desconectado de MongoDB.');
         process.exit(0);
