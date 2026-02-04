@@ -615,9 +615,6 @@ ul {
         grid-template-columns: 1fr;
     }
 
-    .category-articles {
-        grid-template-columns: 1fr;
-    }
 
     .section-title {
         font-size: 1.5rem;
