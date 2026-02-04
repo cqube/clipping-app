@@ -42,12 +42,14 @@ const connectDB = async () => {
         await mongoose.connect(MONGODB_URI, {
             serverSelectionTimeoutMS: 15000,
             heartbeatFrequencyMS: 2000,
+            bufferCommands: false, // Disable buffering to avoid 10s hangs
         });
         console.log('✅ Connected to MongoDB Atlas');
     } catch (err) {
         console.error('❌ MongoDB Connection Error during startup:', err);
     }
 };
+
 
 // Middleware
 app.use(helmet({
@@ -64,6 +66,19 @@ const protectAdmin = (req, res, next) => {
     if (key === API_KEY) return next();
     res.status(403).json({ error: 'Access denied' });
 };
+
+// Middleware to ensure DB is connected before critical operations
+const ensureConnected = (req, res, next) => {
+    if (mongoose.connection.readyState !== 1) {
+        console.warn(`⚠️ Attempted access to ${req.path} while DB disconnected (state: ${mongoose.connection.readyState})`);
+        return res.status(503).json({
+            error: 'Database connection not ready',
+            retryAfter: 5
+        });
+    }
+    next();
+};
+
 
 const CLIENT_ID = process.env.CLIENT_ID || 'pesca';
 
@@ -129,7 +144,8 @@ app.delete('/api/recipients', (req, res) => {
 });
 
 // Routes
-app.get('/api/articles', async (req, res) => {
+app.get('/api/articles', ensureConnected, async (req, res) => {
+
     try {
         // 1. Get articles for current client within the last 30 days
         const thirtyDaysAgo = new Date();
