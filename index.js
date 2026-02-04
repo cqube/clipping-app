@@ -87,8 +87,10 @@ const ensureConnected = (req, res, next) => {
         console.warn(`⚠️ Attempted access to ${req.path} while DB disconnected (state: ${mongoose.connection.readyState})`);
         return res.status(503).json({
             error: 'Database connection not ready',
+            details: lastDbError || 'Connecting to database...',
             retryAfter: 5
         });
+
     }
     next();
 };
