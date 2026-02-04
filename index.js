@@ -28,16 +28,27 @@ const MONGODB_URI = rawUri || 'mongodb://localhost:27017/clipping-prensa';
 const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
 const ARTICLES_FILE = path.join(__dirname, 'data/latest_articles.json');
 let isScraping = false;
+let lastDbError = null;
+
 
 // Connect to MongoDB with improved options
 const connectDB = async () => {
     try {
         console.log('⏳ Connecting to MongoDB Atlas...');
+        lastDbError = null;
 
         // Setup event listeners before connecting
-        mongoose.connection.on('disconnected', () => console.log('⚠️ MongoDB disconnected.'));
-        mongoose.connection.on('reconnected', () => console.log('✅ MongoDB reconnected.'));
-        mongoose.connection.on('error', (err) => console.error('❌ MongoDB Connection Error:', err));
+        mongoose.connection.on('disconnected', () => {
+            console.log('⚠️ MongoDB disconnected.');
+        });
+        mongoose.connection.on('reconnected', () => {
+            console.log('✅ MongoDB reconnected.');
+            lastDbError = null;
+        });
+        mongoose.connection.on('error', (err) => {
+            console.error('❌ MongoDB Connection Error:', err);
+            lastDbError = err.message;
+        });
 
         await mongoose.connect(MONGODB_URI, {
             serverSelectionTimeoutMS: 15000,
@@ -45,10 +56,13 @@ const connectDB = async () => {
             bufferCommands: false, // Disable buffering to avoid 10s hangs
         });
         console.log('✅ Connected to MongoDB Atlas');
+        lastDbError = null;
     } catch (err) {
         console.error('❌ MongoDB Connection Error during startup:', err);
+        lastDbError = err.message;
     }
 };
+
 
 
 // Middleware
@@ -249,8 +263,9 @@ app.post('/api/scrape', protectAdmin, async (req, res) => {
 });
 
 // Get last update timestamp
-app.get('/api/last-update', async (req, res) => {
+app.get('/api/last-update', ensureConnected, async (req, res) => {
     try {
+
         const statusFile = path.join(__dirname, 'data', `status-${CLIENT_ID}.json`);
 
         // 1. Try to read from status file (most accurate for system run time)
