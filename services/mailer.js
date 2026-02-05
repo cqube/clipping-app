@@ -149,65 +149,106 @@ const generateHtml = (articles) => {
     <html>
     <head>
         <style>
-            body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
-            h1 { color: #005f73; border-bottom: 2px solid #005f73; padding-bottom: 10px; }
-            h3 { background-color: #e9c46a; padding: 10px; border-radius: 5px; color: #264653; margin-top: 20px;}
-            .article { margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
-            .article h2 { margin: 0 0 5px 0; font-size: 18px; }
-            .article a { text-decoration: none; color: #2a9d8f; }
-            .meta { font-size: 12px; color: #666; margin-bottom: 5px; }
-            .summary { font-size: 14px; line-height: 1.4; }
-            .footer { margin-top: 30px; font-size: 12px; color: #999; text-align: center; border-top: 1px solid #eee; padding-top: 10px;}
-            .btn-cta { display: inline-block; padding: 12px 24px; background-color: #005f73; color: #ffffff !important; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0; }
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; background-color: #f4f4f4; }
+            h1 { color: #005f73; border-bottom: 2px solid #005f73; padding-bottom: 10px; text-align: center; }
+            h3 { background-color: #e9c46a; padding: 10px; border-radius: 5px; color: #264653; margin-top: 30px; margin-bottom: 15px; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
+            
+            /* Table Layout Styles */
+            table { width: 100%; border-collapse: separate; border-spacing: 10px; table-layout: fixed; }
+            td { width: 33.33%; vertical-align: top; background-color: #ffffff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+            
+            .article-title { font-size: 16px; font-weight: bold; margin-bottom: 10px; line-height: 1.3; height: 65px; overflow: hidden; }
+            .article-title a { text-decoration: none; color: #2a9d8f; }
+            .article-title a:hover { text-decoration: underline; color: #264653; }
+            
+            .article-meta { font-size: 11px; color: #888; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+            
+            /* Image removed as per user request */
+            
+            .article-summary { font-size: 13px; color: #555; line-height: 1.4; height: 100px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
+
+            .footer { margin-top: 40px; font-size: 12px; color: #999; text-align: center; border-top: 1px solid #ddd; padding-top: 20px;}
+            .btn-cta { display: inline-block; padding: 12px 24px; background-color: #e76f51; color: #ffffff !important; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0; }
             .center { text-align: center; }
         </style>
     </head>
     <body>
-        ${imageHtml}
-        <h1>Clipping de Prensa: Pesca en Chile</h1>
-        <p>Resumen diario de noticias - ${new Date().toLocaleDateString('es-CL')}</p>
-        <div class="center">
-            <a href="${APP_URL}" class="btn-cta">Ver Dashboard Online</a>
-        </div>
+        <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
+            ${imageHtml}
+            <h1>Noticias de Pesca y Acuicultura</h1>
+            <p style="text-align: center; color: #666;">Resumen diario - ${new Date().toLocaleDateString('es-CL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            <div class="center">
+                <a href="${APP_URL}" class="btn-cta">Ver Dashboard Completo</a>
+            </div>
     `;
 
     ORDERED_CATEGORIES.forEach(cat => {
         const catArticles = grouped[cat];
         if (catArticles && catArticles.length > 0) {
-            html += `<h3>${cat} (${catArticles.length})</h3>`;
-            catArticles.forEach(art => {
-                const dateStr = new Date(art.date).toLocaleDateString('es-CL');
+            html += `<h3>${cat}</h3>`;
 
-                // --- IMPROVED LINK LOGIC ---
-                // Always link to the article URL unless it's a manual image upload
-                const isManualImage = art.url.startsWith('/img/manual/') || /\.(jpg|jpeg|png|webp|gif|svg)$/i.test(art.url);
+            // Start Table
+            html += '<table role="presentation">';
 
-                let finalUrl = art.url;
-                if (isManualImage) {
-                    if (art.image && art.image !== '/placeholder-news.svg') {
-                        finalUrl = art.image.startsWith('http') ? art.image : `${APP_URL}${art.image.startsWith('/') ? '' : '/'}${art.image}`;
+            // Loop through articles in chunks of 3
+            for (let i = 0; i < catArticles.length; i += 3) {
+                html += '<tr>';
+
+                // Create 3 cells per row
+                for (let j = 0; j < 3; j++) {
+                    const art = catArticles[i + j];
+
+                    if (art) {
+                        const dateStr = new Date(art.date).toLocaleDateString('es-CL');
+
+                        // Link Logic
+                        const isManualImage = art.url.startsWith('/img/manual/') || /\.(jpg|jpeg|png|webp|gif|svg)$/i.test(art.url);
+                        let finalUrl = art.url;
+                        let imageUrl = art.image || '/placeholder-news.svg';
+
+                        if (imageUrl.startsWith('/')) {
+                            imageUrl = `${APP_URL}${imageUrl}`;
+                        }
+
+                        if (isManualImage) {
+                            if (art.image && art.image !== '/placeholder-news.svg') {
+                                finalUrl = imageUrl;
+                            }
+                        }
+
+                        // Ensure relative URLs are prefixed
+                        if (finalUrl.startsWith('/')) {
+                            finalUrl = `${APP_URL}${finalUrl}`;
+                        }
+
+                        html += `
+                        <td>
+                            <div class="article-title">
+                                <a href="${finalUrl}">${art.title}</a>
+                            </div>
+                            <div class="article-meta">
+                                ${art.source} | ${dateStr}
+                            </div>
+                            <div class="article-summary">
+                                ${art.summary || 'Sin resumen disponible.'}
+                            </div>
+                        </td>`;
+                    } else {
+                        // Empty cell for spacing preservation
+                        html += '<td style="background-color: transparent; box-shadow: none;"></td>';
                     }
                 }
-
-                // Ensure relative URLs are prefixed with APP_URL
-                if (finalUrl.startsWith('/')) {
-                    finalUrl = `${APP_URL}${finalUrl}`;
-                }
-                // -----------------------------
-
-                html += `
-                <div class="article">
-                    <h2><a href="${finalUrl}">${art.title}</a></h2>
-                    <div class="meta">${art.source} | ${dateStr}</div>
-                    <div class="summary">${art.summary || ''}</div>
-                </div>`;
-            });
+                html += '</tr>';
+            }
+            html += '</table>';
         }
     });
 
     html += `
-        <div class="footer">
-            Este es un correo automático generado por <a href="${APP_URL}">Clipping App</a>.
+            <div class="footer">
+                <p>Este reporte ha sido generado automáticamente por <strong>Clipping App</strong>.</p>
+                <p><a href="${APP_URL}" style="color: #2a9d8f;">Gestione sus suscripciones aquí</a></p>
+            </div>
         </div>
     </body>
     </html>
