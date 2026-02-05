@@ -56,6 +56,8 @@ const createRawEmail = (to, subject, htmlBody, bcc = []) => {
         messageParts.push(`Bcc: ${bcc.join(', ')}`);
     }
 
+    const encodedHtmlBody = Buffer.from(htmlBody).toString('base64').match(/.{1,76}/g).join('\r\n');
+
     messageParts.push(
         '',
         `--${boundary}`,
@@ -66,9 +68,9 @@ const createRawEmail = (to, subject, htmlBody, bcc = []) => {
         '',
         `--${boundary}`,
         'Content-Type: text/html; charset=UTF-8',
-        'Content-Transfer-Encoding: quoted-printable',
+        'Content-Transfer-Encoding: base64',
         '',
-        htmlBody,
+        encodedHtmlBody,
         '',
         `--${boundary}--`
     );
@@ -177,13 +179,11 @@ const generateHtml = (articles) => {
                 const dateStr = new Date(art.date).toLocaleDateString('es-CL');
 
                 // --- IMPROVED LINK LOGIC ---
-                // If it's a manual image link or from a restricted source like El Mercurio, link to the image
-                const RESTRICTED_DOMAINS = ['elmercurio.com', 'lasegunda.com'];
+                // Always link to the article URL unless it's a manual image upload
                 const isManualImage = art.url.startsWith('/img/manual/') || /\.(jpg|jpeg|png|webp|gif|svg)$/i.test(art.url);
-                const isRestricted = art.source === 'El Mercurio' || RESTRICTED_DOMAINS.some(d => art.url.includes(d));
 
                 let finalUrl = art.url;
-                if (isManualImage || isRestricted) {
+                if (isManualImage) {
                     if (art.image && art.image !== '/placeholder-news.svg') {
                         finalUrl = art.image.startsWith('http') ? art.image : `${APP_URL}${art.image.startsWith('/') ? '' : '/'}${art.image}`;
                     }
