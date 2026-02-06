@@ -1,6 +1,11 @@
 module.exports = {
     name: 'Pesca & Acuicultura',
-    keywords: ['pesca', 'pescador', 'salmonicultura', 'acuicultura', 'marítimo', 'sernapesca', 'subpesca'],
+    keywords: [
+        'pesca', 'pescador', 'salmonicultura', 'acuicultura', 'marítimo', 'sernapesca', 'subpesca',
+        'pesquera', 'fraccionamiento', 'camanchaca', 'blumar', 'daniel mas', 'subsecretario de pesca',
+        'pescadores industriales del biobío', 'macarena cepeda', 'sonapesca', 'ministerio de economía',
+        'ministro de economía', 'fipes'
+    ],
     categories: {
         'Pesca Artesanal': ['artesanal', 'conapach', 'confepach', 'caleta', 'pescador artesanal'],
         'Cultivos y Áreas de Manejo': ['área de manejo', 'amerb', 'cultivo', 'alga', 'mitilicultura'],
@@ -225,6 +230,14 @@ module.exports = {
             titleSelector: 'h2.entry-title a',
             linkSelector: 'h2.entry-title a',
             summarySelector: '.post-content p, .et_pb_post_content p'
+        },
+        {
+            name: 'La Nalhue Noticias',
+            url: 'https://www.lanalhuenoticias.cl/index.php',
+            selector: 'article, .post, h2, h3',
+            titleSelector: 'a',
+            linkSelector: 'a',
+            summarySelector: 'p'
         },
         {
             name: 'El Mercurio Beta',

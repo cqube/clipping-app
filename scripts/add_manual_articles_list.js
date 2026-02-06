@@ -10,8 +10,8 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const SLIDER_FILE = path.join(__dirname, '../public/slider-pesca.json');
 
 const TARGET_URLS = [
-    'https://www.biobiochile.cl/noticias/opinion/cartas-al-director/2026/01/21/nombramientos-en-economia-defensa-y-hacienda-un-balde-de-agua-fria-para-la-pesca-artesanal.shtml',
-    'https://eldesconcierto.cl/2026/01/21/pesca-artesanal-pide-considerar-excepciones-ante-caducidad-de-registro-pesquero-mas-de-12-mil-quedarian-sin-trabajo'
+    'https://www.mundoacuicola.cl/new/blumar-se-suma-a-camanchaca-y-anuncia-demanda-al-estado-por-ley-de-fraccionamiento/',
+    'https://www.biobiochile.cl/noticias/economia/negocios-y-empresas/2026/02/05/otra-pesquera-a-tribunales-blumar-se-suma-a-camanchaca-y-demandara-al-estado-por-fraccionamiento.shtml'
 ];
 
 const HEADERS = {
