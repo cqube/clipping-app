@@ -1,9 +1,10 @@
 # Cómo Mantener el Clipping App Activo
 
 ## Estado Actual
-✅ La aplicación está corriendo en segundo plano  
-✅ Scheduler configurado: Scraper 07:00 AM | Email 07:55 AM (Lun-Vie)  
+✅ La aplicación ha sido reiniciada y el programador está activo.
+✅ Scheduler configurado: Scraper 07:00 AM | Email 08:15 AM (Diario)
 ✅ Puerto: 3000
+✅ Conexión robusta implementada (SRV fallback)
 
 ## Verificar si está corriendo
 

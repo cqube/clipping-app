@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 async function main() {
     console.log('--- Manual Clipping Send ---');
 
-    const MONGODB_URI = "mongodb://cristianquevedo_db_user:1SrGCb53YWAbI9va@ac-5bpvqmy-shard-00-00.mm28t6i.mongodb.net:27017,ac-5bpvqmy-shard-00-01.mm28t6i.mongodb.net:27017,ac-5bpvqmy-shard-00-02.mm28t6i.mongodb.net:27017/?ssl=true&authSource=admin";
+    const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/clipping-prensa';
     await mongoose.connect(MONGODB_URI);
     console.log('✅ Connected to MongoDB');
 

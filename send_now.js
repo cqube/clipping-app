@@ -6,7 +6,20 @@ const mongoose = require('mongoose');
 const Article = require('./models/Article');
 
 const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/clipping-prensa';
+
+// Try SRV connection first, fallback to direct connection if DNS fails
+let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/clipping-prensa';
+const isSrvConnection = MONGODB_URI.startsWith('mongodb+srv://');
+let directConnectionUri = null;
+
+if (isSrvConnection) {
+    const match = MONGODB_URI.match(/mongodb\+srv:\/\/([^:]+):([^@]+)@([^\/]+)(\/.*)?(\?.*)?$/);
+    if (match) {
+        const [, username, password, cluster, dbPath, queryParams] = match;
+        directConnectionUri = `mongodb://${username}:${password}@ac-5bpvqmy-shard-00-00.mm28t6i.mongodb.net:27017,ac-5bpvqmy-shard-00-01.mm28t6i.mongodb.net:27017,ac-5bpvqmy-shard-00-02.mm28t6i.mongodb.net:27017${dbPath || '/test'}?replicaSet=atlas-wgzqsf-shard-0&ssl=true&authSource=admin`;
+    }
+}
+
 const APP_URL = process.env.APP_URL || process.env.APP_CURL || 'https://clipping-app-production.up.railway.app';
 
 const getGmailClient = () => {
@@ -21,8 +34,24 @@ const getGmailClient = () => {
 const encodeBase64 = (str) => Buffer.from(str).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 
 async function send() {
-    await mongoose.connect(MONGODB_URI);
-    console.log('✅ Connected to MongoDB');
+    try {
+        await mongoose.connect(MONGODB_URI, {
+            serverSelectionTimeoutMS: 10000,
+            connectTimeoutMS: 10000
+        });
+        console.log('✅ Connected to MongoDB via SRV');
+    } catch (srvError) {
+        if (directConnectionUri && (srvError.code === 'ETIMEOUT' || srvError.message.includes('queryTxt'))) {
+            console.log('⚠️ SRV connection failed with DNS timeout, trying direct connection...');
+            await mongoose.connect(directConnectionUri, {
+                serverSelectionTimeoutMS: 10000,
+                connectTimeoutMS: 10000
+            });
+            console.log('✅ Connected to MongoDB via direct hosts');
+        } else {
+            throw srvError;
+        }
+    }
 
     const recipients = JSON.parse(fs.readFileSync(RECIPIENTS_FILE, 'utf8'));
 

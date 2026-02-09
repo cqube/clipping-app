@@ -14,17 +14,28 @@ const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB - Choose between Atlas (env) or Local (fallback)
 const rawUri = process.env.MONGODB_URI || process.env.MONGODB_URL;
+
 if (!rawUri) {
     console.warn('⚠️  MONGODB_URI is not defined in environment variables.');
-    if (process.env.NODE_ENV === 'production') {
-        console.error('❌ CRITICAL: Running in production without MONGODB_URI. This will likely fail.');
-    }
 } else {
     const maskedUri = rawUri.replace(/:([^@]+)@/, ':****@'); // Hide password
     console.log(`📡 MongoDB Connection String detected: ${maskedUri.startsWith('mongodb+srv') ? 'Atlas URI' : 'Standard URI'}`);
 }
 
 const MONGODB_URI = rawUri || 'mongodb://localhost:27017/clipping-prensa';
+
+// Prepare direct connection fallback for SRV
+const isSrvConnection = MONGODB_URI.startsWith('mongodb+srv://');
+let directConnectionUri = null;
+
+if (isSrvConnection) {
+    const match = MONGODB_URI.match(/mongodb\+srv:\/\/([^:]+):([^@]+)@([^\/]+)(\/.*)?(\?.*)?$/);
+    if (match) {
+        const [, username, password, cluster, dbPath, queryParams] = match;
+        directConnectionUri = `mongodb://${username}:${password}@ac-5bpvqmy-shard-00-00.mm28t6i.mongodb.net:27017,ac-5bpvqmy-shard-00-01.mm28t6i.mongodb.net:27017,ac-5bpvqmy-shard-00-02.mm28t6i.mongodb.net:27017${dbPath || '/test'}?replicaSet=atlas-wgzqsf-shard-0&ssl=true&authSource=admin`;
+    }
+}
+
 const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
 const ARTICLES_FILE = path.join(__dirname, 'data/latest_articles.json');
 let isScraping = false;
@@ -34,13 +45,11 @@ let lastDbError = null;
 // Connect to MongoDB with improved options
 const connectDB = async () => {
     try {
-        console.log('⏳ Connecting to MongoDB Atlas...');
+        console.log('⏳ Connecting to MongoDB...');
         lastDbError = null;
 
-        // Setup event listeners before connecting
-        mongoose.connection.on('disconnected', () => {
-            console.log('⚠️ MongoDB disconnected.');
-        });
+        // Setup event listeners
+        mongoose.connection.on('disconnected', () => console.log('⚠️ MongoDB disconnected.'));
         mongoose.connection.on('reconnected', () => {
             console.log('✅ MongoDB reconnected.');
             lastDbError = null;
@@ -50,15 +59,32 @@ const connectDB = async () => {
             lastDbError = err.message;
         });
 
-        await mongoose.connect(MONGODB_URI, {
-            serverSelectionTimeoutMS: 15000,
-            heartbeatFrequencyMS: 2000,
-            bufferCommands: false, // Disable buffering to avoid 10s hangs
-        });
-        console.log('✅ Connected to MongoDB Atlas');
+        try {
+            await mongoose.connect(MONGODB_URI, {
+                serverSelectionTimeoutMS: 15000,
+                heartbeatFrequencyMS: 2000,
+                bufferCommands: false,
+            });
+            console.log('✅ Connected to MongoDB via SRV');
+        } catch (srvError) {
+            if (directConnectionUri && (srvError.code === 'ETIMEOUT' || srvError.message.includes('queryTxt'))) {
+                console.log('⚠️ SRV connection failed, trying direct connection...');
+                await mongoose.connect(directConnectionUri, {
+                    serverSelectionTimeoutMS: 15000,
+                    heartbeatFrequencyMS: 2000,
+                    bufferCommands: false,
+                });
+                console.log('✅ Connected to MongoDB via direct hosts');
+            } else {
+                throw srvError;
+            }
+        }
+
         lastDbError = null;
+        // Initialize scheduler ONLY after successful connection
+        initScheduler();
     } catch (err) {
-        console.error('❌ MongoDB Connection Error during startup:', err);
+        console.error('❌ MongoDB Connection Error:', err);
         lastDbError = err.message;
     }
 };
@@ -332,11 +358,9 @@ const startApp = () => {
         console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
     });
 
-    // 2. Connect to MongoDB & Init Scheduler in background
-    connectDB().then(() => {
-        initScheduler();
-    }).catch(err => {
-        console.error('❌ Failed to connect to DB during background startup:', err);
+    // 2. Connect to MongoDB in background
+    connectDB().catch(err => {
+        console.error('❌ Critical failure during startup:', err);
     });
 };
 

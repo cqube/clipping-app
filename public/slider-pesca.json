@@ -1,5 +1,20 @@
 [
   {
+    "imageUrl": "https://media.biobiochile.cl/wp-content/uploads/2026/02/social-otra-pesquera-a-tribunales-blumar-se-suma-a-camanchaca-y-demandara-al-estado-por-fraccionamiento.png",
+    "linkUrl": "https://www.biobiochile.cl/noticias/economia/negocios-y-empresas/2026/02/05/otra-pesquera-a-tribunales-blumar-se-suma-a-camanchaca-y-demandara-al-estado-por-fraccionamiento.shtml",
+    "altText": "Otra pesquera a tribunales: Blumar se suma a Camanchaca y demandará al Estado por fraccionamiento"
+  },
+  {
+    "imageUrl": "https://www.mundoacuicola.cl/new/wp-content/uploads/2025/11/BlumarQ3.jpg",
+    "linkUrl": "https://www.mundoacuicola.cl/new/blumar-se-suma-a-camanchaca-y-anuncia-demanda-al-estado-por-ley-de-fraccionamiento/",
+    "altText": "Blumar se suma a Camanchaca y anuncia demanda al Estado por Ley de Fraccionamiento - Mundoacuicola"
+  },
+  {
+    "imageUrl": "img/fishing-banner.jpg",
+    "linkUrl": "https://www.diarioconstitucional.cl/2026/02/06/tribunal-constitucional-rechaza-inaplicabilidad-y-reafirma-improcedencia-del-abandono-del-procedimiento-en-causas-por-infracciones-a-la-ley-de-pesca/",
+    "altText": "Tribunal Constitucional rechaza inaplicabilidad y reafirma improcedencia del abandono del procedimiento en causas por infracciones a la Ley de Pesca"
+  },
+  {
     "imageUrl": "/img/manual/respuesta-camanchaca.png",
     "linkUrl": "https://www.mundoacuicola.cl/new/hernan-cortes-respuesta-a-camanchaca-es-inmoral-y-una-verguenza-nacional/",
     "altText": "Respuesta a Camanchaca - Hernán Cortés CONDEPP"
@@ -18,20 +33,5 @@
     "imageUrl": "https://media-front.elmostrador.cl/2025/03/pag-13-pesca-industrial-foto-diario-constitucional-cl-850x500-1-700x412.jpg",
     "linkUrl": "https://www.elmostrador.cl/noticias/pais/2026/01/27/incertidumbre-en-pesqueros-artesanales-por-gabinete-de-kast-y-magro-balance-del-gobierno-actual/",
     "altText": "Incertidumbre en pesqueros artesanales por gabinete de Kast y magro balance del gobierno actual"
-  },
-  {
-    "imageUrl": "https://www.ciperchile.cl/wp-content/uploads/A_UNO_1468846-scaled.jpg",
-    "linkUrl": "https://www.ciperchile.cl/2026/01/26/mineras-y-pesqueras-recibieron-6-700-millones-en-subsidios-pese-a-prohibicion-legal/",
-    "altText": "Mineras y pesqueras recibieron $6.700 millones en subsidios pese a prohibición legal"
-  },
-  {
-    "imageUrl": "https://eldesconcierto.cl/img/asset/Y2xvdWRfbWVkaWEvMjkwNTQtYS11bm8tMTI1NTk3MC53ZWJw/29054-a-uno-1255970.webp?p=seo_pro_og&s=aa0d5349437b6e2e084956354632c048",
-    "linkUrl": "https://eldesconcierto.cl/2026/01/21/pesca-artesanal-pide-considerar-excepciones-ante-caducidad-de-registro-pesquero-mas-de-12-mil-quedarian-sin-trabajo",
-    "altText": "Pesca artesanal pide considerar excepciones ante caducidad de registro pesquero: Más de 12 mil quedarían sin trabajo"
-  },
-  {
-    "imageUrl": "https://media.biobiochile.cl/wp-content/uploads/2026/01/social-nombramientos-economia-defensa-hacienda-un-balde-agua-fria-para-pesca-artesanal.png",
-    "linkUrl": "https://www.biobiochile.cl/noticias/opinion/cartas-al-director/2026/01/21/nombramientos-en-economia-defensa-y-hacienda-un-balde-de-agua-fria-para-la-pesca-artesanal.shtml",
-    "altText": "Nombramientos en Economía, Defensa y Hacienda: un balde de agua fría para la pesca artesanal"
   }
 ]

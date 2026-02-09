@@ -23,11 +23,11 @@ const initScheduler = () => {
         'America/Santiago'
     );
 
-    // Job 2: Email at 07:45 AM (Daily)
+    // Job 2: Email at 08:15 AM (Daily)
     const emailJob = new CronJob(
-        '45 7 * * *',
+        '15 8 * * *',
         async function () {
-            console.log('Running scheduled email send (07:45 AM)...');
+            console.log('Running scheduled email send (08:15 AM)...');
             try {
                 await sendDailyClipping();
                 console.log('Scheduled email sent.');

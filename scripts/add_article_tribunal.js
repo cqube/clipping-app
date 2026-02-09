@@ -8,7 +8,7 @@ const Article = require('../models/Article');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const SLIDER_FILE = path.join(__dirname, '../public/slider-pesca.json');
-const TARGET_URL = 'https://www.diarioconstitucional.cl/2026/02/06/tribunal-constitucional-rechaza-inaplicabilidad-y-reafirma-improcedencia-del-abandono-del-procedimiento-en-causas-por-infracciones-a-la-ley-de-pesca/';
+const TARGET_URL = 'https://www.latercera.com/politica/noticia/quienes-son-los-subsecretarios-de-kast/';
 
 const HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
@@ -36,17 +36,17 @@ async function main() {
         console.warn(`⚠️ Scraping failed: ${error.message}. Using fallback data.`);
 
         // Fallback data
-        title = "Tribunal Constitucional rechaza inaplicabilidad y reafirma improcedencia del abandono del procedimiento en causas por infracciones a la Ley de Pesca";
-        summary = "El Tribunal Constitucional rechazó un requerimiento de inaplicabilidad por inconstitucionalidad respecto del artículo 23 de la Ley N° 19.880.";
+        title = "Quiénes son los subsecretarios de Kast";
+        summary = "El presidente electo José Antonio Kast presentó a su equipo de subsecretarios que lo acompañarán en su gobierno.";
         image = null; // Will use default
 
         console.log('Using Fallback Info:');
         console.log('  Title:', title);
     }
 
-    const source = 'Diario Constitucional';
+    const source = 'La Tercera';
     const date = new Date(); // Current date for "most recent"
-    const category = 'Ley de Pesca';
+    const category = 'Sector Pesquero';
     const clientId = 'pesca';
 
     if (!title) {
