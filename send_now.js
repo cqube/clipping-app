@@ -70,7 +70,7 @@ async function send() {
 
     // Group by category
     const grouped = {};
-    const ORDERED_CATS = ['Pesca Artesanal', 'Pesca Industrial', 'Ley de Pesca', 'Sector Pesquero', 'Cultivos y Áreas de Manejo', 'Salmoneras', 'Otros'];
+    const ORDERED_CATS = ['Pesca Artesanal', 'Pesca Industrial', 'Ley de Pesca', 'Sector Pesquero', 'Cultivos y Áreas de Manejo', 'Salmoneras', 'Autoridades y Gabinete', 'Otros'];
 
     articles.forEach(a => {
         const cat = a.category || 'Otros';

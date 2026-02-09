@@ -4,7 +4,7 @@ module.exports = {
         'pesca', 'pescador', 'salmonicultura', 'acuicultura', 'marítimo', 'sernapesca', 'subpesca',
         'pesquera', 'fraccionamiento', 'camanchaca', 'blumar', 'daniel mas', 'subsecretario de pesca',
         'pescadores industriales del biobío', 'macarena cepeda', 'sonapesca', 'ministerio de economía',
-        'ministro de economía', 'fipes'
+        'ministro de economía', 'fipes', 'osvalo urrutia', 'osvaldo urrutia', 'subsecretearía de pesca'
     ],
     categories: {
         'Pesca Artesanal': ['artesanal', 'conapach', 'confepach', 'caleta', 'pescador artesanal'],
@@ -14,7 +14,8 @@ module.exports = {
         'Pais y Sector Empresarial': ['empresarial', 'economía', 'exportación', 'mercado', 'industria', 'gremio'],
         'Pesca Industrial': ['industrial', 'sonapesca', 'asipes', 'pesca industrial', 'camanchaca', 'blumar'],
         'Salmoneras': ['salmón', 'salmonera', 'salmonicultura', 'salmonero', 'australis', 'aqua'],
-        'Innovación Acuícola': ['innovación', 'tecnología', 'investigación', 'desarrollo', 'ciencia']
+        'Innovación Acuícola': ['innovación', 'tecnología', 'investigación', 'desarrollo', 'ciencia'],
+        'Autoridades y Gabinete': ['ministro de economía', 'subsecretearía de pesca', 'subsecretaría de pesca', 'osvalo urrutia', 'osvaldo urrutia']
     },
     rssFeeds: [
         'https://www.diarioeldia.cl/rss/noticias',

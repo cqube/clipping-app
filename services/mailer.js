@@ -134,6 +134,7 @@ const generateHtml = (articles) => {
         'Pais y Sector Empresarial',
         'Salmoneras',
         'Innovación Acuícola',
+        'Autoridades y Gabinete',
         'Economía',
         'Otros'
     ];
