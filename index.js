@@ -321,7 +321,7 @@ app.get('/api/last-update', ensureConnected, async (req, res) => {
 app.post('/api/send-email', protectAdmin, async (req, res) => {
     try {
         const { sendDailyClipping } = require('./services/mailer');
-        console.log('Manual email send requested via API...');
+        console.log(`Manual email send requested via API for ${CLIENT_ID}...`);
 
         // Send email with "ACTUALIZACION" prefix for manual sends
         const date = new Date();
@@ -330,15 +330,20 @@ app.post('/api/send-email', protectAdmin, async (req, res) => {
         const day = date.getDate();
         const year = date.getFullYear();
         const formattedDate = `${month} ${day}, ${year}`;
-        const subject = `ACTUALIZACION: NOTICIAS DE PESCA - ${formattedDate}`;
+        const subject = `ACTUALIZACION: NOTICIAS DE ${CLIENT_ID.toUpperCase()} - ${formattedDate}`;
 
-        await sendDailyClipping(subject);
+        await sendDailyClipping(CLIENT_ID, subject);
 
         console.log('Manual email sent successfully');
         res.json({ success: true, message: 'Email sent successfully' });
     } catch (err) {
         console.error('Error sending manual email:', err);
-        res.status(500).json({ error: err.message, details: 'Check server logs for more info.' });
+        // Return full error message and details to help frontend debugging
+        res.status(500).json({
+            success: false,
+            error: err.message,
+            details: err.stack ? 'See server logs for stack trace' : 'Check server configuration (GMAIL credentials, MongoDB, etc.)'
+        });
     }
 });
 

@@ -179,23 +179,73 @@ const fetchArticleMetadata = async (url) => {
         // --- DATE EXTRACTION ---
         let date = null;
 
-        // Try standard meta tags
-        const dateMeta = $('meta[property="article:published_time"]').attr('content') ||
-            $('meta[name="date"]').attr('content') ||
-            $('meta[name="pubdate"]').attr('content') ||
-            $('meta[name="publish-date"]').attr('content') ||
-            $('time').attr('datetime');
+        // 1. Try JSON-LD (often the most accurate for modern sites)
+        $('script[type="application/ld+json"]').each((i, el) => {
+            if (date) return; // Stop if we already found a date
+            try {
+                const json = JSON.parse($(el).html());
+                const findDate = (obj) => {
+                    if (!obj || typeof obj !== 'object') return null;
+                    // Common fields in Schema.org Article/NewsArticle
+                    if (obj.datePublished) return obj.datePublished;
+                    if (obj.dateModified) return obj.dateModified;
+                    if (obj['@graph'] && Array.isArray(obj['@graph'])) {
+                        for (const g of obj['@graph']) {
+                            const d = findDate(g);
+                            if (d) return d;
+                        }
+                    }
+                    return null;
+                };
+                const ldDate = findDate(json);
+                if (ldDate) {
+                    const parsed = new Date(ldDate);
+                    if (!isNaN(parsed.getTime())) {
+                        date = parsed;
+                    }
+                }
+            } catch (e) {
+                // Ignore parse errors for specific script blocks
+            }
+        });
 
-        if (dateMeta) {
-            date = new Date(dateMeta);
+        // 2. Try standard meta tags
+        if (!date) {
+            const dateMeta = $('meta[property="article:published_time"]').attr('content') ||
+                $('meta[property="og:published_time"]').attr('content') ||
+                $('meta[name="date"]').attr('content') ||
+                $('meta[name="pubdate"]').attr('content') ||
+                $('meta[name="publish-date"]').attr('content') ||
+                $('meta[name="dc.date"]').attr('content') ||
+                $('meta[name="DC.date"]').attr('content') ||
+                $('meta[name="DC.date.issued"]').attr('content') ||
+                $('time[datetime]').attr('datetime') ||
+                $('time[pubdate]').attr('datetime');
+
+            if (dateMeta) {
+                const parsed = new Date(dateMeta);
+                if (!isNaN(parsed.getTime())) {
+                    date = parsed;
+                }
+            }
         }
 
-        // If invalid date or no meta date, try extracting from URL
+        // 3. Try to extract from URL if still no date
         if (!date || isNaN(date.getTime())) {
             const urlDate = extractDateFromUrl(url);
             if (urlDate) {
                 date = urlDate;
-                // console.log(`    Extracted date from URL: ${date.toLocaleDateString()} for ${url}`);
+            }
+        }
+
+        // 4. Try specific site patterns (like Aqua.cl)
+        if (!date && url.includes('aqua.cl')) {
+            const aquaDateText = $('.post-meta .updated').text() || $('.entry-date').text();
+            if (aquaDateText) {
+                // Aqua often uses Spanish date formats or ISO in text
+                // This is a broad fallback, better to rely on LD-JSON or Meta if possible
+                const parsed = new Date(aquaDateText);
+                if (!isNaN(parsed.getTime())) date = parsed;
             }
         }
 

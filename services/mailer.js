@@ -258,8 +258,8 @@ const generateHtml = (articles) => {
     return html;
 };
 
-const sendDailyClipping = async (customSubject = null) => {
-    console.log('Preparing daily clipping email (Gmail API)...');
+const sendDailyClipping = async (clientId = 'pesca', customSubject = null) => {
+    console.log(`Preparing daily clipping email for ${clientId} (Gmail API)...`);
 
     // 1. Get recipients
     const recipients = getRecipients();
@@ -273,7 +273,7 @@ const sendDailyClipping = async (customSubject = null) => {
     cutoff.setDate(cutoff.getDate() - 4);
 
     try {
-        const articles = await Article.find().sort({ date: -1 }).limit(300);
+        const articles = await Article.find({ clientId }).sort({ date: -1 }).limit(300);
         let articlesToSend = articles.filter(a => new Date(a.date) > cutoff);
 
         if (process.env.FORCE_SEND_EMAIL === 'true' && articlesToSend.length === 0) {
@@ -320,6 +320,7 @@ const sendDailyClipping = async (customSubject = null) => {
 
     } catch (error) {
         console.error('Error sending email:', error);
+        throw error; // Rethrow to allow API to report the error
     }
 };
 

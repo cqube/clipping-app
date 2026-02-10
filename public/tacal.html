@@ -477,7 +477,10 @@
                 if (data.success) {
                     alert('¡Correos enviados exitosamente!');
                 } else {
-                    alert('Error al enviar correos: ' + (data.error || 'Error desconocido'));
+                    // Show full error details if available
+                    const errorMessage = data.error || 'Error desconocido';
+                    const errorDetails = data.details ? `\n\nDetalles:\n${data.details}` : '';
+                    alert('Error al enviar correos: ' + errorMessage + errorDetails);
                 }
             } catch (err) {
                 console.error('Error sending emails:', err);
