@@ -10,12 +10,12 @@ module.exports = {
         'Pesca Artesanal': ['artesanal', 'conapach', 'confepach', 'caleta', 'pescador artesanal'],
         'Cultivos y Áreas de Manejo': ['área de manejo', 'amerb', 'cultivo', 'alga', 'mitilicultura'],
         'Ley de Pesca': ['ley de pesca', 'fraccionamiento', 'parlamento', 'congreso', 'legislación', 'diputados', 'senado', 'comisión de pesca'],
+        'Autoridades y Gabinete': ['ministro de economía', 'subsecretearía de pesca', 'subsecretaría de pesca', 'osvalo urrutia', 'osvaldo urrutia'],
         'Sector Pesquero': ['sector pesquero', 'subpesca', 'sernapesca', 'consejo nacional de pesca', 'fpa', 'indespa', 'institucionalidad'],
         'Pais y Sector Empresarial': ['empresarial', 'economía', 'exportación', 'mercado', 'industria', 'gremio'],
         'Pesca Industrial': ['industrial', 'sonapesca', 'asipes', 'pesca industrial', 'camanchaca', 'blumar'],
         'Salmoneras': ['salmón', 'salmonera', 'salmonicultura', 'salmonero', 'australis', 'aqua'],
         'Innovación Acuícola': ['innovación', 'tecnología', 'investigación', 'desarrollo', 'ciencia'],
-        'Autoridades y Gabinete': ['ministro de economía', 'subsecretearía de pesca', 'subsecretaría de pesca', 'osvalo urrutia', 'osvaldo urrutia']
     },
     rssFeeds: [
         'https://www.diarioeldia.cl/rss/noticias',

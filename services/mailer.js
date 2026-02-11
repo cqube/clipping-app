@@ -129,12 +129,12 @@ const generateHtml = (articles) => {
         'Pesca Artesanal',
         'Pesca Industrial',
         'Ley de Pesca',
+        'Autoridades y Gabinete',
         'Sector Pesquero',
         'Cultivos y Áreas de Manejo',
         'Pais y Sector Empresarial',
         'Salmoneras',
         'Innovación Acuícola',
-        'Autoridades y Gabinete',
         'Economía',
         'Otros'
     ];
