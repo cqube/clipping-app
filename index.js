@@ -200,18 +200,21 @@ app.get('/api/articles', ensureConnected, async (req, res) => {
             .sort({ date: -1 })
             .limit(300);
 
-        // 2. Define Priority Order
+        // 2. Define Priority Order (based on requested rankings)
         const PRIORITY_SOURCES = [
-            'El Mercurio',
             'La Tercera',
+            'El Mercurio',
+            'Chilevision',
+            'El Mostrador',
+            'MEGA',
+            'La Cuarta',
+            'Tvn Chile',
+            'Meganoticias',
+            'La Nación',
+            'Las Últimas Noticias',
             'La Segunda',
             'BioBioChile', // Radio Biobío
-            'ADN Radio',
-            'El Desconcierto',
-            'Interferencia',
-            'T13',
-            '24 Horas',    // TVN
-            'Mega Noticias' // Meganoticias
+            'ADN Radio'
         ];
 
         // 1. Fallback/Merge: Always check the local file for potentially newer or missing news
@@ -239,12 +242,12 @@ app.get('/api/articles', ensureConnected, async (req, res) => {
             const dayB = dateB.toISOString().split('T')[0];
 
             if (dayA !== dayB) {
-                return dayB.localeCompare(dayA); // Newer day first
+                return dateB - dateA; // Newer date first (full timestamp comparison handles day difference too)
             }
 
             // Within the same day, check priority
-            const indexA = PRIORITY_SOURCES.indexOf(a.source);
-            const indexB = PRIORITY_SOURCES.indexOf(b.source);
+            const indexA = PRIORITY_SOURCES.findIndex(s => a.source.includes(s));
+            const indexB = PRIORITY_SOURCES.findIndex(s => b.source.includes(s));
 
             if (indexA !== -1 && indexB !== -1) {
                 if (indexA !== indexB) return indexA - indexB; // Lower index = higher priority

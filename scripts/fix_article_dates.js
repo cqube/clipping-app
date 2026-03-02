@@ -88,10 +88,7 @@ async function fixDates() {
         // Look for articles created in the last 48 hours that might have wrong dates
         // Or specific domains like aqua.cl
         const articles = await Article.find({
-            $or: [
-                { createdAt: { $gte: new Date(Date.now() - 48 * 60 * 60 * 1000) } },
-                { url: /aqua\.cl/ }
-            ]
+            createdAt: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) }
         });
 
         console.log(`Checking ${articles.length} articles...`);

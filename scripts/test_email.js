@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { sendConfirmationEmail } = require('../services/mailer');
 
-const TEST_EMAIL = 'cquevedo@factorestrategico.cl';
+const TEST_EMAIL = 'pescaboletin@gmail.com';
 
 console.log(`Attempting to send test email to ${TEST_EMAIL}...`);
 
