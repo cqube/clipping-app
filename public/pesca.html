@@ -63,6 +63,13 @@
                 <div class="slider-dots" id="slider-dots"></div>
             </div>
 
+            <div class="media-summary-section" id="media-summary-section" style="display: none;">
+                <h3 class="summary-title">Resumen por Medio</h3>
+                <div class="media-summary-container" id="media-summary">
+                    <!-- Media pills injected by JS -->
+                </div>
+            </div>
+
             <h2 class="section-title">Últimas Noticias</h2>
 
             <div id="loading" class="loading-state">
@@ -117,6 +124,11 @@
         const scrapeBtn = document.getElementById('scrapeBtn');
         const statusBar = document.getElementById('status-bar'); // Changed from statusSpan
         const loadingDiv = document.getElementById('loading');
+        const mediaSummarySection = document.getElementById('media-summary-section');
+        const mediaSummaryDiv = document.getElementById('media-summary');
+
+        let allArticles = [];
+        let currentFilter = 'all';
 
         // Email UI elements
         const manageEmailsBtn = document.getElementById('manageEmailsBtn');
@@ -244,193 +256,17 @@
             loadingDiv.style.display = 'flex';
             dashboardDiv.innerHTML = '';
             statusBar.textContent = '';
+            mediaSummarySection.style.display = 'none';
 
             try {
                 const res = await fetch('/api/articles');
                 if (!res.ok) throw new Error(`HTTP Error ${res.status}`);
 
                 const articles = await res.json();
+                allArticles = articles; // Store for filtering
 
-                // 1. Filter: Only Chile
-                const CHILEAN_DOMAINS = [
-                    '.cl',
-                    'latercera.com',
-                    'emol.com',
-                    'cnnchile.com',
-                    'meganoticias.cl',
-                    '24horas.cl',
-                    't13.cl',
-                    'chvnoticias.cl',
-                    'elmostrador.cl',
-                    'biobiochile.cl',
-                    'cooperativa.cl',
-                    'adnradio.cl',
-                    'df.cl',
-                    'pulso.cl',
-                    'latercera.com',
-                    'elmercurio.com',
-                    'lasegunda.com',
-                    'theclinic.cl',
-                    'elciudadano.com',
-                    'ciperchile.cl',
-                    'interferencia.cl',
-                    'eldesconcierto.cl'
-                ];
-
-                const isChilean = (art) => {
-                    const text = (art.title + ' ' + (art.summary || '') + ' ' + (art.source || '')).toLowerCase();
-                    const hasChileMention = text.includes('chile');
-
-                    let isChileanDomain = false;
-                    try {
-                        if (art.url) {
-                            const domain = new URL(art.url).hostname.replace('www.', '');
-                            isChileanDomain = CHILEAN_DOMAINS.some(d => domain.endsWith(d));
-                        }
-                    } catch (e) { }
-
-                    return hasChileMention || isChileanDomain;
-                };
-
-                const filteredArticles = articles.filter(isChilean);
-
-                if (filteredArticles.length === 0) {
-                    dashboardDiv.innerHTML = `
-                        <div class="empty-state">
-                            <i class="fa-regular fa-newspaper"></i>
-                            <p>No hay noticias almacenadas.</p>
-                            <button onclick="document.getElementById('scrapeBtn').click()" class="btn btn-link">Actualizar ahora</button>
-                        </div>
-                    `;
-                    return;
-                }
-
-                // Group by category
-                const grouped = {};
-
-                // Virtual Category: Más recientes 
-                // ONLY from: PESCA ARTESANAL, PESCA INDUSTRIAL, LEY DE PESCA, SECTOR PESQUERO, PAIS Y SECTOR EMPRESARIAL
-                const RECENT_ALLOWED_CATEGORIES = [
-                    'Pesca Artesanal',
-                    'Pesca Industrial',
-                    'Ley de Pesca',
-                    'Sector Pesquero',
-                    'Pais y Sector Empresarial'
-                ];
-
-                const recentCandidates = filteredArticles.filter(art =>
-                    RECENT_ALLOWED_CATEGORIES.includes(art.category)
-                );
-
-                grouped['Más recientes'] = recentCandidates.slice(0, 6);
-
-                filteredArticles.forEach(art => {
-                    const cat = art.category || 'Otros';
-                    if (!grouped[cat]) grouped[cat] = [];
-                    grouped[cat].push(art);
-                });
-
-                // Render in order
-                ORDERED_CATEGORIES.forEach(cat => {
-                    const catArticles = grouped[cat];
-                    if (catArticles && catArticles.length > 0) {
-                        // 1. Sort by date desc (Newest first)
-                        catArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                        const section = document.createElement('section');
-                        section.className = 'category-section';
-
-                        const header = document.createElement('div');
-                        header.className = 'category-header';
-                        header.innerHTML = `<h3>${cat}</h3><span class="badge">${catArticles.length}</span>`;
-                        section.appendChild(header);
-
-                        const articlesContainer = document.createElement('div');
-                        articlesContainer.className = 'category-articles';
-
-                        // 2. Split into visible and hidden
-                        const visibleArticles = catArticles.slice(0, 6);
-                        const hiddenArticles = catArticles.slice(6);
-
-                        // Helper to Create Card
-                        const createCard = (art) => {
-                            const artCard = document.createElement('article');
-                            artCard.className = 'news-card';
-
-                            // Format date
-                            const dateObj = new Date(art.date);
-                            const dateStr = dateObj.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' });
-
-                            // Domain extraction
-                            let domain = art.source || 'Fuente desconocida';
-                            try {
-                                if (art.url) {
-                                    const urlObj = new URL(art.url);
-                                    domain = urlObj.hostname.replace('www.', '');
-                                }
-                            } catch (e) { }
-
-                            artCard.innerHTML = `
-                                <div class="card-meta">
-                                    <span class="card-source">${domain}</span>
-                                    <span class="card-date">${dateStr}</span>
-                                </div>
-                                <h4 class="card-title"><a href="${art.url}" target="_blank">${art.title}</a></h4>
-                                <p class="card-summary">${art.summary || ''}</p>
-                                <div class="card-actions">
-                                    <a href="${art.url}" target="_blank" class="read-more">Leer nota <i class="fa-solid fa-arrow-right-long"></i></a>
-                                </div>
-                            `;
-                            return artCard;
-                        };
-
-                        // Render Visible
-                        visibleArticles.forEach(art => {
-                            articlesContainer.appendChild(createCard(art));
-                        });
-
-                        // Render Hidden (if any)
-                        if (hiddenArticles.length > 0) {
-                            const hiddenContainer = document.createElement('div');
-                            hiddenContainer.className = 'hidden-articles';
-                            hiddenContainer.style.display = 'none'; // Start hidden
-
-                            hiddenArticles.forEach(art => {
-                                hiddenContainer.appendChild(createCard(art));
-                            });
-                            articlesContainer.appendChild(hiddenContainer);
-
-                            // 3. Show More Button
-                            const btnContainer = document.createElement('div');
-                            btnContainer.className = 'show-more-container';
-                            btnContainer.style.textAlign = 'center';
-                            btnContainer.style.marginTop = '1rem';
-
-                            const showMoreBtn = document.createElement('button');
-                            showMoreBtn.className = 'btn btn-secondary btn-sm';
-                            showMoreBtn.innerHTML = `Leer más noticias <i class="fa-solid fa-chevron-down"></i>`;
-
-                            showMoreBtn.onclick = () => {
-                                const isHidden = hiddenContainer.style.display === 'none';
-                                if (isHidden) {
-                                    hiddenContainer.style.display = 'contents';
-                                    showMoreBtn.innerHTML = `Mostrar menos <i class="fa-solid fa-chevron-up"></i>`;
-                                } else {
-                                    hiddenContainer.style.display = 'none';
-                                    showMoreBtn.innerHTML = `Leer más noticias <i class="fa-solid fa-chevron-down"></i>`;
-                                }
-                            };
-
-                            btnContainer.appendChild(showMoreBtn);
-                            section.appendChild(articlesContainer); // Append container first
-                            section.appendChild(btnContainer);      // Then button
-                        } else {
-                            section.appendChild(articlesContainer);
-                        }
-
-                        dashboardDiv.appendChild(section);
-                    }
-                });
+                renderDashboard(articles);
+                renderMediaSummary(articles);
 
             } catch (err) {
                 console.error(err);
@@ -438,6 +274,264 @@
             } finally {
                 loadingDiv.style.display = 'none';
             }
+        }
+
+        function filterBySource(sourceName) {
+            currentFilter = sourceName;
+
+            // Update UI Active State
+            const pills = document.querySelectorAll('.media-pill');
+            pills.forEach(pill => {
+                if (pill.dataset.source === sourceName) {
+                    pill.classList.add('active');
+                } else {
+                    pill.classList.remove('active');
+                }
+            });
+
+            if (sourceName === 'all') {
+                renderDashboard(allArticles);
+            } else {
+                const filtered = allArticles.filter(art => {
+                    let domain = art.source || '';
+                    try {
+                        if (art.url) {
+                            domain = new URL(art.url).hostname.replace('www.', '');
+                        }
+                    } catch (e) { }
+                    return domain.toLowerCase().includes(sourceName.toLowerCase()) ||
+                        (art.source && art.source.toLowerCase().includes(sourceName.toLowerCase()));
+                });
+                renderDashboard(filtered);
+            }
+
+            // Scroll to news grid if needed
+            document.querySelector('.section-title').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderMediaSummary(articles) {
+            const counts = {};
+
+            // Focus on Chilean articles for the summary too
+            const chilean = articles.filter(isChilean);
+
+            chilean.forEach(art => {
+                let domain = art.source || 'Otros';
+                try {
+                    if (art.url) {
+                        domain = new URL(art.url).hostname.replace('www.', '');
+                    }
+                } catch (e) { }
+                counts[domain] = (counts[domain] || 0) + 1;
+            });
+
+            // Convert to array and sort by count DESC
+            const sortedMedia = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+            if (sortedMedia.length === 0) {
+                mediaSummarySection.style.display = 'none';
+                return;
+            }
+
+            mediaSummarySection.style.display = 'block';
+            mediaSummaryDiv.innerHTML = '';
+
+            // 1. Add "All" Pill
+            const allPill = document.createElement('div');
+            allPill.className = currentFilter === 'all' ? 'media-pill active' : 'media-pill';
+            allPill.dataset.source = 'all';
+            allPill.innerHTML = `Ver Todos <span class="media-badge">${chilean.length}</span>`;
+            allPill.onclick = () => filterBySource('all');
+            mediaSummaryDiv.appendChild(allPill);
+
+            // 2. Add Media Pills
+            sortedMedia.forEach(([name, count]) => {
+                const pill = document.createElement('div');
+                pill.className = currentFilter === name ? 'media-pill active' : 'media-pill';
+                pill.dataset.source = name;
+                pill.innerHTML = `${name} <span class="media-badge">${count}</span>`;
+                pill.onclick = () => filterBySource(name);
+                mediaSummaryDiv.appendChild(pill);
+            });
+        }
+
+        const CHILEAN_DOMAINS = [
+            '.cl',
+            'latercera.com',
+            'emol.com',
+            'cnnchile.com',
+            'meganoticias.cl',
+            '24horas.cl',
+            't13.cl',
+            'chvnoticias.cl',
+            'elmostrador.cl',
+            'biobiochile.cl',
+            'cooperativa.cl',
+            'adnradio.cl',
+            'df.cl',
+            'pulso.cl',
+            'elmercurio.com',
+            'lasegunda.com',
+            'theclinic.cl',
+            'elciudadano.com',
+            'ciperchile.cl',
+            'interferencia.cl',
+            'eldesconcierto.cl'
+        ];
+
+        const isChilean = (art) => {
+            const text = (art.title + ' ' + (art.summary || '') + ' ' + (art.source || '')).toLowerCase();
+            const hasChileMention = text.includes('chile');
+
+            let isChileanDomain = false;
+            try {
+                if (art.url) {
+                    const domain = new URL(art.url).hostname.replace('www.', '');
+                    isChileanDomain = CHILEAN_DOMAINS.some(d => domain.endsWith(d));
+                }
+            } catch (e) { }
+
+            return hasChileMention || isChileanDomain;
+        };
+
+
+        function renderDashboard(articles) {
+            dashboardDiv.innerHTML = '';
+
+            // 1. Filter: Only Chile
+            const filteredArticles = articles.filter(isChilean);
+
+            if (filteredArticles.length === 0) {
+                dashboardDiv.innerHTML = `
+                    <div class="empty-state" style="display: flex;">
+                        <i class="fa-regular fa-newspaper"></i>
+                        <p>No hay noticias para los criterios seleccionados.</p>
+                        <button onclick="filterBySource('all')" class="btn btn-link">Ver todas las noticias</button>
+                    </div>
+                `;
+                return;
+            }
+
+            // Group by category
+            const grouped = {};
+
+            // Virtual Category: Más recientes 
+            const RECENT_ALLOWED_CATEGORIES = [
+                'Pesca Artesanal',
+                'Pesca Industrial',
+                'Ley de Pesca',
+                'Sector Pesquero',
+                'Pais y Sector Empresarial'
+            ];
+
+            const recentCandidates = filteredArticles.filter(art =>
+                RECENT_ALLOWED_CATEGORIES.includes(art.category)
+            );
+
+            grouped['Más recientes'] = recentCandidates.slice(0, 6);
+
+            filteredArticles.forEach(art => {
+                const cat = art.category || 'Otros';
+                if (!grouped[cat]) grouped[cat] = [];
+                grouped[cat].push(art);
+            });
+
+            // Render in order
+            ORDERED_CATEGORIES.forEach(cat => {
+                const catArticles = grouped[cat];
+                if (catArticles && catArticles.length > 0) {
+                    // Sort by date desc (Newest first)
+                    catArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                    const section = document.createElement('section');
+                    section.className = 'category-section';
+
+                    const header = document.createElement('div');
+                    header.className = 'category-header';
+                    header.innerHTML = `<h3>${cat}</h3><span class="badge">${catArticles.length}</span>`;
+                    section.appendChild(header);
+
+                    const articlesContainer = document.createElement('div');
+                    articlesContainer.className = 'category-articles';
+
+                    // Split into visible and hidden
+                    const visibleArticles = catArticles.slice(0, 6);
+                    const hiddenArticles = catArticles.slice(6);
+
+                    // Helper to Create Card
+                    const createCard = (art) => {
+                        const artCard = document.createElement('article');
+                        artCard.className = 'news-card';
+
+                        const dateObj = new Date(art.date);
+                        const dateStr = dateObj.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' });
+
+                        let domain = art.source || 'Fuente desconocida';
+                        try {
+                            if (art.url) {
+                                const urlObj = new URL(art.url);
+                                domain = urlObj.hostname.replace('www.', '');
+                            }
+                        } catch (e) { }
+
+                        artCard.innerHTML = `
+                            <div class="card-meta">
+                                <span class="card-source">${domain}</span>
+                                <span class="card-date">${dateStr}</span>
+                            </div>
+                            <h4 class="card-title"><a href="${art.url}" target="_blank">${art.title}</a></h4>
+                            <p class="card-summary">${art.summary || ''}</p>
+                            <div class="card-actions">
+                                <a href="${art.url}" target="_blank" class="read-more">Leer nota <i class="fa-solid fa-arrow-right-long"></i></a>
+                            </div>
+                        `;
+                        return artCard;
+                    };
+
+                    visibleArticles.forEach(art => {
+                        articlesContainer.appendChild(createCard(art));
+                    });
+
+                    if (hiddenArticles.length > 0) {
+                        const hiddenContainer = document.createElement('div');
+                        hiddenContainer.className = 'hidden-articles';
+                        hiddenContainer.style.display = 'none';
+
+                        hiddenArticles.forEach(art => {
+                            hiddenContainer.appendChild(createCard(art));
+                        });
+                        articlesContainer.appendChild(hiddenContainer);
+
+                        const btnContainer = document.createElement('div');
+                        btnContainer.className = 'show-more-container';
+                        btnContainer.style.textAlign = 'center';
+                        btnContainer.style.marginTop = '1rem';
+
+                        const showMoreBtn = document.createElement('button');
+                        showMoreBtn.className = 'btn btn-secondary btn-sm';
+                        showMoreBtn.innerHTML = `Leer más noticias <i class="fa-solid fa-chevron-down"></i>`;
+
+                        showMoreBtn.onclick = () => {
+                            const isHidden = hiddenContainer.style.display === 'none';
+                            if (isHidden) {
+                                hiddenContainer.style.display = 'contents';
+                                showMoreBtn.innerHTML = `Mostrar menos <i class="fa-solid fa-chevron-up"></i>`;
+                            } else {
+                                hiddenContainer.style.display = 'none';
+                                showMoreBtn.innerHTML = `Leer más noticias <i class="fa-solid fa-chevron-down"></i>`;
+                            }
+                        };
+
+                        btnContainer.appendChild(showMoreBtn);
+                        section.appendChild(articlesContainer);
+                        section.appendChild(btnContainer);
+                    } else {
+                        section.appendChild(articlesContainer);
+                    }
+
+                    dashboardDiv.appendChild(section);
+                }
+            });
         }
 
         scrapeBtn.addEventListener('click', async () => {
