@@ -386,7 +386,13 @@ const scrapeSite = async (site) => {
 
 // Scrape RSS feeds (Google Alerts and others)
 const scrapeRssFeeds = async () => {
-    const parser = new Parser();
+    const parser = new Parser({
+        customFields: {
+            item: [
+                ['source', 'source'],
+            ]
+        }
+    });
     const articles = [];
 
     // Helper to extract source name from URL
@@ -557,8 +563,9 @@ const scrapeRssFeeds = async () => {
 
                 // Only add if contains fishing-related keywords
                 if (containsKeyword(title) || containsKeyword(summary)) {
-                    // Extract source from URL
-                    const source = forcedSource || extractSourceFromUrl(url);
+                    // Extract source from URL or RSS item
+                    const rssSource = item.source;
+                    const source = forcedSource || (typeof rssSource === 'string' ? rssSource : extractSourceFromUrl(url));
 
                     // --- DOMAIN FILTER ---
                     if (!forcedSource && !isChileanSource(url)) {
