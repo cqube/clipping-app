@@ -63,22 +63,28 @@
                 <div class="slider-dots" id="slider-dots"></div>
             </div>
 
-            <div class="media-summary-section" id="media-summary-section" style="display: none;">
-                <h3 class="summary-title">Resumen por Medio</h3>
-                <div class="media-summary-container" id="media-summary">
-                    <!-- Media pills injected by JS -->
+            <div class="clipping-layout">
+                <div class="clipping-main">
+                    <h2 class="section-title">Últimas Noticias</h2>
+
+                    <div id="loading" class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Cargando lo último del sector...</p>
+                    </div>
+
+                    <div id="dashboard" class="news-grid">
+                        <!-- Articles will be injected here -->
+                    </div>
                 </div>
-            </div>
 
-            <h2 class="section-title">Últimas Noticias</h2>
-
-            <div id="loading" class="loading-state">
-                <div class="spinner"></div>
-                <p>Cargando lo último del sector...</p>
-            </div>
-
-            <div id="dashboard" class="news-grid">
-                <!-- Articles will be injected here -->
+                <aside class="clipping-sidebar">
+                    <div class="media-summary-section" id="media-summary-section" style="display: none;">
+                        <h3 class="summary-title">Resumen por Medio</h3>
+                        <div class="media-summary-container" id="media-summary">
+                            <!-- Media pills injected by JS -->
+                        </div>
+                    </div>
+                </aside>
             </div>
         </main>
 
