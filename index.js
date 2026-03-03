@@ -11,6 +11,7 @@ const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const CLIENT_ID = process.env.CLIENT_ID || 'pesca';
 
 // Connect to MongoDB - Choose between Atlas (env) or Local (fallback)
 const rawUri = process.env.MONGODB_URI || process.env.MONGODB_URL;
@@ -122,9 +123,7 @@ const ensureConnected = (req, res, next) => {
 };
 
 
-const CLIENT_ID = process.env.CLIENT_ID || 'pesca';
-
-// Root Route - Serve correct HTML
+// App Version API
 app.get('/', (req, res) => {
     const file = CLIENT_ID === 'tacal' ? 'tacal.html' : 'pesca.html';
     res.sendFile(path.join(__dirname, 'public', file));
