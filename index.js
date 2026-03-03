@@ -132,6 +132,16 @@ app.get('/', (req, res) => {
 
 // --- API ROUTES ---
 
+// App Version API
+app.get('/api/version', (req, res) => {
+    try {
+        const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8'));
+        res.json({ version: pkg.version });
+    } catch (err) {
+        res.json({ version: '1.0.1' }); // Fallback
+    }
+});
+
 // Recipients Management
 app.get('/api/recipients', (req, res) => {
     if (fs.existsSync(RECIPIENTS_FILE)) {

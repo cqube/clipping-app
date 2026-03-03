@@ -463,6 +463,21 @@
             }
         }
 
+        async function loadVersion() {
+            try {
+                const res = await fetch('/api/version');
+                const data = await res.json();
+                if (data.version) {
+                    const footer = document.querySelector('.app-footer p');
+                    if (footer) {
+                        footer.innerHTML = `&copy; 2026 Clipping de Prensa - Fundación Tacal | v${data.version}`;
+                    }
+                }
+            } catch (err) {
+                console.error('Error loading version:', err);
+            }
+        }
+
         // Manual email send
         sendEmailBtn.addEventListener('click', async () => {
             if (!confirm('¿Deseas enviar el clipping a todos los suscriptores ahora?')) {
@@ -496,6 +511,7 @@
         // Load on start
         loadArticles();
         loadLastUpdate();
+        loadVersion();
 
         // --- SLIDER LOGIC ---
         const sliderContainer = document.getElementById('slider-container');
