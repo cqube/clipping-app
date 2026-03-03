@@ -301,18 +301,20 @@
                             const dateObj = new Date(art.date);
                             const dateStr = dateObj.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' });
 
-                            // Domain extraction
-                            let domain = art.source || 'Fuente desconocida';
-                            try {
-                                if (art.url) {
-                                    const urlObj = new URL(art.url);
-                                    domain = urlObj.hostname.replace('www.', '');
-                                }
-                            } catch (e) { }
+                            // Source display logic: Prefer scraper-provided source name
+                            let sourceDisplay = art.source || 'Fuente';
+                            if (sourceDisplay.includes('Google News') || sourceDisplay === 'news.google.com') {
+                                try {
+                                    if (art.url) {
+                                        const urlObj = new URL(art.url);
+                                        sourceDisplay = urlObj.hostname.replace('www.', '');
+                                    }
+                                } catch (e) { }
+                            }
 
                             artCard.innerHTML = `
                                 <div class="card-meta">
-                                    <span class="card-source">${domain}</span>
+                                    <span class="card-source">${sourceDisplay}</span>
                                     <span class="card-date">${dateStr}</span>
                                 </div>
                                 <h4 class="card-title"><a href="${art.url}" target="_blank">${art.title}</a></h4>

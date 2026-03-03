@@ -37,7 +37,7 @@ if (isSrvConnection) {
 }
 
 const RECIPIENTS_FILE = path.join(__dirname, 'data/recipients.json');
-const ARTICLES_FILE = path.join(__dirname, 'data/latest_articles.json');
+const ARTICLES_FILE = path.join(__dirname, 'data', `latest_articles-${CLIENT_ID}.json`);
 let isScraping = false;
 let lastDbError = null;
 

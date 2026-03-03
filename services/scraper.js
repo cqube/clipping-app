@@ -564,8 +564,21 @@ const scrapeRssFeeds = async () => {
                 // Only add if contains fishing-related keywords
                 if (containsKeyword(title) || containsKeyword(summary)) {
                     // Extract source from URL or RSS item
-                    const rssSource = item.source;
-                    const source = forcedSource || (typeof rssSource === 'string' ? rssSource : extractSourceFromUrl(url));
+                    const rssSource = item.source; // rss-parser maps <source> to item.source
+                    let extractedSource = '';
+
+                    if (typeof rssSource === 'string') {
+                        extractedSource = rssSource;
+                    } else if (rssSource && rssSource.$text) {
+                        extractedSource = rssSource.$text;
+                    } else if (rssSource && rssSource.name) {
+                        extractedSource = rssSource.name;
+                    }
+
+                    // Only use extracted name if it's not a generic Google News label
+                    const source = (extractedSource && !extractedSource.includes('Google News'))
+                        ? extractedSource
+                        : (forcedSource || extractSourceFromUrl(url));
 
                     // --- DOMAIN FILTER ---
                     if (!forcedSource && !isChileanSource(url)) {
@@ -680,7 +693,7 @@ const runScraper = async () => {
         }
 
         // Save to local file as fallback
-        const dataPath = path.join(__dirname, '../data/latest_articles.json');
+        const dataPath = path.join(__dirname, '../data', `latest_articles-${CLIENT_ID}.json`);
         const statusPath = path.join(__dirname, '../data', `status-${CLIENT_ID}.json`);
 
         if (!fs.existsSync(path.join(__dirname, '../data'))) {

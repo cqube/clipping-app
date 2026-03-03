@@ -299,13 +299,15 @@
                 renderDashboard(allArticles);
             } else {
                 const filtered = allArticles.filter(art => {
-                    let domain = art.source || '';
-                    try {
-                        if (art.url) {
-                            domain = new URL(art.url).hostname.replace('www.', '');
-                        }
-                    } catch (e) { }
-                    return domain.toLowerCase().includes(sourceName.toLowerCase()) ||
+                    let sourceName = art.source || '';
+                    if (sourceName.includes('Google News') || sourceName === 'news.google.com') {
+                        try {
+                            if (art.url) {
+                                sourceName = new URL(art.url).hostname.replace('www.', '');
+                            }
+                        } catch (e) { }
+                    }
+                    return sourceName.toLowerCase().includes(sourceName.toLowerCase()) ||
                         (art.source && art.source.toLowerCase().includes(sourceName.toLowerCase()));
                 });
                 renderDashboard(filtered);
@@ -322,13 +324,15 @@
             const chilean = articles.filter(isChilean);
 
             chilean.forEach(art => {
-                let domain = art.source || 'Otros';
-                try {
-                    if (art.url) {
-                        domain = new URL(art.url).hostname.replace('www.', '');
-                    }
-                } catch (e) { }
-                counts[domain] = (counts[domain] || 0) + 1;
+                let sourceName = art.source || 'Otros';
+                if (sourceName.includes('Google News') || sourceName === 'news.google.com') {
+                    try {
+                        if (art.url) {
+                            sourceName = new URL(art.url).hostname.replace('www.', '');
+                        }
+                    } catch (e) { }
+                }
+                counts[sourceName] = (counts[sourceName] || 0) + 1;
             });
 
             // Convert to array and sort by count DESC
@@ -472,17 +476,19 @@
                         const dateObj = new Date(art.date);
                         const dateStr = dateObj.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' });
 
-                        let domain = art.source || 'Fuente desconocida';
-                        try {
-                            if (art.url) {
-                                const urlObj = new URL(art.url);
-                                domain = urlObj.hostname.replace('www.', '');
-                            }
-                        } catch (e) { }
+                        let sourceDisplay = art.source || 'Fuente';
+                        if (sourceDisplay.includes('Google News') || sourceDisplay === 'news.google.com') {
+                            try {
+                                if (art.url) {
+                                    const urlObj = new URL(art.url);
+                                    sourceDisplay = urlObj.hostname.replace('www.', '');
+                                }
+                            } catch (e) { }
+                        }
 
                         artCard.innerHTML = `
                             <div class="card-meta">
-                                <span class="card-source">${domain}</span>
+                                <span class="card-source">${sourceDisplay}</span>
                                 <span class="card-date">${dateStr}</span>
                             </div>
                             <h4 class="card-title"><a href="${art.url}" target="_blank">${art.title}</a></h4>

@@ -6,11 +6,11 @@ const { sendDailyClipping } = require('./mailer');
 const initScheduler = () => {
     console.log('Initializing scheduler...');
 
-    // Job 1: Scraper at 07:00 AM (Daily)
+    // Job 1: Scraper at 07:45 AM (Daily)
     const scraperJob = new CronJob(
-        '0 7 * * *',
+        '45 7 * * *',
         async function () {
-            console.log('Running scheduled scrape (07:00 AM)...');
+            console.log('Running scheduled scrape (07:45 AM)...');
             try {
                 await runScraper();
                 console.log('Scheduled scrape finished.');
@@ -23,11 +23,11 @@ const initScheduler = () => {
         'America/Santiago'
     );
 
-    // Job 2: Email at 08:15 AM (Daily)
+    // Job 2: Email at 08:30 AM (Daily)
     const emailJob = new CronJob(
-        '15 8 * * *',
+        '30 8 * * *',
         async function () {
-            console.log('Running scheduled email send (08:15 AM)...');
+            console.log('Running scheduled email send (08:30 AM)...');
             try {
                 await sendDailyClipping();
                 console.log('Scheduled email sent.');
