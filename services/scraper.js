@@ -147,7 +147,7 @@ const fetchArticleMetadata = async (url) => {
 
         const { data } = await axios.get(url, {
             headers: headers,
-            timeout: 5000
+            timeout: 15000
         });
         const $ = cheerio.load(data);
 
@@ -238,13 +238,32 @@ const fetchArticleMetadata = async (url) => {
             }
         }
 
-        // 4. Try specific site patterns (like Aqua.cl)
+        // 4. Try specific site patterns
         if (!date && url.includes('aqua.cl')) {
             const aquaDateText = $('.post-meta .updated').text() || $('.entry-date').text();
             if (aquaDateText) {
-                // Aqua often uses Spanish date formats or ISO in text
-                // This is a broad fallback, better to rely on LD-JSON or Meta if possible
                 const parsed = new Date(aquaDateText);
+                if (!isNaN(parsed.getTime())) date = parsed;
+            }
+        }
+
+        if (!date && url.includes('mundoacuicola.cl')) {
+            const mundoDateText = $('.item-metadata.posts-date').text().trim();
+            if (mundoDateText) {
+                // Handling Spanish months "febrero 27, 2026"
+                const months = {
+                    'enero': 'January', 'febrero': 'February', 'marzo': 'March', 'abril': 'April',
+                    'mayo': 'May', 'junio': 'June', 'julio': 'July', 'agosto': 'August',
+                    'septiembre': 'September', 'octubre': 'October', 'noviembre': 'November', 'diciembre': 'December'
+                };
+                let englishDate = mundoDateText.toLowerCase();
+                for (const [spa, eng] of Object.entries(months)) {
+                    if (englishDate.includes(spa)) {
+                        englishDate = englishDate.replace(spa, eng);
+                        break;
+                    }
+                }
+                const parsed = new Date(englishDate);
                 if (!isNaN(parsed.getTime())) date = parsed;
             }
         }
